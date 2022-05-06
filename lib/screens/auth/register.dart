@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/controller/register_controller.dart';
+import 'package:mensa_links/controller/auth_controller.dart';
 import 'package:mensa_links/screens/auth/register_details.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
@@ -8,7 +8,7 @@ import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/title_text.dart';
 
 class Register extends StatelessWidget {
-  final controller = Get.put(RegisterController());
+  final controller = Get.put(AuthController());
   Register({Key? key}) : super(key: key);
 
   @override
@@ -91,11 +91,10 @@ class Register extends StatelessWidget {
                           height: 70,
                         ),
                         CustomButton(
-                          onTap: () {
+                          onTap: () async {
+                            // await controller.onScanNow();
                             Get.to(
-                              () => RegisterDetails(
-                                controller: controller,
-                              ),
+                              () => RegisterDetails(controller: controller),
                             );
                           },
                           label: 'Scan Now',

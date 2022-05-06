@@ -1,14 +1,18 @@
-import 'package:dropdown_button2/custom_dropdown_button2.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/controller/register_controller.dart';
+import 'package:mensa_links/controller/auth_controller.dart';
+import 'package:mensa_links/screens/auth/contact_detail.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
+import 'package:mensa_links/widgets/custom_button.dart';
+import 'package:mensa_links/widgets/custom_dropdown.dart';
 import 'package:mensa_links/widgets/custom_text_field.dart';
 import 'package:mensa_links/widgets/title_text.dart';
 
 class RegisterDetails extends StatelessWidget {
-  final RegisterController controller;
+  final AuthController controller;
   const RegisterDetails({
     Key? key,
     required this.controller,
@@ -88,23 +92,113 @@ class RegisterDetails extends StatelessWidget {
                             controller: TextEditingController(),
                           ),
                           Obx(
-                            () => Container(
-                              child: CustomDropdownButton2(
-                                // buttonWidth: k,
-                                value: controller.selectedDate.value,
-                                hint: 'Select Day',
-                                buttonHeight: 60,
-                                dropdownItems: List.generate(
-                                  30,
-                                  (index) {
-                                    return index.toString();
+                            () => Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CustomDropdown(
+                                  label: 'ID Expiry',
+                                  hint: 'Day',
+                                  width: SizeConfig.screenWidth * 0.3,
+                                  values: List.generate(
+                                    31,
+                                    (index) {
+                                      return (index + 1).toString();
+                                    },
+                                  ),
+                                  onValueSelected: (String? item) {
+                                    log('Selected Date: $item');
+                                    controller.expiryDate.value = item;
                                   },
+                                  selectedValue: controller.expiryDate.value,
                                 ),
-                                onChanged: (String? item) {
-                                  controller.selectedDate.value = item;
-                                },
-                              ),
+                                CustomDropdown(
+                                  label: '',
+                                  hint: 'Month',
+                                  width: SizeConfig.screenWidth * 0.3,
+                                  values: controller.months,
+                                  onValueSelected: (String? item) {
+                                    log('Selected Month: $item');
+                                    controller.expiryMonth.value = item;
+                                  },
+                                  selectedValue: controller.expiryMonth.value,
+                                ),
+                                CustomDropdown(
+                                  label: '',
+                                  hint: 'Year',
+                                  width: SizeConfig.screenWidth * 0.3,
+                                  values: List.generate(
+                                    30,
+                                    (index) {
+                                      return (1990 + index).toString();
+                                    },
+                                  ),
+                                  onValueSelected: (String? item) {
+                                    log('Selected Year: $item');
+                                    controller.expiryYear.value = item;
+                                  },
+                                  selectedValue: controller.expiryYear.value,
+                                ),
+                              ],
                             ),
+                          ),
+                          Obx(
+                            () => Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CustomDropdown(
+                                  label: 'Date of Birth',
+                                  hint: 'Day',
+                                  width: SizeConfig.screenWidth * 0.3,
+                                  values: List.generate(
+                                    31,
+                                    (index) {
+                                      return (index + 1).toString();
+                                    },
+                                  ),
+                                  onValueSelected: (String? item) {
+                                    log('Selected Date: $item');
+                                    controller.birthDate.value = item;
+                                  },
+                                  selectedValue: controller.birthDate.value,
+                                ),
+                                CustomDropdown(
+                                  label: '',
+                                  hint: 'Month',
+                                  width: SizeConfig.screenWidth * 0.3,
+                                  values: controller.months,
+                                  onValueSelected: (String? item) {
+                                    log('Selected Month: $item');
+                                    controller.birthMonth.value = item;
+                                  },
+                                  selectedValue: controller.birthMonth.value,
+                                ),
+                                CustomDropdown(
+                                  label: '',
+                                  hint: 'Year',
+                                  width: SizeConfig.screenWidth * 0.3,
+                                  values: List.generate(
+                                    30,
+                                    (index) {
+                                      return (1990 + index).toString();
+                                    },
+                                  ),
+                                  onValueSelected: (String? item) {
+                                    log('Selected Year: $item');
+                                    controller.birthYear.value = item;
+                                  },
+                                  selectedValue: controller.birthYear.value,
+                                ),
+                              ],
+                            ),
+                          ),
+                          CustomButton(
+                            label: 'Next',
+                            verticalMargin: 15,
+                            onTap: () {
+                              Get.to(
+                                () => ContactDetails(),
+                              );
+                            },
                           ),
                         ],
                       ),
