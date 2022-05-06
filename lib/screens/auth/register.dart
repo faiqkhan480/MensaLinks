@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
 import 'package:mensa_links/screens/auth/register_details.dart';
+import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
@@ -27,7 +28,9 @@ class Register extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Center(
-                    child: Image.asset('assets/images/mini_logo.png'),
+                    child: Image.asset(
+                      Assets.miniLogo,
+                    ),
                   ),
                 ),
                 Expanded(
