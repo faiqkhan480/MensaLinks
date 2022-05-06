@@ -38,7 +38,9 @@ dependencies:
   easy_card_scanner:
     path: C:\Users\Fattani computers\StudioProjects\plugins\easy_card_scanner\
   dropdown_button2: ^1.4.0
-#  credit_card_scanner: ^1.0.4
+  animated_check: ^1.0.5
+  liquid_progress_indicator: ^0.4.0
+  simple_animations: ^4.0.2
 
 dev_dependencies:
   flutter_test:

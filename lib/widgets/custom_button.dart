@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
 import 'package:mensa_links/widgets/title_text.dart';
@@ -7,16 +8,19 @@ class CustomButton extends StatelessWidget {
   final String label;
   final Function() onTap;
   final double? verticalMargin;
+  final Alignment? alignment;
   const CustomButton({
     Key? key,
     required this.label,
     required this.onTap,
     this.verticalMargin,
+    this.alignment,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: alignment,
       margin: EdgeInsets.only(
         top: verticalMargin ?? 0,
       ),
@@ -24,7 +28,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            Constants.primaryColor,
+            AppColors.primaryColor,
           ),
           padding: MaterialStateProperty.all(
             const EdgeInsets.all(

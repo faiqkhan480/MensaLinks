@@ -2,26 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
+import 'package:mensa_links/screens/auth/account_created.dart';
+import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
+import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/custom_text_field.dart';
+import 'package:mensa_links/widgets/loading.dart';
 import 'package:mensa_links/widgets/simple_default_layout.dart';
 import 'package:mensa_links/widgets/title_text.dart';
 
 class ContactDetails extends StatelessWidget {
-  final AuthController controller = Get.find<AuthController>();
-  ContactDetails({Key? key}) : super(key: key);
+  const ContactDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SimpleDefaultLayout(
-      child: CreateAccountForm(),
+    return SimpleDefaultScreenLayout(
+      child: ContactForm(),
     );
   }
 }
 
 ///Contact Form
-class CreateAccountForm extends StatelessWidget {
-  const CreateAccountForm({
+class ContactForm extends StatelessWidget {
+  final AuthController controller = Get.find<AuthController>();
+  ContactForm({
     Key? key,
   }) : super(key: key);
 
@@ -31,40 +35,60 @@ class CreateAccountForm extends StatelessWidget {
       children: [
         Center(
           child: TitleText(
-            text: 'Create Account',
+            text: 'createAccount'.tr,
             size: Constants.heading,
-            color: Constants.primaryColor,
+            color: AppColors.primaryColor,
             weight: FontWeight.bold,
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: TitleText(
-            text: 'Please enter your contact details',
+            text: 'enterContactDetail'.tr,
             size: Constants.subHeading2,
             align: TextAlign.left,
-            color: Constants.primaryColor,
+            color: AppColors.primaryColor,
           ),
         ),
         CustomTextField(
-          controller: TextEditingController(),
-          hintText: 'Mobile Number',
+          controller: controller.mobile,
+          hintText: 'mobile'.tr,
         ),
         CustomTextField(
-          controller: TextEditingController(),
-          hintText: 'Email',
+          controller: controller.email,
+          hintText: 'email'.tr,
         ),
         CustomTextField(
-          controller: TextEditingController(),
-          hintText: 'Address Line 1',
+          controller: controller.address1,
+          hintText: 'address1'.tr,
         ),
         CustomTextField(
-          controller: TextEditingController(),
-          hintText: 'Address Line 2',
+          controller: controller.address2,
+          hintText: 'address2'.tr,
         ),
         CustomTextField(
-          controller: TextEditingController(),
-          hintText: 'P.O. Box',
+          controller: controller.poBox,
+          hintText: 'poBox'.tr,
+        ),
+        CustomButton(
+          verticalMargin: 10,
+          label: 'next'.tr,
+          onTap: () {
+            Get.to(
+              () => Loading(
+                onComplete: () {
+                  Future.delayed(
+                    const Duration(seconds: 3),
+                    () {
+                      Get.to(
+                        () => const AccountCreated(),
+                      );
+                    },
+                  );
+                },
+              ),
+            );
+          },
         ),
       ],
     );

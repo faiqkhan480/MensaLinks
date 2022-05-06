@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/widgets/title_text.dart';
 
@@ -31,7 +32,7 @@ class CustomDropdown extends StatelessWidget {
         children: [
           TitleText(
             text: label,
-            color: Constants.primaryColor.withOpacity(0.5),
+            color: AppColors.primaryColor.withOpacity(0.5),
             weight: FontWeight.bold,
             size: Constants.subHeading2,
           ),
@@ -41,7 +42,7 @@ class CustomDropdown extends StatelessWidget {
             hint: hint ?? '',
             buttonDecoration: BoxDecoration(
               border: Border.all(
-                color: Constants.primaryColor,
+                color: AppColors.primaryColor,
               ),
               borderRadius: BorderRadius.circular(
                 15,

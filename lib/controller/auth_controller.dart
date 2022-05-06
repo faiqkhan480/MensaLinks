@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:easy_card_scanner/credit_card_scanner.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -10,6 +11,11 @@ class AuthController extends GetxController {
   Rxn<String> birthDate = Rxn<String>();
   Rxn<String> birthMonth = Rxn<String>();
   Rxn<String> birthYear = Rxn<String>();
+  TextEditingController mobile = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController address1 = TextEditingController();
+  TextEditingController address2 = TextEditingController();
+  TextEditingController poBox = TextEditingController();
   List<String> months = [
     'Jan',
     'Feb',

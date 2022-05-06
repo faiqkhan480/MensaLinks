@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/splash_controller.dart';
 import 'package:mensa_links/screens/auth/register.dart';
+import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
@@ -21,7 +22,7 @@ class Splash extends StatelessWidget {
             width: SizeConfig.screenWidth,
             height: SizeConfig.screenHeight,
             child: ColoredBox(
-              color: Constants.primaryColor,
+              color: AppColors.primaryColor,
               child: Container(),
             ),
           ),
@@ -29,7 +30,7 @@ class Splash extends StatelessWidget {
             bottom: 0,
             child: Container(
               decoration: BoxDecoration(
-                color: Constants.backgroundColor,
+                color: AppColors.backgroundColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(
                     Constants.radius,
@@ -110,16 +111,16 @@ class Splash extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TitleText(
-                  text: 'Sign Up As',
+                  text: 'signUpAs'.tr,
                   weight: FontWeight.bold,
-                  color: Constants.primaryColor,
+                  color: AppColors.primaryColor,
                   size: Constants.heading,
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 CustomButton(
-                  label: 'Head of Household',
+                  label: 'houseHead'.tr,
                   onTap: () {
                     Get.to(
                       () => Register(),
@@ -130,7 +131,7 @@ class Splash extends StatelessWidget {
                   height: 30,
                 ),
                 CustomButton(
-                  label: 'Business',
+                  label: 'business'.tr,
                   onTap: () {
                     Get.to(
                       () => Register(),
@@ -143,17 +144,17 @@ class Splash extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TitleText(
-                  text: 'Welcome To MensaLinks',
+                  text: 'welcome'.tr,
                   weight: FontWeight.bold,
-                  color: Constants.primaryColor,
+                  color: AppColors.primaryColor,
                   size: Constants.heading,
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 CustomButton(
-                  label: 'Sign Up',
-                  onTap: () {
+                  label: 'signUpButton'.tr,
+                  onTap: () async {
                     controller.onSignUpPressed();
                   },
                 ),
