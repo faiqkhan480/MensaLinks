@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/splash_controller.dart';
+import 'package:mensa_links/routes/app_routes.dart';
 import 'package:mensa_links/screens/auth/register.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
@@ -121,22 +122,14 @@ class Splash extends StatelessWidget {
                 ),
                 CustomButton(
                   label: 'houseHead'.tr,
-                  onTap: () {
-                    Get.to(
-                      () => Register(),
-                    );
-                  },
+                  onTap: () => Get.toNamed(AppRoutes.REGISTER),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 CustomButton(
                   label: 'business'.tr,
-                  onTap: () {
-                    Get.to(
-                      () => Register(),
-                    );
-                  },
+                  onTap: () => Get.toNamed(AppRoutes.REGISTER),
                 ),
               ],
             )
@@ -154,9 +147,7 @@ class Splash extends StatelessWidget {
                 ),
                 CustomButton(
                   label: 'signUpButton'.tr,
-                  onTap: () async {
-                    controller.onSignUpPressed();
-                  },
+                  onTap: controller.onSignUpPressed,
                 ),
               ],
             ),

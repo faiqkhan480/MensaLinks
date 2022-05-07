@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
+import 'package:mensa_links/routes/app_routes.dart';
 import 'package:mensa_links/screens/auth/register_details.dart';
 import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
@@ -11,20 +12,16 @@ import 'package:mensa_links/widgets/simple_default_layout.dart';
 import 'package:mensa_links/widgets/title_text.dart';
 
 class Register extends StatelessWidget {
-  final controller = Get.put(AuthController());
   Register({Key? key}) : super(key: key);
 
+  final AuthController controller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
       // showAppBar: false,
       showAppBarBackButton: true,
-      appbarTitle: Image.asset(
-        Assets.logo,
-      ),
-      child: RegisterForm(
-        controller: controller,
-      ),
+      appbarTitle: Image.asset(Assets.logo,),
+      child: RegisterForm(controller: controller,),
     );
   }
 }
@@ -101,9 +98,7 @@ class RegisterForm extends StatelessWidget {
               CustomButton(
                 onTap: () async {
                   // await controller.onScanNow();
-                  Get.to(
-                    () => RegisterDetails(controller: controller),
-                  );
+                  Get.toNamed(AppRoutes.REGISTERDETAIL);
                 },
                 label: 'scanNow'.tr,
               ),

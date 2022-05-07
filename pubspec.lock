@@ -67,9 +67,11 @@ packages:
   easy_card_scanner:
     dependency: "direct main"
     description:
-      path: "C:\\Users\\Fattani computers\\StudioProjects\\plugins\\easy_card_scanner\\"
-      relative: false
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "3de58ce4fd4630ef81d4d4e8f8d7c8fb3c3d8a57"
+      url: "https://github.com/tauqeerkhattak/easy_card_scanner.git"
+    source: git
     version: "1.0.5"
   fake_async:
     dependency: transitive

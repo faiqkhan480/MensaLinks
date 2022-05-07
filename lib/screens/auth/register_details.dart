@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
+import 'package:mensa_links/routes/app_routes.dart';
 import 'package:mensa_links/screens/auth/contact_detail.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
@@ -14,32 +15,22 @@ import 'package:mensa_links/widgets/simple_default_layout.dart';
 import 'package:mensa_links/widgets/title_text.dart';
 
 class RegisterDetails extends StatelessWidget {
-  final AuthController controller;
-  const RegisterDetails({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+  const RegisterDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SimpleDefaultScreenLayout(
-      child: PersonalDetails(
-        controller: controller,
-      ),
+    return const SimpleDefaultScreenLayout(
+      child: PersonalDetails(),
     );
   }
 }
 
 class PersonalDetails extends StatelessWidget {
-  const PersonalDetails({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final AuthController controller;
+  const PersonalDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final AuthController controller = Get.find<AuthController>();
     return Column(
       children: [
         Container(
@@ -188,11 +179,7 @@ class PersonalDetails extends StatelessWidget {
                   label: 'next'.tr,
                   alignment: Alignment.center,
                   verticalMargin: 15,
-                  onTap: () {
-                    Get.to(
-                      () => const ContactDetails(),
-                    );
-                  },
+                  onTap: () => Get.toNamed(AppRoutes.CONTACTDETAIL),
                 ),
               ],
             ),
