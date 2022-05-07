@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
+import 'package:mensa_links/routes/app_routes.dart';
 import 'package:mensa_links/screens/auth/account_created.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
@@ -72,22 +73,19 @@ class ContactForm extends StatelessWidget {
         ),
         CustomButton(
           verticalMargin: 10,
-          label: 'next'.tr,
+          label: 'next',
           onTap: () {
-            Get.to(
-              () => Loading(
-                onComplete: () {
-                  Future.delayed(
-                    const Duration(seconds: 3),
-                    () {
-                      Get.to(
-                        () => const AccountCreated(),
-                      );
-                    },
-                  );
-                },
-              ),
-            );
+            Get.toNamed(AppRoutes.DOCUMENTVERIFICATION);
+            // Get.to(
+            //   () => Loading(
+            //     onComplete: () {
+            //       Future.delayed(
+            //         const Duration(seconds: 3),
+            //         () => Get.toNamed(AppRoutes.DOCUMENTVERIFICATION),
+            //       );
+            //     },
+            //   ),
+            // );
           },
         ),
       ],

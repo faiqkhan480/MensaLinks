@@ -36,76 +36,73 @@ class RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: SizeConfig.screenWidth,
-          decoration: BoxDecoration(
-            color: AppColors.backgroundColor,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(
-                Constants.radius,
-              ),
-              topRight: Radius.circular(
-                Constants.radius,
-              ),
-            ),
+    return Container(
+      width: SizeConfig.screenWidth,
+      decoration: BoxDecoration(
+        color: AppColors.backgroundColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(
+            Constants.radius,
           ),
-          child: Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(
-                  top: 20,
-                  left: 10,
-                  right: 10,
-                ),
-                child: TitleText(
-                  text: 'createAccount'.tr,
-                  size: Constants.heading,
-                  color: AppColors.primaryColor,
-                  weight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  top: 20,
-                  left: 10,
-                  right: 10,
-                ),
-                child: TitleText(
-                  text: 'scanID'.tr,
-                  size: Constants.subHeading,
-                  align: TextAlign.center,
-                  color: AppColors.primaryColor,
-                  weight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  top: 20,
-                  left: 10,
-                  right: 10,
-                ),
-                child: TitleText(
-                  text: 'scanIdDesc'.tr,
-                  align: TextAlign.center,
-                  color: AppColors.primaryColor,
-                ),
-              ),
-              const SizedBox(
-                height: 70,
-              ),
-              CustomButton(
-                onTap: () async {
-                  // await controller.onScanNow();
-                  Get.toNamed(AppRoutes.REGISTERDETAIL);
-                },
-                label: 'scanNow'.tr,
-              ),
-            ],
+          topRight: Radius.circular(
+            Constants.radius,
           ),
         ),
-      ],
+      ),
+      child: ListView(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(
+              top: 20,
+              left: 10,
+              right: 10,
+            ),
+            child: TitleText(
+              text: 'createAccount'.tr,
+              size: Constants.heading,
+              color: AppColors.primaryColor,
+              weight: FontWeight.bold,
+              align: TextAlign.center,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(
+              top: 20,
+              left: 10,
+              right: 10,
+            ),
+            child: TitleText(
+              text: 'scanID'.tr,
+              size: Constants.subHeading,
+              align: TextAlign.center,
+              color: AppColors.primaryColor,
+              weight: FontWeight.bold,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(
+              top: 20,
+              left: 10,
+              right: 10,
+            ),
+            child: TitleText(
+              text: 'scanIdDesc'.tr,
+              align: TextAlign.center,
+              color: AppColors.primaryColor,
+            ),
+          ),
+          const SizedBox(
+            height: 70,
+          ),
+          CustomButton(
+            onTap: () async {
+              // await controller.onScanNow();
+              Get.toNamed(AppRoutes.REGISTERDETAIL);
+            },
+            label: 'scanNow'.tr,
+          ),
+        ],
+      ),
     );
   }
 }

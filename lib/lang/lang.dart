@@ -11,8 +11,7 @@ class Lang extends Translations {
           'business': 'Business',
           'createAccount': 'Create Account',
           'scanID': 'Please Scan Your Valid Emirates ID',
-          'scanIdDesc':
-              'UAE Central Bank requires us to obtain copy and information of your valid Emirates ID',
+          'scanIdDesc': 'UAE Central Bank requires us to obtain copy and information of your valid Emirates ID',
           'scanNow': 'Scan Now',
           'personalDetails': 'Personal Details',
           'fullName': 'Full Name',
@@ -29,6 +28,17 @@ class Lang extends Translations {
           'address1': 'Address Line 1',
           'address2': 'Address Line 2',
           'poBox': 'P.O. Box',
+
+          'document_verification': 'Document Verification',
+          'plz_upload_document': 'Please upload the below documents',
+          'passport': 'Passport',
+          'visa': 'Visa',
+          'doc_verification_msg': 'In order to complete the account creation we need to be 100% sure that You are You. As we are financial service. we have to comply with KYC & AML requirements.',
+          'done': 'Done',
+          '': '',
+          '': '',
+          '': '',
+
         },
         'zh_CN': {
           'welcome': '欢迎来到 MensaLinks!',

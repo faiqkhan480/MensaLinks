@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
@@ -7,14 +8,19 @@ import 'package:mensa_links/widgets/title_text.dart';
 class CustomButton extends StatelessWidget {
   final String label;
   final Function() onTap;
-  final double? verticalMargin;
+  final double? verticalMargin, radius;
   final Alignment? alignment;
-  const CustomButton({
+  final String? trailing;
+  final EdgeInsets? padding;
+  CustomButton({
     Key? key,
     required this.label,
     required this.onTap,
     this.verticalMargin,
     this.alignment,
+    this.trailing,
+    this.radius,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -30,11 +36,7 @@ class CustomButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(
             AppColors.primaryColor,
           ),
-          padding: MaterialStateProperty.all(
-            const EdgeInsets.all(
-              10,
-            ),
-          ),
+          padding: MaterialStateProperty.all(padding ?? const EdgeInsets.all(10),),
           minimumSize: MaterialStateProperty.all(
             Size(
               SizeConfig.screenWidth * 0.7,
@@ -43,16 +45,28 @@ class CustomButton extends StatelessWidget {
           ),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                15,
-              ),
+              borderRadius: BorderRadius.circular(radius ?? 15),
             ),
           ),
         ),
-        child: TitleText(
-          text: label,
+        child: trailing == null ?
+        TitleText(
+          text: label.tr,
           weight: FontWeight.bold,
           size: Constants.buttonTextSize,
+        ) :
+        Row(
+          mainAxisAlignment: trailing == null ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
+          children: [
+            TitleText(
+              text: label.tr,
+              weight: FontWeight.bold,
+              size: Constants.buttonTextSize,
+            ),
+
+            if(trailing != null)
+              Image.asset(trailing!, scale: 2.0),
+          ],
         ),
       ),
     );

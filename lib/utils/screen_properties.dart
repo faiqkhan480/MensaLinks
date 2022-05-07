@@ -34,14 +34,10 @@ class UIStyleProperties {
   static const topInsets30 = EdgeInsets.only(top: 30);
   static const topInsets40 = EdgeInsets.only(top: 40);
   static const insetsTop40Hzt20 = EdgeInsets.only(top: 40, left: 20, right: 20);
-  static const insetsVrt8Hzt20 =
-      EdgeInsets.symmetric(vertical: 8, horizontal: 20);
-  static const insetsVrt8Hzt10 =
-      EdgeInsets.symmetric(vertical: 8, horizontal: 10);
-  static const insetsVrt8Hzt30 =
-      EdgeInsets.symmetric(vertical: 8, horizontal: 30);
-  static const insetsVrt8Hzt15 =
-      EdgeInsets.symmetric(vertical: 8, horizontal: 15);
+  static const insetsVrt8Hzt20 = EdgeInsets.symmetric(vertical: 8, horizontal: 20);
+  static const insetsVrt8Hzt10 = EdgeInsets.symmetric(vertical: 8, horizontal: 10);
+  static const insetsVrt8Hzt30 = EdgeInsets.symmetric(vertical: 8, horizontal: 30);
+  static const insetsVrt8Hzt15 = EdgeInsets.symmetric(vertical: 8, horizontal: 15);
   static const insetsHzt15 = EdgeInsets.symmetric(vertical: 0, horizontal: 15);
   static const insetsTop20Hzt25 = EdgeInsets.fromLTRB(25, 20, 25, 20);
   static const insetsVrt20Hzt10 = EdgeInsets.fromLTRB(10, 20, 10, 20);
