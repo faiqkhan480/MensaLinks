@@ -35,8 +35,8 @@ class Lang extends Translations {
           'visa': 'Visa',
           'doc_verification_msg': 'In order to complete the account creation we need to be 100% sure that You are You. As we are financial service. we have to comply with KYC & AML requirements.',
           'done': 'Done',
-          '': '',
-          '': '',
+          'account_successfully_created': 'Account Successfully Created',
+          'set_your_new_pin': 'Set Your New Security PIN',
           '': '',
 
         },

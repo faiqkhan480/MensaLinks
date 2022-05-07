@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mensa_links/screens/auth/account_created.dart';
+import 'package:mensa_links/screens/auth/pin_screen.dart';
 
 // IMPORT BINDINGS
 import '../screens/auth/binding.dart';
@@ -42,6 +43,10 @@ class AppPages {
     GetPage(
         name: AppRoutes.ACCOUNTCREATED,
         page: () => const AccountCreated()
+    ),
+    GetPage(
+        name: AppRoutes.PIN,
+        page: () => const PinScreen()
     ),
   ];
 }

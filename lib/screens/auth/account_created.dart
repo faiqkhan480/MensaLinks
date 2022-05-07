@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:mensa_links/routes/app_routes.dart';
 import 'package:mensa_links/utils/colors.dart';
+import 'package:mensa_links/utils/size_config.dart';
+
+import '../../utils/constants.dart';
+import '../../utils/screen_properties.dart';
+import '../../utils/assets.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/title_text.dart';
 
 class AccountCreated extends StatelessWidget {
   const AccountCreated({Key? key}) : super(key: key);
@@ -8,7 +18,32 @@ class AccountCreated extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: Column(),
+      body: Center(child: SvgPicture.asset(Assets.linksLogo, color: Colors.white, height: 150,)),
+      bottomNavigationBar: Container(
+        decoration: UIStyleProperties.styleRadiusDecoration(radius: 50),
+        height: SizeConfig.screenHeight * 0.30,
+        padding: UIStyleProperties.insetsTop20Hzt25,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
+              child: TitleText(
+                text: 'account_successfully_created',
+                weight: FontWeight.bold,
+                color: AppColors.primaryColor,
+                size: Constants.heading20,
+                align: TextAlign.center,
+              ),
+            ),
+            CustomButton(
+              label: 'set_your_new_pin',
+              onTap: () => Get.toNamed(AppRoutes.PIN),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

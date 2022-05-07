@@ -43,8 +43,7 @@ class UIStyleProperties {
   static const insetsVrt20Hzt10 = EdgeInsets.fromLTRB(10, 20, 10, 20);
   static const insetsVrt15Hzt15 = EdgeInsets.fromLTRB(15, 15, 15, 15);
 
-  static BoxDecoration styleRadiusDecoration(
-      [double? radius, Color? backgroundColor]) {
+  static BoxDecoration styleRadiusDecoration({double? radius, Color? backgroundColor}) {
     return BoxDecoration(
         color: backgroundColor ?? AppColors.white,
         borderRadius: BorderRadius.vertical(

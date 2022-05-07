@@ -22,6 +22,7 @@ dependencies:
   animated_check: ^1.0.5
   liquid_progress_indicator: ^0.4.0
   simple_animations: ^4.0.2
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +36,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/svgs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
