@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mensa_links/screens/auth/account_created.dart';
 
 // IMPORT BINDINGS
 import '../screens/auth/binding.dart';
@@ -37,6 +38,10 @@ class AppPages {
     GetPage(
         name: AppRoutes.DOCUMENTVERIFICATION,
         page: () => const DocumentVerification()
+    ),
+    GetPage(
+        name: AppRoutes.ACCOUNTCREATED,
+        page: () => const AccountCreated()
     ),
   ];
 }

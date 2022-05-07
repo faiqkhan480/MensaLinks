@@ -22,6 +22,12 @@ class _LoadingState extends State<Loading> {
   bool completed = false;
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -50,8 +56,7 @@ class _LoadingState extends State<Loading> {
                     return SizedBox(
                       child: LiquidCircularProgressIndicator(
                         value: value,
-                        valueColor: const AlwaysStoppedAnimation(
-                            AppColors.slightlyGrey),
+                        valueColor: const AlwaysStoppedAnimation(AppColors.slightlyGrey),
                         center: widget,
                         backgroundColor: AppColors.primaryColor,
                         direction: Axis.vertical,

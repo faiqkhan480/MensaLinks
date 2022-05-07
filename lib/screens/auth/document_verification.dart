@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/title_text.dart';
 
@@ -66,16 +69,16 @@ class DocumentVerification extends StatelessWidget {
           verticalMargin: 10,
           label: 'done',
           onTap: () {
-            // Get.to(
-            //   () => Loading(
-            //     onComplete: () {
-            //       Future.delayed(
-            //         const Duration(seconds: 3),
-            //         () => Get.toNamed(AppRoutes.DOCUMENTVERIFICATION),
-            //       );
-            //     },
-            //   ),
-            // );
+            Get.to(
+              () => Loading(
+                onComplete: () {
+                  Future.delayed(
+                    const Duration(seconds: 3),
+                    () => Get.toNamed(AppRoutes.ACCOUNTCREATED),
+                  );
+                },
+              ),
+            );
           },
         ),
       ],
