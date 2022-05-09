@@ -21,8 +21,8 @@ class MensaLinks extends StatelessWidget {
       translations: Lang(),
       locale: Constants.currentLocale,
       fallbackLocale: const Locale('en', 'US'),
+      theme: ThemeData(fontFamily: "Ubuntu"),
       debugShowCheckedModeBanner: false,
-      // home: Splash(),
       initialRoute: AppRoutes.SPLASH,
       getPages: AppPages.list,
     );

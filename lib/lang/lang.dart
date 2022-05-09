@@ -37,6 +37,7 @@ class Lang extends Translations {
           'done': 'Done',
           'account_successfully_created': 'Account Successfully Created',
           'set_your_new_pin': 'Set Your New Security PIN',
+          'enter_your_new_pin': 'Enter Your New Pin',
           '': '',
 
         },

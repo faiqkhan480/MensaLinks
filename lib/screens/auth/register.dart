@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
 import 'package:mensa_links/routes/app_routes.dart';
@@ -20,7 +21,7 @@ class Register extends StatelessWidget {
     return SimpleDefaultScreenLayout(
       // showAppBar: false,
       showAppBarBackButton: true,
-      appbarTitle: Image.asset(Assets.logo,),
+      appbarTitle: SvgPicture.asset(Assets.logo,),
       child: RegisterForm(controller: controller,),
     );
   }

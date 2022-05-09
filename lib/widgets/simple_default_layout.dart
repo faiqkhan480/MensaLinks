@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
@@ -56,9 +57,9 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                 centerTitle: true,
                 backgroundColor: AppColors.primaryColor,
                 elevation: 0.0,
-                title: Image.asset(
-                  Assets.miniLogo,
-                  height: kToolbarHeight,
+                title: SvgPicture.asset(
+                  Assets.logo,
+                  height: kToolbarHeight * 0.80,
                 ),
               ),
             ),
@@ -148,10 +149,13 @@ class BottomLayoutWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Image.asset(
-                    logoPath ?? Assets.logo,
-                    height: size.width * .4,
+                  SvgPicture.asset(
+                      Assets.logo,
                   ),
+                  // Image.asset(
+                  //   logoPath ?? Assets.logo,
+                  //   height: size.width * .4,
+                  // ),
                   WidgetUtils.spaceVrt25,
                   isCheckMarkVisible
                       ? const CustomAnimatedCheckMark()

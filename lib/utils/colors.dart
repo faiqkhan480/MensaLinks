@@ -13,4 +13,5 @@ class AppColors {
   static const boxBackgroundSecondaryColor = Color(0xff4e96c1);
   static const primaryLightColor = Color(0xff4569ac);
   static const primaryUltraLightColor = Color(0xffc1d0f3);
+  static const skyLightColor = Color(0xffE3EBEE);
 }

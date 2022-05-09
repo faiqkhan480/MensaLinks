@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/splash_controller.dart';
 import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/screens/auth/register.dart';
+import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
@@ -62,7 +63,7 @@ class Splash extends StatelessWidget {
                     child: Container(
                       width: 40,
                       height: 40,
-                      color: Colors.pink,
+                      decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white,),
                     ),
                     duration: const Duration(milliseconds: 1500),
                   )
@@ -82,7 +83,7 @@ class Splash extends StatelessWidget {
                     child: Container(
                       width: 40,
                       height: 40,
-                      color: Colors.pink,
+                      decoration: BoxDecoration(color: Colors.white.withOpacity(0.3), shape: BoxShape.circle),
                     ),
                     duration: const Duration(milliseconds: 1500),
                   )
@@ -94,7 +95,7 @@ class Splash extends StatelessWidget {
                     width: SizeConfig.screenWidth,
                     height: SizeConfig.screenHeight * 0.7,
                     child: Center(
-                      child: Image.asset('assets/images/logo.png'),
+                      child: SvgPicture.asset(Assets.linksLogo, height: 140),
                     ),
                   )
                 : const SizedBox(),

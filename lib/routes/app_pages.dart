@@ -46,7 +46,7 @@ class AppPages {
     ),
     GetPage(
         name: AppRoutes.PIN,
-        page: () => const PinScreen()
+        page: () => PinScreen()
     ),
   ];
 }

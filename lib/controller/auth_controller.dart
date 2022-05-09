@@ -16,6 +16,7 @@ class AuthController extends GetxController {
   TextEditingController address1 = TextEditingController();
   TextEditingController address2 = TextEditingController();
   TextEditingController poBox = TextEditingController();
+  TextEditingController pinField = TextEditingController();
   List<String> months = [
     'Jan',
     'Feb',
@@ -50,4 +51,8 @@ class AuthController extends GetxController {
     );
     log('Printing Camera Details: ');
   }
+
+  void handleChange(val) => pinField.text = pinField.text + val;
+  
+  void handleDelete() => pinField.text = pinField.text.substring(0, pinField.text.length - 1);
 }
