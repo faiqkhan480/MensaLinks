@@ -52,7 +52,7 @@ class AuthController extends GetxController {
     log('Printing Camera Details: ');
   }
 
-  void handleChange(val) => pinField.text = pinField.text + val;
+  void handleChange(val) => (pinField.text.length < 4) ? pinField.text = pinField.text + val : null;
   
   void handleDelete() => pinField.text = pinField.text.substring(0, pinField.text.length - 1);
 }

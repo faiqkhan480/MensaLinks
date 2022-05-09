@@ -8,4 +8,5 @@ class AppRoutes {
   static const String DOCUMENTVERIFICATION = "/document_verification";
   static const String ACCOUNTCREATED = "/account_created";
   static const String PIN = "/pin";
+  static const String HOME = "/home";
 }

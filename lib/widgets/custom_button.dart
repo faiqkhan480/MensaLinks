@@ -7,7 +7,7 @@ import 'package:mensa_links/widgets/title_text.dart';
 
 class CustomButton extends StatelessWidget {
   final String label;
-  final Function() onTap;
+  final VoidCallback onTap;
   final double? verticalMargin, radius;
   final Alignment? alignment;
   final String? trailing;

@@ -12,6 +12,7 @@ import '../screens/auth/register.dart';
 import '../screens/auth/register_details.dart';
 import '../screens/auth/contact_detail.dart';
 import '../screens/auth/document_verification.dart';
+import '../screens/home/home_screen.dart';
 
 // IMPORT ROUTES NAME
 import 'app_routes.dart';
@@ -47,6 +48,10 @@ class AppPages {
     GetPage(
         name: AppRoutes.PIN,
         page: () => PinScreen()
+    ),
+    GetPage(
+        name: AppRoutes.HOME,
+        page: () => HomeScreen()
     ),
   ];
 }

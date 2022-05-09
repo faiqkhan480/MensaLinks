@@ -38,6 +38,10 @@ class Lang extends Translations {
           'account_successfully_created': 'Account Successfully Created',
           'set_your_new_pin': 'Set Your New Security PIN',
           'enter_your_new_pin': 'Enter Your New Pin',
+          'welcome_msg': 'Welcome To MensaLinks',
+          '': '',
+          '': '',
+          '': '',
           '': '',
 
         },

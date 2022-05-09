@@ -8,6 +8,7 @@ import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../widgets/custom_pin_field.dart';
 import '../../widgets/keypad.dart';
+import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/title_text.dart';
 
@@ -46,7 +47,14 @@ class PinScreen extends StatelessWidget {
             fieldHeight: 60,
             cursorColor: AppColors.slightlyGrey,
             keyboardType: TextInputType.none,
-            onComplete: (val) => Get.toNamed(AppRoutes.DOCUMENTVERIFICATION),
+            onComplete: (val) => Get.to(
+                  () => Loading(
+                    waveLoading: false,
+                    onComplete: () => null,
+                    onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
+                  ),
+            ),
+            // onComplete: (val) => Get.toNamed(AppRoutes.DOCUMENTVERIFICATION),
             textStyle: const TextStyle(fontSize: 26, color: AppColors.white),
           ),
         ),

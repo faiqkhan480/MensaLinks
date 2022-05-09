@@ -16,6 +16,7 @@ class AccountCreated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var args = Get.arguments;
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(child: SvgPicture.asset(Assets.linksLogo, color: Colors.white, height: 150,)),
@@ -30,7 +31,7 @@ class AccountCreated extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
               child: TitleText(
-                text: 'account_successfully_created',
+                text: args?['welcome'] ?? 'account_successfully_created',
                 weight: FontWeight.bold,
                 color: AppColors.primaryColor,
                 size: Constants.heading20,
@@ -38,8 +39,8 @@ class AccountCreated extends StatelessWidget {
               ),
             ),
             CustomButton(
-              label: 'set_your_new_pin',
-              onTap: () => Get.toNamed(AppRoutes.PIN),
+              label: args?['welcome'] != null ? 'Sign In' : 'set_your_new_pin',
+              onTap: () => args?['welcome'] != null ? Get.toNamed(AppRoutes.HOME) : Get.toNamed(AppRoutes.PIN),
             ),
           ],
         ),

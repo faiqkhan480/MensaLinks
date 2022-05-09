@@ -50,4 +50,10 @@ class UIStyleProperties {
         borderRadius: BorderRadius.vertical(
             top: Radius.circular(radius ?? ScreenValues.boxRadius)));
   }
+
+  static BoxDecoration roundedRadiusDecoration({double? radius, Color? backgroundColor}) {
+    return BoxDecoration(
+        color: backgroundColor ?? AppColors.white,
+        borderRadius: BorderRadius.circular((radius ?? ScreenValues.boxRadius)));
+  }
 }

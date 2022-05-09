@@ -37,8 +37,7 @@ class _CustomAnimatedCheckMarkState extends State<CustomAnimatedCheckMark>
             milliseconds: 1500,
           ),
     );
-    animatedCheckProgress =
-        Tween(begin: 0.0, end: 1.0).animate(checkMarkAnimationController);
+    animatedCheckProgress = Tween(begin: 0.0, end: 1.0).animate(checkMarkAnimationController);
     Future.delayed(
       widget.delay ?? const Duration(milliseconds: 500),
       checkMarkAnimationController.forward,
