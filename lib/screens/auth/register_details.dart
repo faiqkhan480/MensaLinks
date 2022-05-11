@@ -60,7 +60,7 @@ class PersonalDetails extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: TitleText(
                 text: 'personalDetails'.tr,
-                size: Constants.subHeading2,
+                size: Constants.heading18,
                 align: TextAlign.left,
                 color: AppColors.primaryColor,
               ),

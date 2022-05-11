@@ -38,11 +38,14 @@ class UIStyleProperties {
   static const insetsVrt8Hzt10 = EdgeInsets.symmetric(vertical: 8, horizontal: 10);
   static const insetsVrt8Hzt30 = EdgeInsets.symmetric(vertical: 8, horizontal: 30);
   static const insetsVrt8Hzt15 = EdgeInsets.symmetric(vertical: 8, horizontal: 15);
+  static const insetsVrt30Hzt35 = EdgeInsets.symmetric(horizontal: 35, vertical: 30);
+  static const insetsVrt30Hzt20 = EdgeInsets.symmetric(horizontal: 20, vertical: 30);
   static const insetsHzt15 = EdgeInsets.symmetric(vertical: 0, horizontal: 15);
   static const insetsHzt20 = EdgeInsets.symmetric(vertical: 0, horizontal: 20);
   static const insetsTop20Hzt25 = EdgeInsets.fromLTRB(25, 20, 25, 20);
   static const insetsVrt20Hzt10 = EdgeInsets.fromLTRB(10, 20, 10, 20);
   static const insetsVrt15Hzt15 = EdgeInsets.fromLTRB(15, 15, 15, 15);
+  static const insetsVrt10Hzt25 = EdgeInsets.fromLTRB(25, 10, 25, 10);
 
   static BoxDecoration styleRadiusDecoration({double? radius, Color? backgroundColor}) {
     return BoxDecoration(

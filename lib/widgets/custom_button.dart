@@ -8,19 +8,23 @@ import 'package:mensa_links/widgets/title_text.dart';
 class CustomButton extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
-  final double? verticalMargin, radius;
+  final double? verticalMargin, horizontalMargin, radius, fontSize;
   final Alignment? alignment;
   final String? trailing;
   final EdgeInsets? padding;
+  final bool invert;
   CustomButton({
     Key? key,
     required this.label,
     required this.onTap,
     this.verticalMargin,
+    this.horizontalMargin,
     this.alignment,
     this.trailing,
     this.radius,
     this.padding,
+    this.fontSize,
+    this.invert = false,
   }) : super(key: key);
 
   @override
@@ -29,12 +33,14 @@ class CustomButton extends StatelessWidget {
       alignment: alignment,
       margin: EdgeInsets.only(
         top: verticalMargin ?? 0,
+        left: horizontalMargin ?? 0,
+        right: horizontalMargin ?? 0
       ),
       child: ElevatedButton(
         onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            AppColors.primaryColor,
+            invert ? AppColors.white : AppColors.primaryColor,
           ),
           padding: MaterialStateProperty.all(padding ?? const EdgeInsets.all(10),),
           minimumSize: MaterialStateProperty.all(
@@ -53,7 +59,8 @@ class CustomButton extends StatelessWidget {
         TitleText(
           text: label.tr,
           weight: FontWeight.bold,
-          size: Constants.buttonTextSize,
+          size: fontSize ?? Constants.buttonTextSize,
+          color: invert ? AppColors.primaryColor : AppColors.white,
         ) :
         Row(
           mainAxisAlignment: trailing == null ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
@@ -61,7 +68,8 @@ class CustomButton extends StatelessWidget {
             TitleText(
               text: label.tr,
               weight: FontWeight.bold,
-              size: Constants.buttonTextSize,
+              size: fontSize ?? Constants.buttonTextSize,
+              color: invert ? AppColors.primaryColor : AppColors.white,
             ),
 
             if(trailing != null)

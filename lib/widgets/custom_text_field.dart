@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
                   text: label!,
                   color: AppColors.primaryColor.withOpacity(0.5),
                   weight: FontWeight.bold,
-                  size: Constants.subHeading2,
+                  size: Constants.heading18,
                 )
               : const SizedBox(),
           TextFormField(

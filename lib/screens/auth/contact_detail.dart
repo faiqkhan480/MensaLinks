@@ -46,7 +46,7 @@ class ContactForm extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: TitleText(
             text: 'enterContactDetail'.tr,
-            size: Constants.subHeading2,
+            size: Constants.heading18,
             align: TextAlign.left,
             color: AppColors.primaryColor,
           ),

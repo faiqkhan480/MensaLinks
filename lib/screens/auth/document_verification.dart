@@ -35,7 +35,7 @@ class DocumentVerification extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: TitleText(
             text: 'plz_upload_document',
-            size: Constants.subHeading2,
+            size: Constants.heading18,
             align: TextAlign.left,
             color: AppColors.primaryColor,
           ),
