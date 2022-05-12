@@ -9,4 +9,8 @@ class AppRoutes {
   static const String ACCOUNTCREATED = "/account_created";
   static const String PIN = "/pin";
   static const String HOME = "/home";
+  static const String CREATEACCOUNT = "/create_account";
+  static const String MANAGEACCOUNT = "/manage_account";
+  static const String REGISTERPAYMENT = "/register_payment";
+  static const String TRANSFERMONEY = "/transfer_money";
 }

@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import 'package:mensa_links/screens/acount/create_account.dart';
+import 'package:mensa_links/screens/acount/manage_account.dart';
+import 'package:mensa_links/screens/acount/register_payment.dart';
+import 'package:mensa_links/screens/acount/transfer_money.dart';
 import 'package:mensa_links/screens/auth/account_created.dart';
 import 'package:mensa_links/screens/auth/pin_screen.dart';
 
@@ -52,6 +56,22 @@ class AppPages {
     GetPage(
         name: AppRoutes.HOME,
         page: () => HomeScreen()
+    ),
+    GetPage(
+        name: AppRoutes.CREATEACCOUNT,
+        page: () => CreateAccount()
+    ),
+    GetPage(
+        name: AppRoutes.MANAGEACCOUNT,
+        page: () => ManageAccount()
+    ),
+    GetPage(
+        name: AppRoutes.REGISTERPAYMENT,
+        page: () => RegisterPayment()
+    ),
+    GetPage(
+        name: AppRoutes.TRANSFERMONEY,
+        page: () => TransferMoney()
     ),
   ];
 }

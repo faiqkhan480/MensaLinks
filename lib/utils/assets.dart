@@ -7,4 +7,5 @@ class Assets {
   static const logo = _svgs + 'mensa_links_logo.svg';
   static const whiteLogo = _images + 'Group -18.png';
   static const linksLogo = _svgs + 'links_logo.svg';
+  static const upArrow = _svgs + 'up-arrow-svgrepo-com.svg';
 }

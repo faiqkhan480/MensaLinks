@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mensa_links/utils/screen_properties.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
 
+import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/widget_util.dart';
@@ -26,7 +28,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget backBody() {
     return Padding(
-      padding: EdgeInsets.only(top: 40, left: 20, right: 20),
+      padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -106,7 +108,7 @@ class HomeScreen extends StatelessWidget {
           CustomButton(
               label: "Register Payment",
               invert: true,
-              onTap: () => null,
+              onTap: () => Get.toNamed(AppRoutes.REGISTERPAYMENT),
             horizontalMargin: 20,
           ),
           WidgetUtils.spaceVrt15,
@@ -115,7 +117,7 @@ class HomeScreen extends StatelessWidget {
               invert: true,
             fontSize: Constants.regularText,
               horizontalMargin: 20,
-              onTap: () => null,
+              onTap: () => Get.toNamed(AppRoutes.MANAGEACCOUNT),
           ),
         ],
       ),
@@ -126,26 +128,29 @@ class HomeScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        box("Create\nAccount"),
-        box("Transfer\nMoney"),
+        box("Create\nAccount", () => Get.toNamed(AppRoutes.CREATEACCOUNT)),
+        box("Transfer\nMoney", () => Get.toNamed(AppRoutes.TRANSFERMONEY)),
       ],
     );
   }
 
-  Widget box(String text) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(20.0)
-      ),
-      padding: UIStyleProperties.insetsVrt10Hzt25,
-      margin: UIStyleProperties.insetsVrt30Hzt20,
-      child: TitleText(
-        text: text,
-        weight: FontWeight.w500,
-        color: AppColors.primaryColor,
-        size: Constants.heading20,
-        align: TextAlign.center,
+  Widget box(String text, VoidCallback action) {
+    return InkWell(
+      onTap: action,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(20.0)
+        ),
+        padding: UIStyleProperties.insetsVrt10Hzt25,
+        margin: UIStyleProperties.insetsVrt30Hzt20,
+        child: TitleText(
+          text: text,
+          weight: FontWeight.w500,
+          color: AppColors.primaryColor,
+          size: Constants.heading20,
+          align: TextAlign.center,
+        ),
       ),
     );
   }

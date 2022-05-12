@@ -15,4 +15,19 @@ class Constants {
   static double smallText = 14;
 
   static Locale currentLocale = const Locale('en', 'US');
+
+  static List<String> months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 }

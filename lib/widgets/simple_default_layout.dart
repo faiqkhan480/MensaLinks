@@ -81,11 +81,11 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                 margin: showAppBar
                     ? UIStyleProperties.topInset10
                     : UIStyleProperties.zero,
-                width: MediaQuery.of(context).size.width,
+                width: Get.width,
                 padding: padding ?? UIStyleProperties.insetsVrt8Hzt20,
                 decoration: UIStyleProperties.styleRadiusDecoration(),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     showBackButtonInside
                         ? _buildBackButton()

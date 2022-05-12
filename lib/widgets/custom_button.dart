@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/utils/size_config.dart';
 import 'package:mensa_links/widgets/title_text.dart';
 
 class CustomButton extends StatelessWidget {
@@ -42,11 +41,12 @@ class CustomButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(
             invert ? AppColors.white : AppColors.primaryColor,
           ),
+          elevation: MaterialStateProperty.all(0),
           padding: MaterialStateProperty.all(padding ?? const EdgeInsets.all(10),),
           minimumSize: MaterialStateProperty.all(
             Size(
-              SizeConfig.screenWidth * 0.7,
-              SizeConfig.screenHeight * 0.06,
+              Get.width * 0.7,
+              Get.height * 0.06,
             ),
           ),
           shape: MaterialStateProperty.all(

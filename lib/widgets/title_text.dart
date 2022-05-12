@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../utils/colors.dart';
+import '../utils/constants.dart';
+
 class TitleText extends StatelessWidget {
   final String text;
   final FontWeight? weight;
@@ -26,6 +29,23 @@ class TitleText extends StatelessWidget {
         fontWeight: weight,
         color: color,
         fontSize: size?.toDouble(),
+      ),
+    );
+  }
+}
+
+class ScreenTitle extends StatelessWidget {
+  final String text;
+  const ScreenTitle({Key? key, required this.text}): super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text.tr,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: AppColors.primaryColor,
+        fontSize: Constants.heading,
       ),
     );
   }
