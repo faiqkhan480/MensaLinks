@@ -24,6 +24,7 @@ class MensaLinks extends StatelessWidget {
       theme: ThemeData(fontFamily: "Ubuntu"),
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.HOME,
+      // scrollBehavior: ScrollBehavior(androidOverscrollIndicator: AndroidOverscrollIndicator.),
       getPages: AppPages.list,
     );
   }

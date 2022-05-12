@@ -56,13 +56,13 @@ class CustomDropdown extends StatelessWidget {
                 border: InputBorder.none,
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5)),
+                    borderSide: BorderSide(color: AppColors.primaryColor, width: 1.0)),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5)),
+                    borderSide: BorderSide(color: AppColors.primaryColor, width: 1.0)),
                 errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.red, width: 1.5)),
+                    borderSide: BorderSide(color: Colors.red, width: 1.0)),
                 filled: true,
                 contentPadding: EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
                 // labelText: widget.title,

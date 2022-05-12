@@ -36,7 +36,8 @@ class TitleText extends StatelessWidget {
 
 class ScreenTitle extends StatelessWidget {
   final String text;
-  const ScreenTitle({Key? key, required this.text}): super(key: key);
+  final double? size;
+  const ScreenTitle({Key? key, required this.text, this.size}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class ScreenTitle extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.bold,
         color: AppColors.primaryColor,
-        fontSize: Constants.heading,
+        fontSize: size ?? Constants.heading,
       ),
     );
   }

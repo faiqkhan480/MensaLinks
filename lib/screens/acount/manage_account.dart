@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mensa_links/utils/widget_util.dart';
 
-import '../../utils/screen_properties.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/title_text.dart';
