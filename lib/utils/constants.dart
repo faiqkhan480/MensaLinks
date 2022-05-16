@@ -16,6 +16,8 @@ class Constants {
 
   static Locale currentLocale = const Locale('en', 'US');
 
+  static ScrollPhysics scrollPhysics = const BouncingScrollPhysics();
+
   static List<String> months = [
     'Jan',
     'Feb',

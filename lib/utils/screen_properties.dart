@@ -27,6 +27,9 @@ class UIStyleProperties {
   static const defaultInsets = EdgeInsets.all(8);
   static const smallInsets5 = EdgeInsets.all(5);
   static const smallInsets6 = EdgeInsets.all(6);
+  static const insets10 = EdgeInsets.all(10);
+  static const insets12 = EdgeInsets.all(12);
+  static const insets15 = EdgeInsets.all(15);
   static const smallInsets5ExceptBottom = EdgeInsets.fromLTRB(5, 5, 5, 0);
   static const bottomInsets10 = EdgeInsets.only(bottom: 10);
   static const leftInset10 = EdgeInsets.only(left: 10);

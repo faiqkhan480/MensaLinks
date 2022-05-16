@@ -8,4 +8,5 @@ class Assets {
   static const whiteLogo = _images + 'Group -18.png';
   static const linksLogo = _svgs + 'links_logo.svg';
   static const upArrow = _svgs + 'up-arrow-svgrepo-com.svg';
+  static const bin = _svgs + 'trash-can.svg';
 }
