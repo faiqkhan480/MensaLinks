@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/utils/assets.dart';
 
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
@@ -17,7 +18,7 @@ class RegisterPayment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
-      padding: EdgeInsets.zero,
+      pageTitle: 'Register Payment',
       child: body(),
     );
   }
@@ -29,15 +30,12 @@ class RegisterPayment extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Center(
-            child: ScreenTitle(text: 'Register Payment',),
-          ),
           // AMOUNT DEPOSITED SECTION
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 20),
             child: ScreenTitle(text: 'Amount Deposited',),
           ),
-          TextDropdownField(hintText: "hintText"),
+          const TextDropdownField(hintText: "Amount Deposited"),
 
           // DATE SELECTIONS
           const Padding(
@@ -99,7 +97,7 @@ class RegisterPayment extends StatelessWidget {
           CustomButton(
             verticalMargin: 30,
             label: 'Upload Reciept',
-            trailing: "assets/images/up-arrow.png",
+            trailing: Assets.upArrow,
             padding: UIStyleProperties.insetsVrt20Hzt10,
             radius: 10,
             onTap: () {},

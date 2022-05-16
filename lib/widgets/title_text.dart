@@ -49,7 +49,7 @@ class ScreenTitle extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.bold,
         color: AppColors.primaryColor,
-        fontSize: size ?? Constants.heading,
+        fontSize: size ?? Constants.subHeading,
         // fontSize: Get.textScaleFactor * 20.0,
         // fontSize: size.maxWidth * 0.055,
       ),

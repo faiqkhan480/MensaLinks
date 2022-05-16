@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/assets.dart';
+import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
 
 import '../../utils/screen_properties.dart';
@@ -11,8 +12,15 @@ import '../../widgets/custom_text_field.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/title_text.dart';
 
-class ProcessSalary extends StatelessWidget {
+class ProcessSalary extends StatefulWidget {
   const ProcessSalary({Key? key}) : super(key: key);
+
+  @override
+  State<ProcessSalary> createState() => _ProcessSalaryState();
+}
+
+class _ProcessSalaryState extends State<ProcessSalary> {
+  bool wps = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +39,10 @@ class ProcessSalary extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          WidgetUtils.spaceVrt10,
+          customTabBar(),
+          WidgetUtils.spaceVrt10,
+
           CustomButton(
             verticalMargin: 30,
             label: 'Select Worker',
@@ -91,16 +103,19 @@ class ProcessSalary extends StatelessWidget {
 
           WidgetUtils.spaceVrt10,
 
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: ScreenTitle(text: 'Enter Personal Number', size: Constants.subHeading),
-          ),
-          CustomTextField(
-            // label: '',
-            hintText: 'Personal Number',
-            controller: TextEditingController(),
-            // lines: 5,
-          ),
+          // IF WPS TRUE
+          if(wps)...[
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: ScreenTitle(text: 'Enter Personal Number', size: Constants.subHeading),
+            ),
+            CustomTextField(
+              // label: '',
+              hintText: 'Personal Number',
+              controller: TextEditingController(),
+              // lines: 5,
+            ),
+          ],
 
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
@@ -126,4 +141,37 @@ class ProcessSalary extends StatelessWidget {
       ),
     );
   }
+
+  Widget customTabBar() => Container(
+    decoration: BoxDecoration(
+        color: AppColors.primaryColor,
+        borderRadius: BorderRadius.circular(18)
+    ),
+    height: Get.height * 0.07,
+    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+    child: Row(
+      children: [
+        Expanded(
+          child: CustomButton(
+            label: 'WPS',
+            invert: wps,
+            verticalMargin: 0,
+            // alignment: Alignment.center,
+            // verticalMargin: 15,
+            onTap: () => setState(() => wps = true),
+          ),
+        ),
+        Expanded(
+          child: CustomButton(
+            label: 'NonWPS',
+            invert: !wps,
+            // alignment: Alignment.center,
+            // verticalMargin: 15,
+            onTap: () => setState(() => wps = false),
+          ),
+        ),
+      ],
+    ),
+  );
 }
+
