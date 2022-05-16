@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../utils/assets.dart';
-import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../utils/widget_util.dart';
@@ -40,7 +37,7 @@ class RegisterPayment extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 20),
             child: ScreenTitle(text: 'Amount Deposited',),
           ),
-          textDropdownField(),
+          TextDropdownField(hintText: "hintText"),
 
           // DATE SELECTIONS
           const Padding(
@@ -127,65 +124,6 @@ class RegisterPayment extends StatelessWidget {
             // alignment: Alignment.center,
             verticalMargin: 15,
             onTap: () => null,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget textDropdownField() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.primaryColor, width: 1.0),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      height: Get.height * 0.060,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 4,
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  hintText: "hintText",
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.ultraDarkGrey,
-                  )
-              ),
-              // controller: controller,
-              // obscureText: hideText ?? false,
-            ),
-          ),
-          const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0),
-          Expanded(
-            child: DropdownButtonFormField(
-                value: 'AED',
-                items: ['AED'].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w500),
-                  );
-                }).toList(),
-                decoration: const InputDecoration(
-                  // fillColor: Colors.white,
-                  border: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  // filled: true,
-                  contentPadding: EdgeInsets.only(left: 10),
-                  // labelText: widget.title,
-                ),
-                icon: RotatedBox(
-                    quarterTurns: 2,
-                    child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-                onChanged: (val) => null
-            ),
           ),
         ],
       ),

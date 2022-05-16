@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../utils/assets.dart';
-import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../utils/widget_util.dart';
@@ -19,6 +16,7 @@ class CreateAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
+      pageTitle: "Create Account For Family",
       child: body(),
     );
   }
@@ -30,9 +28,6 @@ class CreateAccount extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Center(
-            child: ScreenTitle(text: 'Create Account For Family',),
-          ),
           // AMOUNT DEPOSITED SECTION
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
@@ -63,7 +58,7 @@ class CreateAccount extends StatelessWidget {
                 controller: TextEditingController(),
               )),
               WidgetUtils.spaceHzt10,
-              Expanded(child: dropdownMenuField()),
+              Expanded(child: DropdownMenuField(values: Constants.months, value: 'Emirates ID',)),
             ],
           ),
 
@@ -182,53 +177,6 @@ class CreateAccount extends StatelessWidget {
             verticalMargin: 15,
             onTap: () => null,
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget dropdownMenuField() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.primaryColor, width: 1.0),
-        borderRadius: BorderRadius.circular(15),
-      ),
-      padding: UIStyleProperties.leftInset10,
-      height: Get.height * 0.060,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Expanded(
-            child: TitleText(
-              text: 'Emirates ID',
-              color: AppColors.primaryColor,
-              weight: FontWeight.w700,
-            ),
-          ),
-          const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0),
-          PopupMenuButton(
-              onSelected: (item) {},
-              icon: RotatedBox(
-                  quarterTurns: 2,
-                  child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                const PopupMenuItem(
-                  value: "Emirates ID",
-                  child: Text('Item 1'),
-                ),
-                const PopupMenuItem(
-                  value: "itemTwo",
-                  child: Text('Item 2'),
-                ),
-                const PopupMenuItem(
-                  value: "itemThree",
-                  child: Text('Item 3'),
-                ),
-                const PopupMenuItem(
-                  value: "itemFour",
-                  child: Text('Item 4'),
-                ),
-              ])
         ],
       ),
     );

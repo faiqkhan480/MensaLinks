@@ -8,6 +8,8 @@ import 'package:mensa_links/utils/widget_util.dart';
 import 'package:mensa_links/widgets/custom_animated_checkmark.dart';
 import 'package:mensa_links/widgets/custom_small_divider.dart';
 
+import 'title_text.dart';
+
 class SimpleDefaultScreenLayout extends StatelessWidget {
   const SimpleDefaultScreenLayout({
     Key? key,
@@ -23,6 +25,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
     this.resizeToAvoidBottomInset = true,
     this.showBackButtonInside = false,
     this.bottomNavigation,
+    this.pageTitle
   }) : super(key: key);
 
   final Widget child;
@@ -36,6 +39,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
   final VoidCallback? onBackTap;
   final Widget? bottomNavigation;
   final bool showAppBarBackButton;
+  final String? pageTitle;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,6 +105,8 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                     showBackButtonInside
                         ? WidgetUtils.noSpace
                         : WidgetUtils.spaceVrt15,
+                    if(pageTitle != null)
+                      Center(child: ScreenTitle(text: pageTitle!,)),
                     Expanded(child: child),
                   ],
                 ),

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/assets.dart';
-import '../../utils/colors.dart';
-import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../utils/widget_util.dart';
 import '../../widgets/custom_button.dart';
-import '../../widgets/custom_dropdown.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/title_text.dart';
@@ -17,6 +13,7 @@ class TransferMoney extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
+      pageTitle: 'Transfer Money To Family',
       child: body(),
     );
   }
@@ -28,10 +25,6 @@ class TransferMoney extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Center(
-            child: ScreenTitle(text: 'Transfer Money To Family',),
-          ),
-
           CustomButton(
             verticalMargin: 30,
             label: 'Select Member',
@@ -52,6 +45,19 @@ class TransferMoney extends StatelessWidget {
           ),
 
           WidgetUtils.spaceVrt25,
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Row(
+              children: const [
+                Expanded(flex: 3, child: ScreenTitle(text: 'Amount',)),
+                // WidgetUtils.spaceHzt10,
+                Expanded(flex: 4, child: TextDropdownField(flexField: 3, flexDropdown: 2,)),
+              ],
+            ),
+          ),
+
+          WidgetUtils.spaceVrt10,
 
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 20),
