@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mensa_links/screens/acount/create_account.dart';
 import 'package:mensa_links/screens/acount/manage_account.dart';
+import 'package:mensa_links/screens/acount/process_salary.dart';
 import 'package:mensa_links/screens/acount/register_payment.dart';
 import 'package:mensa_links/screens/acount/transfer_money.dart';
 import 'package:mensa_links/screens/auth/account_created.dart';
@@ -72,6 +73,10 @@ class AppPages {
     GetPage(
         name: AppRoutes.TRANSFERMONEY,
         page: () => TransferMoney()
+    ),
+    GetPage(
+        name: AppRoutes.PROCESSSALRY,
+        page: () => ProcessSalary()
     ),
   ];
 }

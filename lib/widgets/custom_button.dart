@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
@@ -8,6 +9,7 @@ class CustomButton extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
   final double? verticalMargin, horizontalMargin, radius, fontSize;
+  final int? quarterTurns;
   final Alignment? alignment;
   final String? trailing;
   final EdgeInsets? padding;
@@ -20,6 +22,7 @@ class CustomButton extends StatelessWidget {
     this.horizontalMargin,
     this.alignment,
     this.trailing,
+    this.quarterTurns,
     this.radius,
     this.padding,
     this.fontSize,
@@ -73,7 +76,11 @@ class CustomButton extends StatelessWidget {
             ),
 
             if(trailing != null)
-              Image.asset(trailing!, scale: 2.0),
+              // Image.asset(trailing!, scale: 2.0),
+              RotatedBox(
+                  quarterTurns: quarterTurns ?? 0,
+                  child: SvgPicture.asset(trailing!, height: 15, color: AppColors.white)),
+              // SvgPicture.asset(trailing!, color: Colors.white, height: 20,),
           ],
         ),
       ),

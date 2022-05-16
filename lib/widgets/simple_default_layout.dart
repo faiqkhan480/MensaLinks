@@ -8,6 +8,7 @@ import 'package:mensa_links/utils/widget_util.dart';
 import 'package:mensa_links/widgets/custom_animated_checkmark.dart';
 import 'package:mensa_links/widgets/custom_small_divider.dart';
 
+import '../utils/constants.dart';
 import 'title_text.dart';
 
 class SimpleDefaultScreenLayout extends StatelessWidget {
@@ -25,7 +26,8 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
     this.resizeToAvoidBottomInset = true,
     this.showBackButtonInside = false,
     this.bottomNavigation,
-    this.pageTitle
+    this.pageTitle,
+    this.pageTitleSize
   }) : super(key: key);
 
   final Widget child;
@@ -40,6 +42,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
   final Widget? bottomNavigation;
   final bool showAppBarBackButton;
   final String? pageTitle;
+  final double? pageTitleSize;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +109,8 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                         ? WidgetUtils.noSpace
                         : WidgetUtils.spaceVrt15,
                     if(pageTitle != null)
-                      Center(child: ScreenTitle(text: pageTitle!,)),
+                      _pageTitleWidget(),
+                      // Center(child: ScreenTitle(text: pageTitle!, size: pageTitleSize,)),
                     Expanded(child: child),
                   ],
                 ),
@@ -114,6 +118,31 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _pageTitleWidget () {
+    return MediaQuery(
+      data: Get.mediaQuery.copyWith(textScaleFactor: 1),
+      child: LayoutBuilder(
+          builder: (context, size) {
+            return Center(
+              child: Text(
+                pageTitle!.tr,
+                maxLines: 1,
+                // softWrap: false,
+                // overflow: TextOverflow.visible,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor,
+                  // fontSize: size ?? Constants.heading,
+                  // fontSize: Get.textScaleFactor * 20.0,
+                  fontSize: size.maxWidth * 0.055,
+                ),
+              ),
+            );
+          }
       ),
     );
   }

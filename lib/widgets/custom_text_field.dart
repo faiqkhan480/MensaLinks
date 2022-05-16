@@ -108,7 +108,7 @@ class TextDropdownField extends StatelessWidget {
                   hintText: hintText,
                   hintStyle: const TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: AppColors.ultraDarkGrey,
+                    color: AppColors.darkGrey,
                   )
               ),
               // controller: controller,

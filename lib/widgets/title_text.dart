@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,10 +44,14 @@ class ScreenTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text.tr,
+      // softWrap: false,
+      // overflow: TextOverflow.visible,
       style: TextStyle(
         fontWeight: FontWeight.bold,
         color: AppColors.primaryColor,
         fontSize: size ?? Constants.heading,
+        // fontSize: Get.textScaleFactor * 20.0,
+        // fontSize: size.maxWidth * 0.055,
       ),
     );
   }

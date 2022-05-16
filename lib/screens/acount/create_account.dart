@@ -15,8 +15,10 @@ class CreateAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var args = Get.arguments;
+
     return SimpleDefaultScreenLayout(
-      pageTitle: "Create Account For Family",
+      pageTitle: args,
       child: body(),
     );
   }

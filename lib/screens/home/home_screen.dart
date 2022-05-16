@@ -93,7 +93,11 @@ class HomeScreen extends StatelessWidget {
             // align: TextAlign.center,
           ),
 
-          boxRow(),
+          // ON FAMILY
+          boxRow(
+             () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: "Create Account For Family"),
+             () => Get.toNamed(AppRoutes.TRANSFERMONEY)
+          ),
 
           TitleText(
             text: 'For Domestic workers',
@@ -103,7 +107,11 @@ class HomeScreen extends StatelessWidget {
             // align: TextAlign.center,
           ),
 
-          boxRow(),
+          // ON WORKER
+          boxRow(
+             () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: "Create Account For Domestic Worker"),
+             () => Get.toNamed(AppRoutes.PROCESSSALRY)
+          ),
           WidgetUtils.spaceVrt15,
           CustomButton(
               label: "Register Payment",
@@ -124,12 +132,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget boxRow() {
+  Widget boxRow(Function() action1, Function() action2) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        box("Create\nAccount", () => Get.toNamed(AppRoutes.CREATEACCOUNT)),
-        box("Transfer\nMoney", () => Get.toNamed(AppRoutes.TRANSFERMONEY)),
+        box("Create\nAccount", action1),
+        box("Transfer\nMoney", action2),
       ],
     );
   }

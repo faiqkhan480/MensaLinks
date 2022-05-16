@@ -13,4 +13,5 @@ class AppRoutes {
   static const String MANAGEACCOUNT = "/manage_account";
   static const String REGISTERPAYMENT = "/register_payment";
   static const String TRANSFERMONEY = "/transfer_money";
+  static const String PROCESSSALRY = "/process_salary";
 }
