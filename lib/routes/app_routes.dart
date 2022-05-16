@@ -15,4 +15,6 @@ class AppRoutes {
   static const String TRANSFERMONEY = "/transfer_money";
   static const String PROCESSSALRY = "/process_salary";
   static const String MEMBERS = "/members_list";
+  static const String MEMBEREDIT = "/member_edit";
+  static const String DEPENDENTCARD = "/dependent_card";
 }

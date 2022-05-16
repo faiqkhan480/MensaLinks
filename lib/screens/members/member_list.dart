@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/routes/app_routes.dart';
 
 import '../../utils/assets.dart';
 import '../../utils/colors.dart';
@@ -33,6 +34,7 @@ class MemberList extends StatelessWidget {
 
   Widget memberTitle() {
     return ListTile(
+      onTap: () => Get.toNamed(AppRoutes.MEMBEREDIT),
       title: TitleText(
         text: "Chiao Yu Wang",
         color: AppColors.primaryColor,
@@ -60,7 +62,7 @@ class MemberList extends StatelessWidget {
         ),
       ),
       trailing: IconButton(
-        onPressed: () => null,
+        onPressed: () => Get.toNamed(AppRoutes.DEPENDENTCARD),
         icon: SvgPicture.asset(Assets.bin, color: AppColors.primaryColor),
       ),
     );

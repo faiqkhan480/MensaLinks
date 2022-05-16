@@ -1,15 +1,20 @@
 import 'package:get/get.dart';
-import 'package:mensa_links/screens/acount/create_account.dart';
-import 'package:mensa_links/screens/acount/manage_account.dart';
-import 'package:mensa_links/screens/acount/member_list.dart';
-import 'package:mensa_links/screens/acount/process_salary.dart';
-import 'package:mensa_links/screens/acount/register_payment.dart';
-import 'package:mensa_links/screens/acount/transfer_money.dart';
-import 'package:mensa_links/screens/auth/account_created.dart';
-import 'package:mensa_links/screens/auth/pin_screen.dart';
+import 'package:mensa_links/screens/members/dependent_card.dart';
+import 'package:mensa_links/screens/members/edit_member.dart';
+// import 'package:mensa_links/screens/members/member_list.dart';
+// import 'package:mensa_links/screens/auth/account_created.dart';
+// import 'package:mensa_links/screens/auth/pin_screen.dart';
 
 // IMPORT BINDINGS
+import '../screens/account/create_account.dart';
+import '../screens/account/manage_account.dart';
+import '../screens/account/process_salary.dart';
+import '../screens/account/register_payment.dart';
+import '../screens/account/transfer_money.dart';
+import '../screens/auth/account_created.dart';
 import '../screens/auth/binding.dart';
+import '../screens/auth/pin_screen.dart';
+import '../screens/members/member_list.dart';
 import '../screens/splash/splash_binding.dart';
 
 // APP VIEWS
@@ -82,6 +87,14 @@ class AppPages {
     GetPage(
         name: AppRoutes.MEMBERS,
         page: () => MemberList()
+    ),
+    GetPage(
+        name: AppRoutes.MEMBEREDIT,
+        page: () => EditMember()
+    ),
+    GetPage(
+        name: AppRoutes.DEPENDENTCARD,
+        page: () => DependentCard()
     ),
   ];
 }

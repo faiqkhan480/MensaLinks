@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/simple_default_layout.dart';
+import '../../widgets/simple_default_layout.dart';
 
-class Demo extends StatelessWidget {
-  const Demo({Key? key}) : super(key: key);
+class DependentCard extends StatelessWidget {
+  const DependentCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
-      pageTitle: '',
+      pageTitle: 'Cancel Dependent Card',
       child: body(),
     );
   }
