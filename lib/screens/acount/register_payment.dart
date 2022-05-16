@@ -136,7 +136,7 @@ class RegisterPayment extends StatelessWidget {
   Widget textDropdownField() {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.primaryColor, width: 1.5),
+        border: Border.all(color: AppColors.primaryColor, width: 1.0),
         borderRadius: BorderRadius.circular(10),
       ),
       height: Get.height * 0.060,
@@ -161,7 +161,7 @@ class RegisterPayment extends StatelessWidget {
               // obscureText: hideText ?? false,
             ),
           ),
-          const VerticalDivider(color: AppColors.primaryColor, thickness: 1.5),
+          const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0),
           Expanded(
             child: DropdownButtonFormField(
                 value: 'AED',

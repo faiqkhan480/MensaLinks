@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget backBody() {
     return Padding(
-      padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+      padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget frontBody() {
     return Container(
-      margin: const EdgeInsets.only(top: 210),
+      margin: const EdgeInsets.only(top: 230),
       decoration: const BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.vertical(top: Radius.circular(50))

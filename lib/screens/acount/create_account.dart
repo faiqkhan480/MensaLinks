@@ -56,12 +56,14 @@ class CreateAccount extends StatelessWidget {
           ),
           WidgetUtils.spaceVrt20,
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(child: CustomTextField(
                 hintText: 'ID Number',
                 controller: TextEditingController(),
               )),
-              Expanded(child: textDropdownField()),
+              WidgetUtils.spaceHzt10,
+              Expanded(child: dropdownMenuField()),
             ],
           ),
 
@@ -173,6 +175,7 @@ class CreateAccount extends StatelessWidget {
             ],
           ),
 
+          WidgetUtils.spaceVrt20,
           CustomButton(
             label: 'Next',
             // alignment: Alignment.center,
@@ -184,45 +187,48 @@ class CreateAccount extends StatelessWidget {
     );
   }
 
-  Widget textDropdownField() {
+  Widget dropdownMenuField() {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.primaryColor, width: 1.5),
-        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.primaryColor, width: 1.0),
+        borderRadius: BorderRadius.circular(15),
       ),
-      // height: Get.height * 0.060,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: UIStyleProperties.leftInset10,
+      height: Get.height * 0.060,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // const VerticalDivider(color: AppColors.primaryColor, thickness: 1.5),
-          Expanded(
-            child: DropdownButtonFormField(
-                value: 'AED',
-                items: ['AED'].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w500),
-                  );
-                }).toList(),
-                decoration: const InputDecoration(
-                  // fillColor: Colors.white,
-                  border: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  // filled: true,
-                  // contentPadding: EdgeInsets.only(left: 10),
-                  // labelText: widget.title,
-                ),
-                icon: Container(
-                  decoration: const BoxDecoration(border: Border(left: BorderSide(color: AppColors.primaryColor))),
-                  child: RotatedBox(
-                      quarterTurns: 2,
-                      child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-                ),
-                onChanged: (val) => null
+          const Expanded(
+            child: TitleText(
+              text: 'Emirates ID',
+              color: AppColors.primaryColor,
+              weight: FontWeight.w700,
             ),
           ),
+          const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0),
+          PopupMenuButton(
+              onSelected: (item) {},
+              icon: RotatedBox(
+                  quarterTurns: 2,
+                  child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
+              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                const PopupMenuItem(
+                  value: "Emirates ID",
+                  child: Text('Item 1'),
+                ),
+                const PopupMenuItem(
+                  value: "itemTwo",
+                  child: Text('Item 2'),
+                ),
+                const PopupMenuItem(
+                  value: "itemThree",
+                  child: Text('Item 3'),
+                ),
+                const PopupMenuItem(
+                  value: "itemFour",
+                  child: Text('Item 4'),
+                ),
+              ])
         ],
       ),
     );

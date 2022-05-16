@@ -65,7 +65,8 @@ class CustomTextField extends StatelessWidget {
               hintStyle: const TextStyle(
                 fontWeight: FontWeight.w500,
                 color: AppColors.ultraDarkGrey,
-              )
+              ),
+              isDense: true,
             ),
             controller: controller,
             obscureText: hideText ?? false,
