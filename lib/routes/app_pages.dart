@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mensa_links/bindings/home_binding.dart';
 import 'package:mensa_links/bindings/member_binding.dart';
 import 'package:mensa_links/screens/members/dependent_card.dart';
 import 'package:mensa_links/screens/members/edit_member.dart';
@@ -63,6 +64,7 @@ class AppPages {
     ),
     GetPage(
         name: AppRoutes.HOME,
+        binding: HomeBinding(),
         page: () => HomeScreen()
     ),
     GetPage(
