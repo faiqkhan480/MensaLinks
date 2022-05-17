@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mensa_links/controller/member_controller.dart';
 import 'package:mensa_links/widgets/name_box.dart';
 
 import '../../utils/assets.dart';
@@ -7,47 +9,77 @@ import '../../utils/screen_properties.dart';
 import '../../utils/widget_util.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/done_screen.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/title_text.dart';
 
 class DependentCard extends StatelessWidget {
   const DependentCard({Key? key}) : super(key: key);
 
-  void handleSubmit() {
+  get args => Get.arguments;
 
+  void handleSubmit() {
+    Get.off(const DoneScreen(message: "Requested Submitted"));
   }
 
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
-      pageTitle: 'Cancel Dependent Card',
-      child: body(),
+      pageTitle: args == "pull" ? 'Pull Back Money From' : 'Cancel Dependent Card',
+      child: Obx(body),
     );
   }
 
   Widget body() {
+    final MemberController controller = Get.find<MemberController>();
+
+    bool _pull = args == "pull";
     return SingleChildScrollView(
       padding: UIStyleProperties.insetsVrt8Hzt20,
       physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ScreenTitle(text: "Card Details", size: Constants.heading18),
+          ScreenTitle(text: _pull ? "Personal Details" : "Card Details", size: Constants.heading18),
           WidgetUtils.spaceVrt40,
           const Align(alignment: Alignment.centerLeft, child: NameBox(name: 'CW')),
           WidgetUtils.spaceVrt35,
           infoRow("NAME", "Chiao Yu Wang"),
-          infoRow("Card", "**** * ****"),
-          infoRow("Info 2", "**** * ****"),
+          if(!_pull)...[
+            infoRow("Card", "**** * ****"),
+            infoRow("Info 2", "**** * ****"),
+          ]
+          else
+            WidgetUtils.spaceVrt20,
           infoRow("Mobile", "+971 50 550 5505"),
+          if(controller.pullBack())...[
+            WidgetUtils.spaceVrt20,
+            infoRow("Amount", "100.00 AED"),
+            WidgetUtils.spaceVrt20,
+            infoRow("Reason", "Bonus reversed"),
+          ],
 
-          WidgetUtils.spaceVrt20,
-          CustomButton(
-            label: 'Reasons',
-            trailing: Assets.upArrow,
-            quarterTurns: 2,
-            onTap: handleSubmit,
-          ),
+          if(!controller.pullBack())...[
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                children:  [
+                  Expanded(flex: 3, child: ScreenTitle(text: 'Amount', size: Constants.heading20,)),
+                  // WidgetUtils.spaceHzt10,
+                  const Expanded(flex: 4, child: TextDropdownField(flexField: 3, flexDropdown: 2,)),
+                ],
+              ),
+            ),
+
+            if(!_pull)
+              WidgetUtils.spaceVrt20,
+            CustomButton(
+              label: 'Reasons',
+              trailing: Assets.upArrow,
+              quarterTurns: 2,
+              onTap: handleSubmit,
+            ),
+          ],
 
           WidgetUtils.spaceVrt20,
           ScreenTitle(text: "Comments", size: Constants.heading20),
@@ -59,9 +91,16 @@ class DependentCard extends StatelessWidget {
 
           WidgetUtils.spaceVrt35,
           CustomButton(
-            label: 'Cancel Card',
-            // alignment: Alignment.center,
-            onTap: handleSubmit,
+            label: !_pull ?
+            'Cancel Card' :
+            _pull && controller.pullBack() ?
+            'Confirm' :
+            'Pull Back Money',
+            onTap: !_pull ?
+            handleSubmit :
+            _pull && controller.pullBack() ?
+            controller.confirmPullRequest :
+            controller.submitPullBackRequest,
           ),
         ],
       ),

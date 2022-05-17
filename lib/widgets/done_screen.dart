@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/routes/app_routes.dart';
 
 import '../utils/assets.dart';
 import '../utils/colors.dart';
@@ -44,13 +45,8 @@ class DoneScreen extends StatelessWidget {
                   label: "ok",
                   alignment: Alignment.center,
                   minWidth: 0.30,
-                  onTap: () => Get.back(),
+                  onTap: () => Get.close(2),
                 )
-                // else
-                //   const CustomAnimatedCheckMark(
-                //     backgroundColor: AppColors.primaryColor,
-                //     checkMarkColor: AppColors.backgroundColor,
-                //   ),
               ],
             ),
           ),

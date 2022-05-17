@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mensa_links/bindings/member_binding.dart';
 import 'package:mensa_links/screens/members/dependent_card.dart';
 import 'package:mensa_links/screens/members/edit_member.dart';
 // import 'package:mensa_links/screens/members/member_list.dart';
@@ -12,7 +13,7 @@ import '../screens/account/process_salary.dart';
 import '../screens/account/register_payment.dart';
 import '../screens/account/transfer_money.dart';
 import '../screens/auth/account_created.dart';
-import '../screens/auth/binding.dart';
+import '../bindings/auth_binding.dart';
 import '../screens/auth/pin_screen.dart';
 import '../screens/members/member_list.dart';
 import '../screens/splash/splash_binding.dart';
@@ -70,6 +71,7 @@ class AppPages {
     ),
     GetPage(
         name: AppRoutes.MANAGEACCOUNT,
+        binding: MemberBinding(),
         page: () => ManageAccount()
     ),
     GetPage(
