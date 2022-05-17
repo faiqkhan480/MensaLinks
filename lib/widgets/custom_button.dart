@@ -8,7 +8,7 @@ import 'package:mensa_links/widgets/title_text.dart';
 class CustomButton extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
-  final double? verticalMargin, horizontalMargin, radius, fontSize;
+  final double? verticalMargin, horizontalMargin, radius, fontSize, minWidth;
   final int? quarterTurns;
   final Alignment? alignment;
   final String? trailing;
@@ -24,6 +24,7 @@ class CustomButton extends StatelessWidget {
     this.trailing,
     this.quarterTurns,
     this.radius,
+    this.minWidth,
     this.padding,
     this.fontSize,
     this.invert = false,
@@ -48,7 +49,7 @@ class CustomButton extends StatelessWidget {
           padding: MaterialStateProperty.all(padding ?? const EdgeInsets.all(10),),
           minimumSize: MaterialStateProperty.all(
             Size(
-              Get.width * 0.7,
+              Get.width * (minWidth ?? 0.7),
               Get.height * 0.06,
             ),
           ),

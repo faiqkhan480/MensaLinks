@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/utils/assets.dart';
 
 import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
@@ -43,7 +44,7 @@ class DocumentVerification extends StatelessWidget {
         CustomButton(
           verticalMargin: 10,
           label: 'passport',
-          trailing: "assets/images/up-arrow.png",
+          trailing:  Assets.upArrow,
           padding: UIStyleProperties.insetsVrt20Hzt10,
           radius: 10,
           onTap: () {},
@@ -51,7 +52,7 @@ class DocumentVerification extends StatelessWidget {
         CustomButton(
           verticalMargin: 30,
           label: 'visa',
-          trailing: "assets/images/up-arrow.png",
+          trailing: Assets.upArrow,
           padding: UIStyleProperties.insetsVrt20Hzt10,
           radius: 10,
           onTap: () {},

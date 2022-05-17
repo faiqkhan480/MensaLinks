@@ -15,16 +15,18 @@ class CustomDropdown extends StatelessWidget {
   final Function(String?) onValueSelected;
   final String? label;
   final String? hint, selectedValue;
-  final double width;
+  final double? width;
+  final bool? filled;
 
   const CustomDropdown({
     Key? key,
     this.label,
     required this.onValueSelected,
-    required this.width,
+    this.width,
     required this.values,
     this.selectedValue,
     this.hint,
+    this.filled
   }) : super(key: key);
 
   @override
@@ -52,22 +54,22 @@ class CustomDropdown extends StatelessWidget {
               hint: TitleText(
                 text: hint ?? '',
                 weight: FontWeight.w500,
-                color: AppColors.ultraDarkGrey,
+                color: filled != null && filled! ? AppColors.primaryColor : AppColors.ultraDarkGrey,
               ),
-              decoration: const InputDecoration(
-                fillColor: Colors.white,
+              decoration: InputDecoration(
+                filled: filled,
+                fillColor: AppColors.ultraDarkGrey,
                 border: InputBorder.none,
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     borderSide: BorderSide(color: AppColors.primaryColor, width: 1.0)),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     borderSide: BorderSide(color: AppColors.primaryColor, width: 1.0)),
-                errorBorder: OutlineInputBorder(
+                errorBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     borderSide: BorderSide(color: Colors.red, width: 1.0)),
-                filled: true,
-                contentPadding: EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+                contentPadding: const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
                 // labelText: widget.title,
               ),
               icon: RotatedBox(
@@ -75,25 +77,6 @@ class CustomDropdown extends StatelessWidget {
                   child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
               onChanged: onValueSelected
           )
-          // CustomDropdownButton2(
-          //   buttonWidth: width,
-          //   value: selectedValue,
-          //   hint: hint ?? '',
-          //   icon: RotatedBox(
-          //       quarterTurns: 2,
-          //       child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-          //   buttonDecoration: BoxDecoration(
-          //     border: Border.all(
-          //       color: AppColors.primaryColor,
-          //     ),
-          //     borderRadius: BorderRadius.circular(
-          //       10,
-          //     ),
-          //   ),
-          //   // buttonHeight: 60,
-          //   dropdownItems: values,
-          //   onChanged: onValueSelected,
-          // ),
         ],
       ),
     );

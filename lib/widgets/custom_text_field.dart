@@ -11,7 +11,7 @@ class CustomTextField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final TextEditingController controller;
-  final bool? hideText;
+  final bool? hideText, filled, editIcon;
   final int? lines;
   const CustomTextField({
     Key? key,
@@ -19,7 +19,9 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.hideText,
     this.hintText,
+    this.editIcon = false,
     this.lines,
+    this.filled,
   }) : super(key: key);
 
   @override
@@ -39,7 +41,7 @@ class CustomTextField extends StatelessWidget {
                 )
               : const SizedBox(),
           TextFormField(
-            maxLines: lines,
+            maxLines: lines ?? 1,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
@@ -66,10 +68,13 @@ class CustomTextField extends StatelessWidget {
                 ),
               ),
               hintText: hintText,
-              hintStyle: const TextStyle(
+              hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
-                color: AppColors.ultraDarkGrey,
+                color: filled != null && filled! ? AppColors.primaryColor : AppColors.ultraDarkGrey,
               ),
+              suffixIcon: editIcon! ? const Icon(Icons.edit_rounded, color: AppColors.primaryColor) : null,
+              filled: filled,
+              fillColor: AppColors.ultraDarkGrey,
               isDense: true,
             ),
             controller: controller,

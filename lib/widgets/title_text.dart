@@ -28,7 +28,7 @@ class TitleText extends StatelessWidget {
       textAlign: align,
       style: TextStyle(
         fontWeight: weight,
-        color: color,
+        color: color ?? AppColors.primaryColor,
         fontSize: size?.toDouble(),
       ),
     );

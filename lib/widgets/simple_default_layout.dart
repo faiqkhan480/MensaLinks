@@ -27,6 +27,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
     this.showBackButtonInside = false,
     this.bottomNavigation,
     this.pageTitle,
+    this.pageSubtitle,
     this.pageTitleSize
   }) : super(key: key);
 
@@ -39,7 +40,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
   final Widget? appbarTitle, leadingWidget;
   final EdgeInsets? padding;
   final VoidCallback? onBackTap;
-  final Widget? bottomNavigation;
+  final Widget? bottomNavigation, pageSubtitle;
   final bool showAppBarBackButton;
   final String? pageTitle;
   final double? pageTitleSize;
@@ -72,6 +73,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
             ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             showAppBar ? WidgetUtils.noSpace : WidgetUtils.spaceVrt10,
             showBackButton
@@ -110,6 +112,12 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                         : WidgetUtils.spaceVrt15,
                     if(pageTitle != null)
                       _pageTitleWidget(),
+
+                    if(pageSubtitle != null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: pageSubtitle!,
+                        ),
                       // Center(child: ScreenTitle(text: pageTitle!, size: pageTitleSize,)),
                     Expanded(child: child),
                   ],
