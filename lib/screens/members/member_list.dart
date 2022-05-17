@@ -7,6 +7,7 @@ import '../../utils/assets.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
+import '../../widgets/name_box.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/title_text.dart';
 
@@ -47,20 +48,7 @@ class MemberList extends StatelessWidget {
         weight: FontWeight.w500,
         size: Constants.regularText,
       ),
-      leading: Container(
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(10)
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-        // padding: UIStyleProperties.insets10,
-        child: TitleText(
-          text: "MA",
-          color: AppColors.white,
-          weight: FontWeight.w700,
-          size: Constants.heading20,
-        ),
-      ),
+      leading: NameBox(name: "MA"),
       trailing: IconButton(
         onPressed: () => Get.toNamed(AppRoutes.DEPENDENTCARD),
         icon: SvgPicture.asset(Assets.bin, color: AppColors.primaryColor),
