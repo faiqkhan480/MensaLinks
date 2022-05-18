@@ -11,7 +11,7 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/done_screen.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class DependentCard extends StatelessWidget {
   const DependentCard({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class DependentCard extends StatelessWidget {
 
           if(!controller.pullBack())...[
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: UIStyleProperties.insetsHzt20,
               child: Row(
                 children:  [
                   Expanded(flex: 3, child: ScreenTitle(text: 'Amount', size: Constants.heading20,)),

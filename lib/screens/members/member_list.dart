@@ -11,7 +11,7 @@ import '../../utils/screen_properties.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/name_box.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class MemberList extends StatelessWidget {
   const MemberList({Key? key}) : super(key: key);

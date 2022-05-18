@@ -10,7 +10,7 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/custom_dropdown.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class RegisterPayment extends StatelessWidget {
   const RegisterPayment({Key? key}) : super(key: key);
@@ -32,14 +32,14 @@ class RegisterPayment extends StatelessWidget {
         children: [
           // AMOUNT DEPOSITED SECTION
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: UIStyleProperties.insetsHzt20,
             child: ScreenTitle(text: 'Amount Deposited',),
           ),
           const TextDropdownField(hintText: "Amount Deposited"),
 
           // DATE SELECTIONS
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: UIStyleProperties.insetsHzt20,
             child: ScreenTitle(text: 'Date',),
           ),
           Row(
@@ -106,7 +106,7 @@ class RegisterPayment extends StatelessWidget {
           WidgetUtils.spaceVrt25,
 
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: UIStyleProperties.insetsHzt20,
             child: ScreenTitle(text: 'Comments',),
           ),
 

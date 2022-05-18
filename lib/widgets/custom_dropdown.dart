@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/widgets/title_text.dart';
+import 'package:mensa_links/widgets/text_widgets.dart';
 
 import '../utils/screen_properties.dart';
 

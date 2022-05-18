@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/widgets/title_text.dart';
+import 'package:mensa_links/widgets/text_widgets.dart';
 
 import '../utils/colors.dart';
 import '../utils/constants.dart';

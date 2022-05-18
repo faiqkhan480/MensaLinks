@@ -3,6 +3,7 @@ import 'package:mensa_links/bindings/home_binding.dart';
 import 'package:mensa_links/bindings/member_binding.dart';
 import 'package:mensa_links/screens/members/dependent_card.dart';
 import 'package:mensa_links/screens/members/edit_member.dart';
+import 'package:mensa_links/screens/members/member_details.dart';
 // import 'package:mensa_links/screens/members/member_list.dart';
 // import 'package:mensa_links/screens/auth/account_created.dart';
 // import 'package:mensa_links/screens/auth/pin_screen.dart';
@@ -99,6 +100,10 @@ class AppPages {
     GetPage(
         name: AppRoutes.DEPENDENTCARD,
         page: () => DependentCard()
+    ),
+    GetPage(
+        name: AppRoutes.MEMBERSDETAILS,
+        page: () => MemberDetails()
     ),
   ];
 }

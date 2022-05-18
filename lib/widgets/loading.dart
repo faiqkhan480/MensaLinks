@@ -6,7 +6,7 @@ import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/screen_properties.dart';
 import 'package:mensa_links/widgets/custom_animated_checkmark.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
-import 'package:mensa_links/widgets/title_text.dart';
+import 'package:mensa_links/widgets/text_widgets.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import '../utils/constants.dart';

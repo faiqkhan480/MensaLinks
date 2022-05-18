@@ -10,7 +10,7 @@ import '../../widgets/custom_pin_field.dart';
 import '../../widgets/keypad.dart';
 import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class PinScreen extends StatelessWidget {
   PinScreen({Key? key}) : super(key: key);

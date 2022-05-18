@@ -10,7 +10,7 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/custom_dropdown.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class ProcessSalary extends StatefulWidget {
   const ProcessSalary({Key? key}) : super(key: key);
@@ -54,13 +54,13 @@ class _ProcessSalaryState extends State<ProcessSalary> {
           ),
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: UIStyleProperties.insetsHzt20,
             child: ScreenTitle(text: 'Enter Salary', size: Constants.subHeading),
           ),
           const TextDropdownField(hintText: 'Salary Amount',),
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: UIStyleProperties.insetsHzt20,
             child: ScreenTitle(text: 'Select Salary Month', size: Constants.subHeading)
           ),
           Row(
@@ -106,7 +106,7 @@ class _ProcessSalaryState extends State<ProcessSalary> {
           // IF WPS TRUE
           if(wps)...[
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: UIStyleProperties.insetsHzt20,
               child: ScreenTitle(text: 'Enter Personal Number', size: Constants.subHeading),
             ),
             CustomTextField(
@@ -118,7 +118,7 @@ class _ProcessSalaryState extends State<ProcessSalary> {
           ],
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: UIStyleProperties.insetsHzt20,
             child: ScreenTitle(text: 'Enter Comments', size: Constants.subHeading),
           ),
 

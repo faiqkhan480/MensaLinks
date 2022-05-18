@@ -9,79 +9,99 @@ import '../../utils/screen_properties.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class DocumentVerification extends StatelessWidget {
   const DocumentVerification({Key? key}) : super(key: key);
 
+  get args => Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
+      pageTitle: 'document_verification',
+      pageTitleSize: Constants.pageTitle,
       child: body(),
     );
   }
 
   Widget body() {
-    return ListView(
+    bool isFromHome = args == "fromAccount";
+    return Stack(
+      alignment: AlignmentDirectional.center,
       children: [
-        Center(
-          child: TitleText(
-            text: 'document_verification',
-            size: Constants.heading,
-            color: AppColors.primaryColor,
-            weight: FontWeight.bold,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: TitleText(
-            text: 'plz_upload_document',
-            size: Constants.heading18,
-            align: TextAlign.left,
-            color: AppColors.primaryColor,
-          ),
-        ),
-        CustomButton(
-          verticalMargin: 10,
-          label: 'passport',
-          trailing:  Assets.upArrow,
-          padding: UIStyleProperties.insetsVrt20Hzt10,
-          radius: 10,
-          onTap: () {},
-        ),
-        CustomButton(
-          verticalMargin: 30,
-          label: 'visa',
-          trailing: Assets.upArrow,
-          padding: UIStyleProperties.insetsVrt20Hzt10,
-          radius: 10,
-          onTap: () {},
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 40, bottom: 10, left: 20, right: 20),
-          child: TitleText(
-            text: 'doc_verification_msg',
-            size: Constants.smallText,
-            align: TextAlign.center,
-            color: AppColors.primaryColor,
-          ),
-        ),
-        CustomButton(
-          verticalMargin: 10,
-          label: 'done',
-          onTap: () {
-            Get.to(
-              () => Loading(
-                onComplete: () {
-                  Future.delayed(
-                    const Duration(seconds: 3),
-                    () => Get.toNamed(AppRoutes.ACCOUNTCREATED),
+        ListView(
+          padding: UIStyleProperties.insetsVrt8Hzt20,
+          physics: Constants.scrollPhysics,
+          children: [
+            Padding(
+              padding: UIStyleProperties.insetsVrt20,
+              child: TitleText(
+                text: isFromHome ? 'Please upload valid emirates ID of the member' : 'plz_upload_document',
+                size: isFromHome ? Constants.regularText : Constants.heading18,
+                align: isFromHome ? TextAlign.center : TextAlign.left,
+                color: AppColors.primaryColor,
+              ),
+            ),
+            CustomButton(
+              verticalMargin: 10,
+              label: isFromHome ? 'Emirates ID' : 'passport',
+              trailing:  Assets.upArrow,
+              padding: UIStyleProperties.insetsVrt20Hzt10,
+              radius: 10,
+              alignment: Alignment.center,
+              onTap: () {},
+            ),
+
+            if(!isFromHome)...[
+              CustomButton(
+                verticalMargin: 30,
+                label: 'visa',
+                trailing: Assets.upArrow,
+                padding: UIStyleProperties.insetsVrt20Hzt10,
+                radius: 10,
+                onTap: () {},
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 40, bottom: 10, left: 20, right: 20),
+                child: TitleText(
+                  text: 'doc_verification_msg',
+                  size: Constants.smallText,
+                  align: TextAlign.center,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              CustomButton(
+                verticalMargin: 10,
+                label: 'done',
+                onTap: () {
+                  Get.to(
+                        () => Loading(
+                      onComplete: () {
+                        Future.delayed(
+                          const Duration(seconds: 3),
+                              () => Get.toNamed(AppRoutes.ACCOUNTCREATED),
+                        );
+                      },
+                    ),
                   );
                 },
               ),
-            );
-          },
+            ],
+          ],
         ),
+
+        if(isFromHome)
+          Positioned(
+            bottom: 20,
+            child: CustomButton(
+            verticalMargin: 10,
+            label: 'done',
+            onTap: () {
+              Get.toNamed(AppRoutes.MEMBERSDETAILS);
+            },
+        ),
+          ),
       ],
     );
   }

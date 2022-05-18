@@ -10,7 +10,7 @@ import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/simple_default_layout.dart';
-import 'package:mensa_links/widgets/title_text.dart';
+import 'package:mensa_links/widgets/text_widgets.dart';
 
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);

@@ -10,7 +10,9 @@ import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/custom_text_field.dart';
 import 'package:mensa_links/widgets/loading.dart';
 import 'package:mensa_links/widgets/simple_default_layout.dart';
-import 'package:mensa_links/widgets/title_text.dart';
+import 'package:mensa_links/widgets/text_widgets.dart';
+
+import '../../utils/screen_properties.dart';
 
 class ContactDetails extends StatelessWidget {
   const ContactDetails({Key? key}) : super(key: key);
@@ -43,7 +45,7 @@ class ContactForm extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: UIStyleProperties.insetsHzt20,
           child: TitleText(
             text: 'enterContactDetail'.tr,
             size: Constants.heading18,

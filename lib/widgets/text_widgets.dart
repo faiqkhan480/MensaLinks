@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../utils/colors.dart';
 import '../utils/constants.dart';
+import '../utils/screen_properties.dart';
 
 class TitleText extends StatelessWidget {
   final String text;
@@ -56,3 +57,17 @@ class ScreenTitle extends StatelessWidget {
     );
   }
 }
+
+class SeparatorText extends StatelessWidget {
+  final String text;
+  const SeparatorText(this.text, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: UIStyleProperties.insetsVrt20,
+      child: ScreenTitle(text: text, size: Constants.heading18),
+    );
+  }
+}
+

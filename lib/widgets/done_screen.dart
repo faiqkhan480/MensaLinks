@@ -8,7 +8,7 @@ import '../utils/colors.dart';
 import '../utils/constants.dart';
 import '../utils/screen_properties.dart';
 import 'custom_button.dart';
-import 'title_text.dart';
+import 'text_widgets.dart';
 
 class DoneScreen extends StatelessWidget {
   final String message;

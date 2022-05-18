@@ -12,7 +12,7 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/custom_dropdown.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class EditMember extends StatelessWidget {
   const EditMember({Key? key}) : super(key: key);
@@ -241,7 +241,7 @@ class EditMember extends StatelessWidget {
   );
 
   Widget sectionTitle(String title) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 20),
+    padding: UIStyleProperties.insetsHzt20,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

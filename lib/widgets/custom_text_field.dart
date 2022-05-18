@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/widgets/title_text.dart';
+import 'package:mensa_links/widgets/text_widgets.dart';
 
 import '../utils/assets.dart';
 
@@ -71,6 +71,10 @@ class CustomTextField extends StatelessWidget {
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
                 color: filled != null && filled! ? AppColors.primaryColor : AppColors.ultraDarkGrey,
+              ),
+              labelStyle: const TextStyle(
+                fontWeight: FontWeight.w500,
+                color: AppColors.darkGrey,
               ),
               suffixIcon: editIcon! ? const Icon(Icons.edit_rounded, color: AppColors.primaryColor) : null,
               filled: filled,

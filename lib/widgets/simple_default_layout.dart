@@ -9,7 +9,7 @@ import 'package:mensa_links/widgets/custom_animated_checkmark.dart';
 import 'package:mensa_links/widgets/custom_small_divider.dart';
 
 import '../utils/constants.dart';
-import 'title_text.dart';
+import 'text_widgets.dart';
 
 class SimpleDefaultScreenLayout extends StatelessWidget {
   const SimpleDefaultScreenLayout({
@@ -91,7 +91,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                     ? UIStyleProperties.topInset10
                     : UIStyleProperties.zero,
                 width: Get.width,
-                padding: padding ?? UIStyleProperties.insetsVrt8Hzt20,
+                padding: padding ?? UIStyleProperties.insetsHzt20,
                 decoration: UIStyleProperties.styleRadiusDecoration(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -103,19 +103,19 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                         ? WidgetUtils.noSpace
                         : const Center(
                             child: Padding(
-                              padding: UIStyleProperties.defaultInsets,
+                              padding: UIStyleProperties.smallInsets5,
                               child: CustomSmallDivider(),
                             ),
                           ),
-                    showBackButtonInside
-                        ? WidgetUtils.noSpace
-                        : WidgetUtils.spaceVrt15,
+                    // showBackButtonInside
+                    //     ? WidgetUtils.noSpace
+                    //     : WidgetUtils.spaceVrt10,
                     if(pageTitle != null)
                       _pageTitleWidget(),
 
                     if(pageSubtitle != null)
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          padding: UIStyleProperties.insetsHzt20,
                           child: pageSubtitle!,
                         ),
                       // Center(child: ScreenTitle(text: pageTitle!, size: pageTitleSize,)),
@@ -135,19 +135,18 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
       data: Get.mediaQuery.copyWith(textScaleFactor: 1),
       child: LayoutBuilder(
           builder: (context, size) {
-            return Center(
-              child: Text(
-                pageTitle!.tr,
-                maxLines: 1,
-                // softWrap: false,
-                // overflow: TextOverflow.visible,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryColor,
-                  // fontSize: size ?? Constants.heading,
-                  // fontSize: Get.textScaleFactor * 20.0,
-                  fontSize: size.maxWidth * 0.055,
-                ),
+            return Text(
+              pageTitle!.tr,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              // softWrap: false,
+              // overflow: TextOverflow.visible,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: AppColors.primaryColor,
+                // fontSize: size ?? Constants.heading,
+                // fontSize: Get.textScaleFactor * 20.0,
+                fontSize: size.maxWidth * (pageTitleSize ?? 0.055),
               ),
             );
           }

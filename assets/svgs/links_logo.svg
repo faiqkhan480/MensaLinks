@@ -29,6 +29,6 @@
         <path id="Path_31" data-name="Path 31" d="M301.48,338.071l-3.175,3.958s-.289,1.278-2.266.206-3.628-1.867-3.628-1.867l3.669,3.393s.619.247.289,1.154-1.442,3.958-1.442,3.958l2.7-3.092s.183-.989,2.079-.082,3.627,1.69,3.627,1.69l-3.916-3.133s-.536-.494-.082-1.772S301.48,338.071,301.48,338.071Z" transform="translate(-572.823 -303.07)" fill="#fff"/>
       </g>
     </g>
-    <text id="LINKS" transform="translate(214 450)" fill="#fff" font-size="50" font-family="Futura-Bold, Futura" font-weight="700" letter-spacing="0.04em"><tspan x="-84.875" y="0">LINKS</tspan></text>
+    <text id="LINKS" transform="translate(214 450)" fill="#fff" font-size="50" font-family="Futura-Bold, Futura" font-weight="700" letter-spacing="0.08em"><tspan x="-70.85" y="0">LINKS</tspan></text>
   </g>
 </svg>

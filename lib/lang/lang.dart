@@ -4,9 +4,9 @@ class Lang extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
-          'welcome': 'Welcome to MensaLinks!',
+          'welcome': 'Welcome to MensaLinks',
           'signUpButton': 'Sign Up',
-          'signUpAs': 'Sign Up As',
+          'signUpAs': 'Sign Up As:',
           'houseHead': 'Head of Household',
           'business': 'Business',
           'createAccount': 'Create Account',
@@ -20,7 +20,7 @@ class Lang extends Translations {
           'day': 'Day',
           'month': 'Month',
           'year': 'Year',
-          'DOB': 'Date of Birth',
+          'dob': 'Date of Birth',
           'next': 'Next',
           'enterContactDetail': 'Please enter your contact details',
           'mobile': 'Mobile Number',
@@ -40,8 +40,8 @@ class Lang extends Translations {
           'enter_your_new_pin': 'Enter Your New Pin',
           'welcome_msg': 'Welcome To MensaLinks',
           'ok': 'OK',
-          '': '',
-          '': '',
+          'finish': 'Finish',
+          'next': 'Next',
           '': '',
 
         },

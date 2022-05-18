@@ -12,14 +12,19 @@ import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/custom_dropdown.dart';
 import 'package:mensa_links/widgets/custom_text_field.dart';
 import 'package:mensa_links/widgets/simple_default_layout.dart';
-import 'package:mensa_links/widgets/title_text.dart';
+import 'package:mensa_links/widgets/text_widgets.dart';
+
+import '../../utils/screen_properties.dart';
+import '../../utils/widget_util.dart';
 
 class RegisterDetails extends StatelessWidget {
   const RegisterDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SimpleDefaultScreenLayout(
+    return SimpleDefaultScreenLayout(
+      pageTitle: 'createAccount',
+      pageTitleSize: Constants.pageTitle,
       child: PersonalDetails(),
     );
   }
@@ -32,7 +37,7 @@ class PersonalDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthController controller = Get.find<AuthController>();
     return Container(
-      width: SizeConfig.screenWidth,
+      // width: SizeConfig.screenWidth,
       decoration: BoxDecoration(
         color: AppColors.backgroundColor,
         borderRadius: BorderRadius.only(
@@ -45,23 +50,17 @@ class PersonalDetails extends StatelessWidget {
         ),
       ),
       child: SingleChildScrollView(
+        physics: Constants.scrollPhysics,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: TitleText(
-                text: 'createAccount'.tr,
-                size: Constants.heading,
-                color: AppColors.primaryColor,
-                weight: FontWeight.bold,
-              ),
-            ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: UIStyleProperties.insetsHzt20,
               child: TitleText(
                 text: 'personalDetails'.tr,
                 size: Constants.heading18,
                 align: TextAlign.left,
+                weight: FontWeight.w700,
                 color: AppColors.primaryColor,
               ),
             ),
@@ -94,6 +93,7 @@ class PersonalDetails extends StatelessWidget {
                       selectedValue: controller.expiryDate.value,
                     ),
                   ),
+                  WidgetUtils.spaceHzt5,
                   Expanded(
                     child: CustomDropdown(
                       label: '',
@@ -107,6 +107,7 @@ class PersonalDetails extends StatelessWidget {
                       selectedValue: controller.expiryMonth.value,
                     ),
                   ),
+                  WidgetUtils.spaceHzt5,
                   Expanded(
                     child: CustomDropdown(
                       label: '',
@@ -150,6 +151,7 @@ class PersonalDetails extends StatelessWidget {
                       selectedValue: controller.birthDate.value,
                     ),
                   ),
+                  WidgetUtils.spaceHzt5,
                   Expanded(
                     child: CustomDropdown(
                       label: '',
@@ -163,6 +165,7 @@ class PersonalDetails extends StatelessWidget {
                       selectedValue: controller.birthMonth.value,
                     ),
                   ),
+                  WidgetUtils.spaceHzt5,
                   Expanded(
                     child: CustomDropdown(
                       label: '',
@@ -184,12 +187,22 @@ class PersonalDetails extends StatelessWidget {
                 ],
               ),
             ),
+            // WidgetUtils.spaceVrt25,
             CustomButton(
               label: 'next'.tr,
-              alignment: Alignment.center,
-              verticalMargin: 15,
+              // alignment: Alignment.center,
+              verticalMargin: 45,
               onTap: () => Get.toNamed(AppRoutes.CONTACTDETAIL),
             ),
+
+            TextButton(
+              onPressed: () => null,
+              child: Text(' Edit Info '),
+              style: TextButton.styleFrom(
+                primary: AppColors.darkGrey,
+                textStyle: TextStyle(decoration: TextDecoration.underline)
+              ),
+            )
           ],
         ),
       ),

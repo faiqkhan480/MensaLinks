@@ -8,7 +8,7 @@ import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/widget_util.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget backBody() {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
+      padding: const EdgeInsets.only(top: 60, left: 35, right: 35),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -81,9 +81,10 @@ class HomeScreen extends StatelessWidget {
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.vertical(top: Radius.circular(50))
       ),
-      padding: UIStyleProperties.insetsVrt30Hzt35,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: ListView(
+        padding: UIStyleProperties.insetsVrt30Hzt35,
+        physics: Constants.scrollPhysics,
+        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TitleText(
             text: 'For Family',

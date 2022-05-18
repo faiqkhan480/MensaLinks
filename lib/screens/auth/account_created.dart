@@ -9,7 +9,7 @@ import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../utils/assets.dart';
 import '../../widgets/custom_button.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class AccountCreated extends StatelessWidget {
   const AccountCreated({Key? key}) : super(key: key);

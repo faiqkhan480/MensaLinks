@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/controller/home_controller.dart';
 
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
@@ -8,10 +9,12 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/custom_dropdown.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class CreateAccount extends StatelessWidget {
   const CreateAccount({Key? key}) : super(key: key);
+
+  HomeController get controller => Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class CreateAccount extends StatelessWidget {
 
     return SimpleDefaultScreenLayout(
       pageTitle: args,
-      child: body(),
+        child: Obx(body),
     );
   }
 
@@ -31,153 +34,168 @@ class CreateAccount extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // AMOUNT DEPOSITED SECTION
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: ScreenTitle(text: 'Personal Details', size: Constants.heading18),
-          ),
-          WidgetUtils.spaceVrt10,
+          SeparatorText(controller.familyFormSubmitted() ? 'Contact Details' : 'Personal Details'),
+          // WidgetUtils.spaceVrt10,
 
           CustomTextField(
-            hintText: 'Nick Name',
+            hintText: controller.familyFormSubmitted() ? 'Mobile Number' : 'Nick Name',
             controller: TextEditingController(),
           ),
           WidgetUtils.spaceVrt20,
           CustomTextField(
-            hintText: 'First Name',
+            hintText: controller.familyFormSubmitted() ? 'Email' : 'First Name',
             controller: TextEditingController(),
           ),
           WidgetUtils.spaceVrt20,
           CustomTextField(
-            hintText: 'Last Name',
+            hintText: controller.familyFormSubmitted() ? 'Address Line 1' : 'Last Name',
             controller: TextEditingController(),
           ),
           WidgetUtils.spaceVrt20,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(child: CustomTextField(
-                hintText: 'ID Number',
-                controller: TextEditingController(),
-              )),
-              WidgetUtils.spaceHzt10,
-              Expanded(child: DropdownMenuField(values: Constants.months, value: 'Emirates ID',)),
-            ],
-          ),
+          if(controller.familyFormSubmitted())...[
+            CustomTextField(
+              hintText: 'Address Line 2',
+              controller: TextEditingController(),
+            ),
+            WidgetUtils.spaceVrt20,
+            CustomTextField(
+              hintText: 'PO Box',
+              controller: TextEditingController(),
+            ),
+          ]
+          else...[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(child: CustomTextField(
+                  hintText: 'ID Number',
+                  controller: TextEditingController(),
+                )),
+                WidgetUtils.spaceHzt10,
+                Expanded(child: DropdownMenuField(values: Constants.months, value: 'Emirates ID',)),
+              ],
+            ),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: ScreenTitle(text: 'ID Expiry Date', size: Constants.heading18),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: CustomDropdown(
-                  hint: 'day',
-                  width: Get.width * 0.25,
-                  values: Constants.months,
-                  onValueSelected: (String? item) {
-                    // log('Selected Date: $item');
-                    // controller.birthDate.value = item;
-                  },
-                  // selectedValue: controller.birthDate.value,
-                ),
-              ),
-              WidgetUtils.spaceHzt5,
-              Expanded(
-                child: CustomDropdown(
-                  hint: 'month',
-                  width: Get.width * 0.25,
-                  values: List.generate(
-                    31,
-                        (index) {
-                      return (index + 1).toString();
+            const SeparatorText('ID Expiry Date'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: CustomDropdown(
+                    hint: 'day',
+                    width: Get.width * 0.25,
+                    values: Constants.months,
+                    onValueSelected: (String? item) {
+                      // log('Selected Date: $item');
+                      // controller.birthDate.value = item;
                     },
+                    // selectedValue: controller.birthDate.value,
                   ),
-                  onValueSelected: (String? item) {},
                 ),
-              ),
-              WidgetUtils.spaceHzt5,
-              Expanded(
-                child: CustomDropdown(
-                  hint: 'year',
-                  width: Get.width * 0.25,
-                  values: List.generate(
-                    30,
-                        (index) {
-                      return (1990 + index).toString();
+                WidgetUtils.spaceHzt5,
+                Expanded(
+                  child: CustomDropdown(
+                    hint: 'month',
+                    width: Get.width * 0.25,
+                    values: List.generate(
+                      31,
+                          (index) {
+                        return (index + 1).toString();
+                      },
+                    ),
+                    onValueSelected: (String? item) {},
+                  ),
+                ),
+                WidgetUtils.spaceHzt5,
+                Expanded(
+                  child: CustomDropdown(
+                    hint: 'year',
+                    width: Get.width * 0.25,
+                    values: List.generate(
+                      30,
+                          (index) {
+                        return (1990 + index).toString();
+                      },
+                    ),
+                    onValueSelected: (String? item) {
+                      // log('Selected Year: $item');
+                      // controller.birthYear.value = item;
                     },
+                    // selectedValue: controller.birthYear.value,
                   ),
-                  onValueSelected: (String? item) {
-                    // log('Selected Year: $item');
-                    // controller.birthYear.value = item;
-                  },
-                  // selectedValue: controller.birthYear.value,
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: ScreenTitle(text: 'Date Of Birth', size: Constants.heading18),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: CustomDropdown(
-                  hint: 'day',
-                  width: Get.width * 0.25,
-                  values: Constants.months,
-                  onValueSelected: (String? item) {
-                    // log('Selected Date: $item');
-                    // controller.birthDate.value = item;
-                  },
-                  // selectedValue: controller.birthDate.value,
-                ),
-              ),
-              WidgetUtils.spaceHzt5,
-              Expanded(
-                child: CustomDropdown(
-                  hint: 'month',
-                  width: Get.width * 0.25,
-                  values: List.generate(
-                    31,
-                        (index) {
-                      return (index + 1).toString();
+            const SeparatorText('dob'),
+            // Padding(
+            //   padding: UIStyleProperties.insetsVrt20,
+            //   child: ScreenTitle(text: 'Date Of Birth', size: Constants.heading18),
+            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: CustomDropdown(
+                    hint: 'day',
+                    width: Get.width * 0.25,
+                    values: Constants.months,
+                    onValueSelected: (String? item) {
+                      // log('Selected Date: $item');
+                      // controller.birthDate.value = item;
                     },
+                    // selectedValue: controller.birthDate.value,
                   ),
-                  onValueSelected: (String? item) {},
                 ),
-              ),
-              WidgetUtils.spaceHzt5,
-              Expanded(
-                child: CustomDropdown(
-                  hint: 'year',
-                  width: Get.width * 0.25,
-                  values: List.generate(
-                    30,
-                        (index) {
-                      return (1990 + index).toString();
+                WidgetUtils.spaceHzt5,
+                Expanded(
+                  child: CustomDropdown(
+                    hint: 'month',
+                    width: Get.width * 0.25,
+                    values: List.generate(
+                      31,
+                          (index) {
+                        return (index + 1).toString();
+                      },
+                    ),
+                    onValueSelected: (String? item) {},
+                  ),
+                ),
+                WidgetUtils.spaceHzt5,
+                Expanded(
+                  child: CustomDropdown(
+                    hint: 'year',
+                    width: Get.width * 0.25,
+                    values: List.generate(
+                      30,
+                          (index) {
+                        return (1990 + index).toString();
+                      },
+                    ),
+                    onValueSelected: (String? item) {
+                      // log('Selected Year: $item');
+                      // controller.birthYear.value = item;
                     },
+                    // selectedValue: controller.birthYear.value,
                   ),
-                  onValueSelected: (String? item) {
-                    // log('Selected Year: $item');
-                    // controller.birthYear.value = item;
-                  },
-                  // selectedValue: controller.birthYear.value,
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
 
           WidgetUtils.spaceVrt20,
-          CustomButton(
-            label: 'Next',
+          if(controller.familyFormSubmitted())
+            CustomButton(
+            label: 'Save & Add Next',
             // alignment: Alignment.center,
             verticalMargin: 15,
-            onTap: () => null,
+            onTap: () => controller.handleFamilyForm(false),
+          ),
+          CustomButton(
+            label: controller.familyFormSubmitted() ? 'finish' : 'next',
+            // alignment: Alignment.center,
+            verticalMargin: 15,
+            onTap: () =>  controller.familyFormSubmitted() ? controller.toVerifyDoc() : controller.handleFamilyForm(true),
           ),
         ],
       ),

@@ -5,7 +5,7 @@ import '../../utils/widget_util.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/simple_default_layout.dart';
-import '../../widgets/title_text.dart';
+import '../../widgets/text_widgets.dart';
 
 class TransferMoney extends StatelessWidget {
   const TransferMoney({Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class TransferMoney extends StatelessWidget {
           WidgetUtils.spaceVrt25,
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: UIStyleProperties.insetsHzt20,
             child: Row(
               children: const [
                 Expanded(flex: 3, child: ScreenTitle(text: 'Amount',)),
@@ -60,7 +60,7 @@ class TransferMoney extends StatelessWidget {
           WidgetUtils.spaceVrt10,
 
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: UIStyleProperties.insetsHzt20,
             child: ScreenTitle(text: 'Comments',),
           ),
 
