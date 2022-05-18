@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mensa_links/utils/colors.dart';
 
-import '../controller/auth_controller.dart';
+import '../controller/pin_controller.dart';
+import '../utils/colors.dart';
 
 class CustomPinKeyboard extends StatelessWidget {
   final Function delete;
   final Function? onSubmit;
-  final AuthController? controller;
+  final PinController? controller;
 
   const CustomPinKeyboard({Key? key, required this.delete, this.onSubmit, this.controller}) : super(key: key);
 

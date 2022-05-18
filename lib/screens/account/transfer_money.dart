@@ -1,5 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../routes/app_routes.dart';
+import '../../utils/assets.dart';
 import '../../utils/screen_properties.dart';
 import '../../utils/widget_util.dart';
 import '../../widgets/custom_button.dart';
@@ -14,13 +19,13 @@ class TransferMoney extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
       pageTitle: 'Transfer Money To Family',
+      padding: UIStyleProperties.insetsVrt8Hzt30,
       child: body(),
     );
   }
 
   Widget body() {
     return SingleChildScrollView(
-      padding: UIStyleProperties.insetsVrt8Hzt20,
       physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,17 +33,19 @@ class TransferMoney extends StatelessWidget {
           CustomButton(
             verticalMargin: 30,
             label: 'Select Member',
-            trailing: "assets/images/up-arrow.png",
+            trailing: Assets.upArrow,
+            quarterTurns: 2,
             padding: UIStyleProperties.insetsVrt20Hzt10,
             radius: 10,
             onTap: () {},
           ),
 
-          WidgetUtils.spaceVrt25,
+          // WidgetUtils.spaceVrt25,
           CustomButton(
-            verticalMargin: 30,
+            verticalMargin: 40,
             label: 'Purpose',
-            trailing: "assets/images/up-arrow.png",
+            trailing: Assets.upArrow,
+            quarterTurns: 2,
             padding: UIStyleProperties.insetsVrt20Hzt10,
             radius: 10,
             onTap: () {},
@@ -47,20 +54,18 @@ class TransferMoney extends StatelessWidget {
           WidgetUtils.spaceVrt25,
 
           Padding(
-            padding: UIStyleProperties.insetsHzt20,
+            padding: UIStyleProperties.insetsVrt20,
             child: Row(
               children: const [
                 Expanded(flex: 3, child: ScreenTitle(text: 'Amount',)),
                 // WidgetUtils.spaceHzt10,
-                Expanded(flex: 4, child: TextDropdownField(flexField: 3, flexDropdown: 2,)),
+                Expanded(flex: 5, child: TextDropdownField(flexField: 4, flexDropdown: 3,)),
               ],
             ),
           ),
 
-          WidgetUtils.spaceVrt10,
-
           const Padding(
-            padding: UIStyleProperties.insetsHzt20,
+            padding: UIStyleProperties.insetsVrt20,
             child: ScreenTitle(text: 'Comments',),
           ),
 
@@ -68,14 +73,14 @@ class TransferMoney extends StatelessWidget {
             // label: '',
             hintText: 'Enter Your Comments',
             controller: TextEditingController(),
-            lines: 5,
+            lines: 8,
           ),
 
           CustomButton(
             label: 'Done',
             // alignment: Alignment.center,
             verticalMargin: 15,
-            onTap: () => null,
+            onTap: () => Get.toNamed(AppRoutes.PIN, arguments: "transfer"),
           ),
         ],
       ),

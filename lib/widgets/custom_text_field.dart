@@ -109,6 +109,7 @@ class TextDropdownField extends StatelessWidget {
           Expanded(
             flex: flexField ?? 4,
             child: TextFormField(
+              keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   errorBorder: InputBorder.none,
@@ -129,10 +130,11 @@ class TextDropdownField extends StatelessWidget {
             flex: flexDropdown ?? 1,
             child: DropdownButtonFormField(
                 value: 'AED',
-                items: ['AED'].map((String value) {
+                // style: const TextStyle(fontWeight: FontWeight.w700),
+                items: ['AED', 'ARR'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w500),
+                    child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w700),
                   );
                 }).toList(),
                 decoration: const InputDecoration(

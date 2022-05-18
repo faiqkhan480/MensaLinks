@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/controller/auth_controller.dart';
-import 'package:mensa_links/routes/app_routes.dart';
 
+import '../../controller/pin_controller.dart';
+import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
@@ -15,7 +15,9 @@ import '../../widgets/text_widgets.dart';
 class PinScreen extends StatelessWidget {
   PinScreen({Key? key}) : super(key: key);
 
-  final AuthController controller = Get.find<AuthController>();
+  final PinController _controller = Get.put(PinController());
+  final args = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
@@ -41,7 +43,7 @@ class PinScreen extends StatelessWidget {
           padding: const EdgeInsets.only(top: 15),
           alignment: Alignment.center,
           child: CustomPinCodeField(
-            controller: controller.pinField,
+            controller: _controller.pinField,
             backgroundColor: AppColors.skyLightColor,
             isObscured: false,
             fieldHeight: 60,
@@ -61,8 +63,8 @@ class PinScreen extends StatelessWidget {
 
         Expanded(
           child: CustomPinKeyboard(
-            controller: controller,
-            delete: controller.handleDelete,
+            controller: _controller,
+            delete: _controller.handleDelete,
           ),
         ),
       ],

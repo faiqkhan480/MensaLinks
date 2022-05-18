@@ -96,8 +96,10 @@ class HomeScreen extends StatelessWidget {
 
           // ON FAMILY
           boxRow(
+             "Create\nAccount",
              () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: "Create Account For Family"),
-             () => Get.toNamed(AppRoutes.TRANSFERMONEY)
+              "Transfer\nMoney",
+              () => Get.toNamed(AppRoutes.TRANSFERMONEY)
           ),
 
           TitleText(
@@ -110,7 +112,9 @@ class HomeScreen extends StatelessWidget {
 
           // ON WORKER
           boxRow(
+             "Create\nAccount",
              () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: "Create Account For Domestic Worker"),
+             "Process\nSalary",
              () => Get.toNamed(AppRoutes.PROCESSSALRY)
           ),
           WidgetUtils.spaceVrt15,
@@ -133,12 +137,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget boxRow(Function() action1, Function() action2) {
+  Widget boxRow(String text1, Function() action1, String text2, Function() action2) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        box("Create\nAccount", action1),
-        box("Transfer\nMoney", action2),
+        box(text1, action1),
+        box(text2, action2),
       ],
     );
   }
@@ -155,9 +159,9 @@ class HomeScreen extends StatelessWidget {
         margin: UIStyleProperties.insetsVrt30Hzt20,
         child: TitleText(
           text: text,
-          weight: FontWeight.w500,
+          weight: FontWeight.w700,
           color: AppColors.primaryColor,
-          size: Constants.heading20,
+          size: Constants.heading18,
           align: TextAlign.center,
         ),
       ),

@@ -25,8 +25,12 @@ class MensaLinks extends StatelessWidget {
       theme: ThemeData(
           fontFamily: "Ubuntu",
           primaryColor: AppColors.primaryColor,
-          iconTheme: const IconThemeData(color: AppColors.primaryColor)
+          textTheme: const TextTheme(
+            subtitle1: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+          ),
+          iconTheme: const IconThemeData(color: AppColors.primaryColor),
       ),
+
       debugShowCheckedModeBanner: false,
       color: AppColors.primaryColor,
       // initialRoute: AppRoutes.SPLASH,
