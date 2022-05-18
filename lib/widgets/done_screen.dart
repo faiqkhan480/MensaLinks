@@ -12,7 +12,8 @@ import 'text_widgets.dart';
 
 class DoneScreen extends StatelessWidget {
   final String message;
-  const DoneScreen({Key? key, required this.message}) : super(key: key);
+  final int? counts;
+  const DoneScreen({Key? key, required this.message, this.counts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class DoneScreen extends StatelessWidget {
                   label: "ok",
                   alignment: Alignment.center,
                   minWidth: 0.30,
-                  onTap: () => Get.close(2),
+                  onTap: () => Get.close(counts ?? 2),
                 )
               ],
             ),
