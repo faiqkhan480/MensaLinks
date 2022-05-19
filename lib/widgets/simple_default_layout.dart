@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/assets.dart';
@@ -47,6 +48,9 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
   final double? pageTitleSize;
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    //   statusBarColor: Colors.transparent,
+    // ));
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,

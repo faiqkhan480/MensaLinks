@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/controller/home_controller.dart';
 
 import '../routes/app_routes.dart';
 import '../widgets/done_screen.dart';
@@ -12,13 +13,23 @@ class PinController extends GetxController {
 
   void handleDelete() => pinField.text = pinField.text.substring(0, pinField.text.length - 1);
 
-  void handleComplete(bool isTransfer) {
+  void handleComplete(String args) {
+    bool isTransfer = args == "transfer";
+    bool isSalary = args == "salary";
+    String _msg = isTransfer ? "An amount of AED 400.00 has been loaded to the card ending with xxxx" :
+    isSalary ? "Salary Process Request Submitted" :
+    "Pin Set Successfully!\nProceed To Sign In";
     if(isTransfer) {
-      Get.off(const DoneScreen(message: "An amount of AED 400.00 has been loaded to the card ending with xxxx", counts: 2,));
-    } else {
+      Get.off(DoneScreen(message: _msg, counts: 2,));
+    }
+    else if(isSalary) {
+      Get.find<HomeController>().handleProcessSalary(false);
+      Get.off(DoneScreen(message: _msg, counts: 2,));
+    }
+    else {
       Get.to(() =>
           Loading(
-            msgBefore: "Pin Set Successfully!\nProceed To Sign In",
+            msgBefore: _msg,
             waveLoading: false,
             onComplete: () => null,
             onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),

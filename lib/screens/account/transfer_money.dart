@@ -15,6 +15,10 @@ import '../../widgets/text_widgets.dart';
 class TransferMoney extends StatelessWidget {
   const TransferMoney({Key? key}) : super(key: key);
 
+  void handleNavigate() {
+    Get.toNamed(AppRoutes.PIN, arguments: "transfer");
+  }
+
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
@@ -80,7 +84,7 @@ class TransferMoney extends StatelessWidget {
             label: 'Done',
             // alignment: Alignment.center,
             verticalMargin: 15,
-            onTap: () => Get.toNamed(AppRoutes.PIN, arguments: "transfer"),
+            onTap: handleNavigate,
           ),
         ],
       ),

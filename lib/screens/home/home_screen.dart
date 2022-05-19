@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/screen_properties.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
@@ -15,20 +16,28 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    //   statusBarColor: Colors.white,
+    //   statusBarBrightness: Brightness.dark,
+    //   statusBarIconBrightness: Brightness.dark
+    // ));
     return Scaffold(
-      body: Stack(
-        children: [
-          backBody(),
+      backgroundColor: AppColors.white,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            backBody(),
 
-          frontBody(),
-        ],
+            frontBody(),
+          ],
+        ),
       ),
     );
   }
 
   Widget backBody() {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, left: 35, right: 35),
+      padding: const EdgeInsets.only(top: 20, left: 35, right: 35),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/pin_controller.dart';
-import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../widgets/custom_pin_field.dart';
 import '../../widgets/keypad.dart';
-import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/text_widgets.dart';
 
@@ -26,7 +24,6 @@ class PinScreen extends StatelessWidget {
   }
 
   Widget loginOtp() {
-    bool fromTransfer = args == "transfer";
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -49,16 +46,8 @@ class PinScreen extends StatelessWidget {
             isObscured: false,
             fieldHeight: 80,
             fieldWidth: 55,
-            // cursorColor: AppColors.slightlyGrey,
             keyboardType: TextInputType.none,
-            // onComplete: (val) => Get.to(
-            //       () => Loading(
-            //         waveLoading: false,
-            //         onComplete: () => null,
-            //         onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
-            //       ),
-            // ),
-            onComplete: (val) => _controller.handleComplete(fromTransfer),
+            onComplete: (val) => _controller.handleComplete(args),
           ),
         ),
 

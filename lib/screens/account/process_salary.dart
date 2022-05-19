@@ -18,6 +18,15 @@ class ProcessSalary extends StatelessWidget {
   const ProcessSalary({Key? key}) : super(key: key);
 
   HomeController get _controller => Get.find<HomeController>();
+
+  void handleBack() {
+    if(_controller.salaryProcessed()) {
+      _controller.handleProcessSalary(false);
+    } else {
+      Get.back();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var args = Get.arguments;
@@ -25,6 +34,7 @@ class ProcessSalary extends StatelessWidget {
     return SimpleDefaultScreenLayout(
       pageTitle: "Process Salary for Domestic Worker",
       padding: UIStyleProperties.insetsVrt10Hzt25,
+      handleBack: handleBack,
       child: Obx(body),
     );
   }
@@ -37,25 +47,34 @@ class ProcessSalary extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          WidgetUtils.spaceVrt25,
-          customTabBar(),
-          WidgetUtils.spaceVrt10,
+          if(_controller.salaryProcessed())
+            CustomTextField(
+              hintText: 'Worker Name',
+              label: 'Worker',
+              controller: TextEditingController(),
+            )
+          else...[
+            WidgetUtils.spaceVrt25,
+            customTabBar(),
+            WidgetUtils.spaceVrt10,
 
-          CustomButton(
-            verticalMargin: 30,
-            label: 'Select Worker',
-            trailing: Assets.upArrow,
-            quarterTurns: 2,
-            padding: UIStyleProperties.insetsVrt20Hzt10,
-            radius: 10,
-            onTap: () {},
-          ),
+            CustomButton(
+              verticalMargin: 30,
+              label: 'Select Worker',
+              trailing: Assets.upArrow,
+              quarterTurns: 2,
+              padding: UIStyleProperties.insetsVrt20Hzt10,
+              radius: 10,
+              onTap: () {},
+            ),
+          ],
 
-          const SeparatorText('Enter Salary', isDense: false),
+          separatorText(_controller.salaryProcessed() ? 'Salary Amount' : 'Enter Salary'),
 
           const TextDropdownField(hintText: 'Salary Amount',),
 
-          const SeparatorText('Select Salary Month', isDense: false),
+
+          separatorText(_controller.salaryProcessed() ? 'Salary Month' : 'Select Salary Month'  ),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,19 +115,17 @@ class ProcessSalary extends StatelessWidget {
 
 
           // IF WPS TRUE
-          if(wps)...[
-            const SeparatorText('Enter Personal Number', isDense: false),
+          if(wps)
             CustomTextField(
+              label: _controller.salaryProcessed() ? 'Personal Number' : 'Enter Personal Number',
               hintText: 'Personal Number',
               marginTop: 0.0,
               controller: TextEditingController(),
               // lines: 5,
             ),
-          ],
-
-          const SeparatorText('Enter Comments', isDense: false),
 
           CustomTextField(
+            label: _controller.salaryProcessed() ? 'Comments' : 'Enter Comments',
             marginTop: 0.0,
             hintText: 'Comments..',
             controller: TextEditingController(),
@@ -118,15 +135,25 @@ class ProcessSalary extends StatelessWidget {
           WidgetUtils.spaceVrt20,
 
           CustomButton(
-            label: 'Process Salary',
+            label: _controller.salaryProcessed() ? 'Confirm' : 'Process Salary',
             alignment: Alignment.center,
             // verticalMargin: 15,
-            onTap: () => null,
+            onTap: () => _controller.salaryProcessed() ? _controller.handleConfirm() : _controller.handleProcessSalary(true),
           ),
         ],
       ),
     );
   }
+
+  Widget separatorText(String text) => Padding(
+    padding: UIStyleProperties.insetsVrt15,
+    child: TitleText(
+      text: text,
+      color: AppColors.primaryColor,
+      weight: FontWeight.bold,
+      size: Constants.heading20,
+    ),
+  );
 
   Widget customTabBar() => Container(
     decoration: BoxDecoration(

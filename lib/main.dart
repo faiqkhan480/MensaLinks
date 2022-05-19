@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/lang/lang.dart';
 import 'package:mensa_links/screens/splash/splash.dart';
@@ -9,6 +10,9 @@ import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent, // transparent status bar
+  ));
   runApp(const MensaLinks());
 }
 

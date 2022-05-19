@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
+import 'package:mensa_links/utils/screen_properties.dart';
 import 'package:mensa_links/widgets/text_widgets.dart';
 
 import '../utils/assets.dart';
@@ -37,12 +38,15 @@ class CustomTextField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           label != null
-              ? TitleText(
-                  text: label!,
-                  color: AppColors.primaryColor.withOpacity(0.5),
-                  weight: FontWeight.bold,
-                  size: Constants.heading18,
-                )
+              ? Padding(
+                padding: UIStyleProperties.insetsVrt15,
+                child: TitleText(
+                    text: label!,
+                    color: AppColors.primaryColor,
+                    weight: FontWeight.bold,
+                    size: Constants.heading20,
+                  ),
+              )
               : const SizedBox(),
           TextFormField(
             maxLines: lines ?? 1,

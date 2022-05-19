@@ -3,6 +3,7 @@ import 'package:mensa_links/routes/app_routes.dart';
 
 class HomeController extends GetxController {
   RxBool familyFormSubmitted = false.obs;
+  RxBool salaryProcessed = false.obs;
   RxInt selectedTab = 0.obs;
 
   void handleFamilyForm(bool val) {
@@ -17,4 +18,10 @@ class HomeController extends GetxController {
   }
 
   void handleTab(int val) => selectedTab.value = val;
+
+  void handleProcessSalary(bool val) => salaryProcessed.value = val;
+
+  void handleConfirm() {
+    Get.toNamed(AppRoutes.PIN, arguments: "salary");
+  }
 }
