@@ -38,7 +38,7 @@ class CustomPinKeyboard extends StatelessWidget {
             ),
           ],
         ),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -59,7 +59,7 @@ class CustomPinKeyboard extends StatelessWidget {
             ),
           ],
         ),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -80,7 +80,7 @@ class CustomPinKeyboard extends StatelessWidget {
             ),
           ],
         ),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -115,7 +115,7 @@ class CustomPinKeyboard extends StatelessWidget {
       child: TextButton(
           child: Text(
             number.toString(),
-            style: const TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 30, color: AppColors.primaryColor, fontWeight: FontWeight.w400),
           ),
           onPressed: () => controller!.handleChange(number.toString())),
     );

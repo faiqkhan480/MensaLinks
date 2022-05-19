@@ -102,8 +102,8 @@ class TextDropdownField extends StatelessWidget {
         border: Border.all(color: AppColors.primaryColor, width: 1.0),
         borderRadius: BorderRadius.circular(10),
       ),
-      height: Get.height * 0.060,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      height: Get.height * 0.055,
+      // padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
           Expanded(
@@ -111,6 +111,7 @@ class TextDropdownField extends StatelessWidget {
             child: TextFormField(
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 10, right: 10),
                   border: InputBorder.none,
                   errorBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -134,7 +135,7 @@ class TextDropdownField extends StatelessWidget {
                 items: ['AED', 'ARR'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w700),
+                    child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w700, size: Constants.smallText),
                   );
                 }).toList(),
                 decoration: const InputDecoration(
@@ -144,7 +145,7 @@ class TextDropdownField extends StatelessWidget {
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   // filled: true,
-                  contentPadding: EdgeInsets.only(left: 10),
+                  contentPadding: EdgeInsets.only(right: 10),
                   // labelText: widget.title,
                 ),
                 icon: RotatedBox(

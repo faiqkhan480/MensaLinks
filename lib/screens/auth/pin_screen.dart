@@ -26,11 +26,12 @@ class PinScreen extends StatelessWidget {
   }
 
   Widget loginOtp() {
+    bool fromTransfer = args == "transfer";
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: UIStyleProperties.insetsHzt20,
+          padding: UIStyleProperties.insetsVrt20Hzt20,
           child: TitleText(
             text: 'enter_your_new_pin',
             size: Constants.heading20,
@@ -40,28 +41,28 @@ class PinScreen extends StatelessWidget {
         ),
 
         Container(
-          padding: const EdgeInsets.only(top: 15),
+          // padding: UIStyleProperties.topInset10,
           alignment: Alignment.center,
           child: CustomPinCodeField(
             controller: _controller.pinField,
             backgroundColor: AppColors.skyLightColor,
             isObscured: false,
-            fieldHeight: 60,
-            cursorColor: AppColors.slightlyGrey,
+            fieldHeight: 80,
+            fieldWidth: 55,
+            // cursorColor: AppColors.slightlyGrey,
             keyboardType: TextInputType.none,
-            onComplete: (val) => Get.to(
-                  () => Loading(
-                    waveLoading: false,
-                    onComplete: () => null,
-                    onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
-                  ),
-            ),
-            // onComplete: (val) => Get.toNamed(AppRoutes.DOCUMENTVERIFICATION),
-            textStyle: const TextStyle(fontSize: 26, color: AppColors.white),
+            // onComplete: (val) => Get.to(
+            //       () => Loading(
+            //         waveLoading: false,
+            //         onComplete: () => null,
+            //         onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
+            //       ),
+            // ),
+            onComplete: (val) => _controller.handleComplete(fromTransfer),
           ),
         ),
 
-        Expanded(
+        Flexible(
           child: CustomPinKeyboard(
             controller: _controller,
             delete: _controller.handleDelete,

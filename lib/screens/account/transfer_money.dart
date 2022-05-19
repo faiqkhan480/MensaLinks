@@ -59,7 +59,7 @@ class TransferMoney extends StatelessWidget {
               children: const [
                 Expanded(flex: 3, child: ScreenTitle(text: 'Amount',)),
                 // WidgetUtils.spaceHzt10,
-                Expanded(flex: 5, child: TextDropdownField(flexField: 4, flexDropdown: 3,)),
+                Expanded(flex: 5, child: TextDropdownField(flexField: 4, flexDropdown: 2,)),
               ],
             ),
           ),

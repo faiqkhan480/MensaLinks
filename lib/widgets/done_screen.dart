@@ -33,7 +33,7 @@ class DoneScreen extends StatelessWidget {
                 const Icon(Icons.check_circle_rounded, size: 50, ),
 
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  padding: const EdgeInsets.only(top: 20, bottom: 30),
                   child: TitleText(
                     text: message,
                     size: Constants.heading20,
@@ -46,6 +46,7 @@ class DoneScreen extends StatelessWidget {
                   label: "ok",
                   alignment: Alignment.center,
                   minWidth: 0.30,
+                  minHeight: 0.060,
                   onTap: () => Get.close(counts ?? 2),
                 )
               ],

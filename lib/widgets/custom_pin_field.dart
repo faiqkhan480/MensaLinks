@@ -23,7 +23,7 @@ class CustomPinCodeField extends StatelessWidget {
     this.fieldHeight,
     this.keyboardType,
     this.backgroundColor,
-    this.cursorColor,
+    this.cursorColor = AppColors.primaryColor,
     this.isObscured = true,
   }) : super(key: key);
   @override
@@ -42,8 +42,7 @@ class CustomPinCodeField extends StatelessWidget {
                 color:
                     backgroundColor ?? AppColors.primaryColor.withOpacity(.8))
           ],
-          textStyle: textStyle ??
-              const TextStyle(color: AppColors.white, fontSize: 24),
+          textStyle: textStyle ?? const TextStyle(color: AppColors.primaryColor, fontSize: 26),
           keyboardType: keyboardType ?? TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           obscureText: isObscured,
@@ -59,7 +58,7 @@ class CustomPinCodeField extends StatelessWidget {
             shape: PinCodeFieldShape.box,
             inactiveColor: AppColors.transparent,
             // activeFillColor: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(15),
             selectedFillColor: AppColors.primaryColor,
           ),
           length: 4,
