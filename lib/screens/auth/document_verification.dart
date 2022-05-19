@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/assets.dart';
 
+import '../../controller/home_controller.dart';
 import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/done_screen.dart';
 import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/text_widgets.dart';
@@ -15,6 +17,27 @@ class DocumentVerification extends StatelessWidget {
   const DocumentVerification({Key? key}) : super(key: key);
 
   get args => Get.arguments;
+
+  void handleDone() {
+    if(Get.previousRoute == AppRoutes.CREATEACCOUNT) {
+      Get.off(() =>
+          Loading(
+            waveLoading: false,
+            msgBefore: 'Request Submitted Successfully',
+            msgAfter: 'KYC Verification in Progress. We will let you know once completed.',
+            onComplete: () => null,
+            onDone: () {
+              if(Get.isRegistered<HomeController>()){
+                Get.find<HomeController>().handleFamilyForm(false);
+                Get.close(2);
+              }
+            },
+          ),
+      );
+    } else {
+      Get.toNamed(AppRoutes.MEMBERSDETAILS);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +98,9 @@ class DocumentVerification extends StatelessWidget {
                 verticalMargin: 10,
                 label: 'done',
                 onTap: () {
-                  Get.to(
-                        () => Loading(
+                  Get.off(() =>
+                      Loading(
+                      msgBefore: "",
                       onComplete: () {
                         Future.delayed(
                           const Duration(seconds: 3),
@@ -97,9 +121,7 @@ class DocumentVerification extends StatelessWidget {
             child: CustomButton(
             verticalMargin: 10,
             label: 'done',
-            onTap: () {
-              Get.toNamed(AppRoutes.MEMBERSDETAILS);
-            },
+            onTap: handleDone,
         ),
           ),
       ],

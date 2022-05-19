@@ -15,11 +15,15 @@ class Loading extends StatefulWidget {
   final Function() onComplete;
   final VoidCallback? onDone;
   final bool waveLoading;
+  final String? msgAfter;
+  final String msgBefore;
   const Loading({
     Key? key,
     this.waveLoading = true,
     required this.onComplete,
     this.onDone,
+    required this.msgBefore,
+    this.msgAfter
   }) : super(key: key);
 
   @override
@@ -112,7 +116,8 @@ class _LoadingState extends State<Loading> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 30),
                           child: TitleText(
-                            text: 'Pin Set Successfully!\nProceed To Sign In',
+                            // CHECK IF TWO MESSAGES THEN SHOW SECOND MSG AFTER ANIMATION ENDS ELSE IF SECOND MSG IS EMPTY WILL RENDER FIRST MSG INSTEAD
+                            text: showButton ? widget.msgAfter ?? widget.msgBefore : widget.msgBefore,
                             size: Constants.heading20,
                             weight: FontWeight.w700,
                             color: AppColors.primaryColor,

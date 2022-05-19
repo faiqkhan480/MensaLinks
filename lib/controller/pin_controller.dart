@@ -18,6 +18,7 @@ class PinController extends GetxController {
     } else {
       Get.to(() =>
           Loading(
+            msgBefore: "Pin Set Successfully!\nProceed To Sign In",
             waveLoading: false,
             onComplete: () => null,
             onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),

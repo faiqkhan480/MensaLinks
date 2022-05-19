@@ -67,12 +67,14 @@ class CreateAccount extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Expanded(child: CustomTextField(
-                  hintText: 'ID Number',
-                  controller: TextEditingController(),
+                Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                      hintText: 'ID Number',
+                      controller: TextEditingController(),
                 )),
                 WidgetUtils.spaceHzt10,
-                Expanded(child: DropdownMenuField(values: Constants.months, value: 'Emirates ID',)),
+                Expanded(flex: 4, child: DropdownMenuField(values: Constants.months, value: 'Emirates ID',)),
               ],
             ),
 

@@ -95,46 +95,31 @@ class DropdownMenuField extends StatelessWidget {
         border: Border.all(color: AppColors.primaryColor, width: 1.0),
         borderRadius: BorderRadius.circular(15),
       ),
-      padding: UIStyleProperties.leftInset10,
+      // padding: UIStyleProperties.leftInset10,
       height: Get.height * 0.060,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
            Expanded(
-            child: TitleText(
-              text: value,
-              color: AppColors.primaryColor,
-              weight: FontWeight.w700,
+            child: Center(
+              child: TitleText(
+                text: value,
+                color: AppColors.primaryColor,
+                weight: FontWeight.w700,
+              ),
             ),
           ),
-          const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0),
+          const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0, width: 1),
           PopupMenuButton(
+            padding: EdgeInsets.zero,
               onSelected: (item) {},
               icon: RotatedBox(
                   quarterTurns: 2,
                   child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-            itemBuilder: (BuildContext context) => List<PopupMenuEntry>.generate(values.length,
+                  itemBuilder: (BuildContext context) => List<PopupMenuEntry>.generate(values.length,
                   (index) =>  PopupMenuItem(value: values.elementAt(index),
                     child: Text(values.elementAt(index)),
                   ),),
-              // itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-              //   const PopupMenuItem(
-              //     value: "Emirates ID",
-              //     child: Text('Item 1'),
-              //   ),
-              //   const PopupMenuItem(
-              //     value: "itemTwo",
-              //     child: Text('Item 2'),
-              //   ),
-              //   const PopupMenuItem(
-              //     value: "itemThree",
-              //     child: Text('Item 3'),
-              //   ),
-              //   const PopupMenuItem(
-              //     value: "itemFour",
-              //     child: Text('Item 4'),
-              //   ),
-              // ]
           )
         ],
       ),
