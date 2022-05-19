@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/assets.dart';
 
+import '../../controller/home_controller.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../utils/widget_util.dart';
@@ -14,6 +15,8 @@ import '../../widgets/text_widgets.dart';
 
 class RegisterPayment extends StatelessWidget {
   const RegisterPayment({Key? key}) : super(key: key);
+
+  HomeController get _controller => Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +34,13 @@ class RegisterPayment extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // AMOUNT DEPOSITED SECTION
-          const Padding(
-            padding: UIStyleProperties.insetsHzt20,
-            child: ScreenTitle(text: 'Amount Deposited',),
-          ),
+          separatorText("Amount Deposited"),
           const TextDropdownField(hintText: "Amount Deposited"),
 
+          WidgetUtils.spaceVrt20,
+
           // DATE SELECTIONS
-          const Padding(
-            padding: UIStyleProperties.insetsHzt20,
-            child: ScreenTitle(text: 'Date',),
-          ),
+          separatorText('Date',),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -92,23 +91,20 @@ class RegisterPayment extends StatelessWidget {
             ],
           ),
 
-          WidgetUtils.spaceVrt25,
+          WidgetUtils.spaceVrt20,
 
           CustomButton(
             verticalMargin: 30,
             label: 'Upload Reciept',
             trailing: Assets.upArrow,
-            padding: UIStyleProperties.insetsVrt20Hzt10,
+            minHeight: 0.06,
             radius: 10,
             onTap: () {},
           ),
 
           WidgetUtils.spaceVrt25,
 
-          const Padding(
-            padding: UIStyleProperties.insetsHzt20,
-            child: ScreenTitle(text: 'Comments',),
-          ),
+          separatorText('Comments',),
 
           CustomTextField(
             // label: '',
@@ -121,10 +117,19 @@ class RegisterPayment extends StatelessWidget {
             label: 'Done',
             // alignment: Alignment.center,
             verticalMargin: 15,
-            onTap: () => null,
+            onTap: _controller.handleRegisterPayment,
           ),
         ],
       ),
     );
   }
+
+  Widget separatorText(String text) => Padding(
+    padding: UIStyleProperties.insetsVrt15,
+    child: TitleText(
+      text: text,
+      weight: FontWeight.bold,
+      size: Constants.heading20,
+    ),
+  );
 }

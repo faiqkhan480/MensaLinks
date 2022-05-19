@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:mensa_links/routes/app_routes.dart';
 
+import '../widgets/done_screen.dart';
+
 class HomeController extends GetxController {
   RxBool familyFormSubmitted = false.obs;
   RxBool salaryProcessed = false.obs;
@@ -23,5 +25,9 @@ class HomeController extends GetxController {
 
   void handleConfirm() {
     Get.toNamed(AppRoutes.PIN, arguments: "salary");
+  }
+
+  void handleRegisterPayment() {
+    Get.off(const DoneScreen(message: "Thank you! Verification in progress.", counts: 1,));
   }
 }

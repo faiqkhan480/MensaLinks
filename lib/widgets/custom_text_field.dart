@@ -109,6 +109,7 @@ class TextDropdownField extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       height: Get.height * 0.055,
+      alignment: Alignment.center,
       // padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
@@ -117,7 +118,8 @@ class TextDropdownField extends StatelessWidget {
             child: TextFormField(
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(left: 10, right: 10),
+                contentPadding: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
+                  isDense: true,
                   border: InputBorder.none,
                   errorBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -137,6 +139,7 @@ class TextDropdownField extends StatelessWidget {
             flex: flexDropdown ?? 1,
             child: DropdownButtonFormField(
                 value: 'AED',
+                isDense: true,
                 // style: const TextStyle(fontWeight: FontWeight.w700),
                 items: ['AED', 'ARR'].map((String value) {
                   return DropdownMenuItem<String>(
