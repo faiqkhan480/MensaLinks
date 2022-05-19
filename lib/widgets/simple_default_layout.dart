@@ -20,7 +20,8 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
     this.appbarTitle,
     this.leadingWidget,
     this.padding,
-    this.onBackTap,
+    this.onBackTapInside,
+    this.handleBack,
     this.showBackButton = false,
     this.showAppBarBackButton = true,
     this.resizeToAvoidBottomInset = true,
@@ -39,7 +40,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
   final List<Widget>? actions;
   final Widget? appbarTitle, leadingWidget;
   final EdgeInsets? padding;
-  final VoidCallback? onBackTap;
+  final VoidCallback? onBackTapInside, handleBack;
   final Widget? bottomNavigation, pageSubtitle;
   final bool showAppBarBackButton;
   final String? pageTitle;
@@ -58,7 +59,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                 leading: leadingWidget ??
                     (showAppBarBackButton
                         ? IconButton(
-                            onPressed: () => Get.back(),
+                            onPressed: handleBack ?? () => Get.back(),
                             icon: const Icon(Icons.arrow_back_ios))
                         : null),
                 toolbarHeight: kToolbarHeight,
@@ -156,7 +157,7 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
 
   IconButton _buildBackButton() {
     return IconButton(
-      onPressed: onBackTap ?? () => Get.back(),
+      onPressed: onBackTapInside ?? () => Get.back(),
       icon: Icon(
         Icons.arrow_back_ios,
         color: showBackButtonInside ? AppColors.ultraDarkGrey : AppColors.white,

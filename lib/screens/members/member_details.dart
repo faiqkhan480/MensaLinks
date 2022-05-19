@@ -2,15 +2,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/home_controller.dart';
 import '../../utils/screen_properties.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_table.dart';
 import '../../widgets/done_screen.dart';
+import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/text_widgets.dart';
 
 class MemberDetails extends StatelessWidget {
   const MemberDetails({Key? key}) : super(key: key);
+
+  void handleClick() {
+    Get.off(() =>
+        Loading(
+          waveLoading: false,
+          msgBefore: 'Request Submitted Successfully',
+          msgAfter: 'KYC Verification in Progress. We will let you know once completed.',
+          onComplete: () => null,
+          onDone: () {
+            if(Get.isRegistered<HomeController>()){
+              Get.find<HomeController>().handleFamilyForm(false);
+              Get.close(3);
+            }
+          })
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +74,7 @@ class MemberDetails extends StatelessWidget {
           child: CustomButton(
             verticalMargin: 10,
             label: 'done',
-            onTap: () {
-              Get.off(const DoneScreen(message: "KYC Verification in Progress. We will let you know once completed.", counts: 3,));
-            },
+            onTap: handleClick,
           ),
         ),
       ],

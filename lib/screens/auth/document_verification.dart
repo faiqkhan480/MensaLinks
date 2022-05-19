@@ -19,7 +19,7 @@ class DocumentVerification extends StatelessWidget {
   get args => Get.arguments;
 
   void handleDone() {
-    if(Get.previousRoute == AppRoutes.CREATEACCOUNT) {
+    if(args['forWorker']) {
       Get.off(() =>
           Loading(
             waveLoading: false,
@@ -49,7 +49,7 @@ class DocumentVerification extends StatelessWidget {
   }
 
   Widget body() {
-    bool isFromHome = args == "fromAccount";
+    bool isFromHome = args != null;
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [

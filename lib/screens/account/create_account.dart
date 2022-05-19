@@ -15,18 +15,20 @@ class CreateAccount extends StatelessWidget {
   const CreateAccount({Key? key}) : super(key: key);
 
   HomeController get controller => Get.find<HomeController>();
+  get args => Get.arguments;
 
   @override
   Widget build(BuildContext context) {
-    var args = Get.arguments;
 
     return SimpleDefaultScreenLayout(
       pageTitle: args,
+        handleBack: () => (controller.familyFormSubmitted()) ? controller.handleFamilyForm(false) : Get.back(),
         child: Obx(body),
     );
   }
 
   Widget body() {
+    bool forWorker = args == 'for_worker';
     return SingleChildScrollView(
       padding: UIStyleProperties.insetsVrt8Hzt20,
       physics: const BouncingScrollPhysics(),
@@ -197,7 +199,7 @@ class CreateAccount extends StatelessWidget {
             label: controller.familyFormSubmitted() ? 'finish' : 'next',
             // alignment: Alignment.center,
             verticalMargin: 15,
-            onTap: () =>  controller.familyFormSubmitted() ? controller.toVerifyDoc() : controller.handleFamilyForm(true),
+            onTap: () =>  controller.familyFormSubmitted() ? controller.toVerifyDoc(forWorker) : controller.handleFamilyForm(true),
           ),
         ],
       ),

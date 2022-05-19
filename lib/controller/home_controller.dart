@@ -8,7 +8,10 @@ class HomeController extends GetxController {
     familyFormSubmitted.value = val;
   }
 
-  void toVerifyDoc() {
-    Get.toNamed(AppRoutes.DOCUMENTVERIFICATION, arguments: 'fromAccount');
+  void toVerifyDoc(bool type) {
+    var args = {
+      "forWorker": type
+    };
+    Get.toNamed(AppRoutes.DOCUMENTVERIFICATION, arguments: args);
   }
 }

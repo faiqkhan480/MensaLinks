@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
           // ON FAMILY
           boxRow(
              "Create\nAccount",
-             () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: "Create Account For Family"),
+             () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: 'for_family'),
               "Transfer\nMoney",
               () => Get.toNamed(AppRoutes.TRANSFERMONEY)
           ),
@@ -113,7 +113,7 @@ class HomeScreen extends StatelessWidget {
           // ON WORKER
           boxRow(
              "Create\nAccount",
-             () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: "Create Account For Domestic Worker"),
+             () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: 'for_worker'),
              "Process\nSalary",
              () => Get.toNamed(AppRoutes.PROCESSSALRY)
           ),

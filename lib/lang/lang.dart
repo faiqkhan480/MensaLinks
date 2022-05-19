@@ -42,6 +42,8 @@ class Lang extends Translations {
           'ok': 'OK',
           'finish': 'Finish',
           'next': 'Next',
+          'for_family': 'Create Account For Family',
+          'for_worker': 'Create Account For Domestic Worker',
           '': '',
 
         },
