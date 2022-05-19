@@ -33,8 +33,8 @@ class MensaLinks extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       color: AppColors.primaryColor,
-      // initialRoute: AppRoutes.SPLASH,
-      initialRoute: AppRoutes.HOME,
+      initialRoute: AppRoutes.SPLASH,
+      // initialRoute: AppRoutes.HOME,
       // scrollBehavior: ScrollBehavior(androidOverscrollIndicator: AndroidOverscrollIndicator.),
       getPages: AppPages.list,
     );

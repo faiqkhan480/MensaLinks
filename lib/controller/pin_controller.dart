@@ -13,7 +13,7 @@ class PinController extends GetxController {
 
   void handleDelete() => pinField.text = pinField.text.substring(0, pinField.text.length - 1);
 
-  void handleComplete(String args) {
+  void handleComplete([String? args]) {
     bool isTransfer = args == "transfer";
     bool isSalary = args == "salary";
     String _msg = isTransfer ? "An amount of AED 400.00 has been loaded to the card ending with xxxx" :

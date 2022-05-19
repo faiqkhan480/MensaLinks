@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget frontBody() {
     return Container(
-      margin: const EdgeInsets.only(top: 230),
+      margin: const EdgeInsets.only(top: 180),
       decoration: const BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.vertical(top: Radius.circular(50))
@@ -130,6 +130,7 @@ class HomeScreen extends StatelessWidget {
           CustomButton(
               label: "Register Payment",
               invert: true,
+              radius: 10,
               onTap: () => Get.toNamed(AppRoutes.REGISTERPAYMENT),
             horizontalMargin: 20,
           ),
@@ -137,6 +138,8 @@ class HomeScreen extends StatelessWidget {
           CustomButton(
               label: "Manage Accounts",
               invert: true,
+            radius: 10,
+            minHeight: 0.05,
             fontSize: Constants.regularText,
               horizontalMargin: 20,
               onTap: () => Get.toNamed(AppRoutes.MANAGEACCOUNT),

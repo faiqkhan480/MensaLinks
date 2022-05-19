@@ -213,7 +213,7 @@ class EditMember extends StatelessWidget {
   }
 
   Widget customTab() => SizedBox(
-    height: Get.height * 0.040,
+    height: Get.height * 0.080,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -221,19 +221,22 @@ class EditMember extends StatelessWidget {
           onTap: () => controller.changeTab(false),
           child: TitleText(
             text: 'Personal Details',
-            size: Constants.heading18,
-            weight: FontWeight.w500,
+            size: Constants.regularText,
+            weight: FontWeight.w700,
             color: !controller.contactDetail() ? AppColors.primaryColor : AppColors.ultraDarkGrey,
           ),
         ),
-        const VerticalDivider(thickness: 1.5, color: AppColors.primaryColor,),
+        const Padding(
+          padding: UIStyleProperties.insetsVrt25,
+          child: VerticalDivider(thickness: 1.5, color: AppColors.primaryColor,),
+        ),
         InkWell(
           onTap: () => controller.changeTab(true),
           child: TitleText(
             text: 'Contact Details',
-            size: Constants.heading18,
+            size: Constants.regularText,
             color: controller.contactDetail() ? AppColors.primaryColor : AppColors.ultraDarkGrey,
-            weight: FontWeight.w500,
+            weight: FontWeight.w700,
           ),
         )
       ],
@@ -241,7 +244,7 @@ class EditMember extends StatelessWidget {
   );
 
   Widget sectionTitle(String title) => Padding(
-    padding: UIStyleProperties.insetsHzt20,
+    padding: UIStyleProperties.insetsVrt20,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

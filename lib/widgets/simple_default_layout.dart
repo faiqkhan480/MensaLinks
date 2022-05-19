@@ -70,9 +70,12 @@ class SimpleDefaultScreenLayout extends StatelessWidget {
                 centerTitle: true,
                 backgroundColor: AppColors.primaryColor,
                 elevation: 0.0,
-                title: SvgPicture.asset(
-                  Assets.logo,
-                  height: kToolbarHeight * 0.80,
+                title: Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: SvgPicture.asset(
+                    Assets.logo,
+                    height: kToolbarHeight * 0.80,
+                  ),
                 ),
               ),
             ),

@@ -46,14 +46,14 @@ class MemberList extends StatelessWidget {
       title: TitleText(
         text: "Chiao Yu Wang",
         color: AppColors.primaryColor,
-        weight: FontWeight.w500,
-        size: Constants.heading18,
+        weight: FontWeight.w700,
+        size: Constants.regularText,
       ),
       subtitle: TitleText(
         text: "**** **** ***6 5360",
         color: AppColors.primaryColor,
-        weight: FontWeight.w500,
-        size: Constants.regularText,
+        weight: FontWeight.w700,
+        size: Constants.smallText,
       ),
       leading: const NameBox(name: "MA"),
       trailing: (args == "edit") ? IconButton(
@@ -82,6 +82,7 @@ class MemberList extends StatelessWidget {
 
         child: CustomButton(
           label: 'Next',
+          minHeight: 0.05,
           alignment: Alignment.center,
           onTap: () => Get.toNamed(AppRoutes.DEPENDENTCARD , arguments: args),
         ),

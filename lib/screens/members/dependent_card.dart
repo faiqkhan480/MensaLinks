@@ -40,10 +40,11 @@ class DependentCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ScreenTitle(text: _pull ? "Personal Details" : "Card Details", size: Constants.heading18),
-          WidgetUtils.spaceVrt40,
+          SeparatorText(_pull ? "Personal Details" : "Card Details",),
+          // ScreenTitle(text: _pull ? "Personal Details" : "Card Details", size: Constants.heading18),
+          WidgetUtils.spaceVrt10,
           const Align(alignment: Alignment.centerLeft, child: NameBox(name: 'CW')),
-          WidgetUtils.spaceVrt35,
+          WidgetUtils.spaceVrt20,
           infoRow("NAME", "Chiao Yu Wang"),
           if(!_pull)...[
             infoRow("Card", "**** * ****"),
@@ -60,8 +61,9 @@ class DependentCard extends StatelessWidget {
           ],
 
           if(!controller.pullBack())...[
-            Padding(
-              padding: UIStyleProperties.insetsHzt20,
+            if(_pull)
+              Padding(
+              padding: UIStyleProperties.insetsVrt20,
               child: Row(
                 children:  [
                   Expanded(flex: 3, child: ScreenTitle(text: 'Amount', size: Constants.heading20,)),
@@ -77,6 +79,8 @@ class DependentCard extends StatelessWidget {
               label: 'Reasons',
               trailing: Assets.upArrow,
               quarterTurns: 2,
+              minHeight: 0.06,
+              verticalMargin: 10,
               onTap: handleSubmit,
             ),
           ],
@@ -112,7 +116,7 @@ class DependentCard extends StatelessWidget {
     child: TitleText(
       text: "$label\t\t\t\t\t\t\t\t\t\t\t\t:\t\t$text",
       weight: FontWeight.w500,
-      size: Constants.heading18,
+      size: Constants.regularText,
     ),
   );
 }
