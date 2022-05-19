@@ -60,13 +60,14 @@ class ScreenTitle extends StatelessWidget {
 
 class SeparatorText extends StatelessWidget {
   final String text;
-  const SeparatorText(this.text, {Key? key}) : super(key: key);
+  final bool isDense;
+  const SeparatorText(this.text, {Key? key, this.isDense = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: UIStyleProperties.insetsVrt20,
-      child: ScreenTitle(text: text, size: Constants.heading18),
+      child: ScreenTitle(text: text, size: isDense ? Constants.heading18 : Constants.heading20),
     );
   }
 }

@@ -53,8 +53,8 @@ class CustomDropdown extends StatelessWidget {
               }).toList(),
               hint: TitleText(
                 text: hint ?? '',
-                weight: FontWeight.w500,
-                color: filled != null && filled! ? AppColors.primaryColor : AppColors.ultraDarkGrey,
+                weight: FontWeight.w700,
+                color: filled != null && filled! ? AppColors.primaryColor : AppColors.darkGrey,
               ),
               decoration: InputDecoration(
                 filled: filled,

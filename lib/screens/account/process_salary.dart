@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/controller/home_controller.dart';
 import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
@@ -12,34 +14,30 @@ import '../../widgets/custom_text_field.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/text_widgets.dart';
 
-class ProcessSalary extends StatefulWidget {
+class ProcessSalary extends StatelessWidget {
   const ProcessSalary({Key? key}) : super(key: key);
 
-  @override
-  State<ProcessSalary> createState() => _ProcessSalaryState();
-}
-
-class _ProcessSalaryState extends State<ProcessSalary> {
-  bool wps = true;
-
+  HomeController get _controller => Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     var args = Get.arguments;
 
     return SimpleDefaultScreenLayout(
       pageTitle: "Process Salary for Domestic Worker",
-      child: body(),
+      padding: UIStyleProperties.insetsVrt10Hzt25,
+      child: Obx(body),
     );
   }
 
   Widget body() {
+    bool wps = _controller.selectedTab.value == 0;
     return SingleChildScrollView(
-      padding: UIStyleProperties.insetsVrt8Hzt20,
+      padding: UIStyleProperties.insetsVrt8Hzt10,
       physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          WidgetUtils.spaceVrt10,
+          WidgetUtils.spaceVrt25,
           customTabBar(),
           WidgetUtils.spaceVrt10,
 
@@ -53,20 +51,15 @@ class _ProcessSalaryState extends State<ProcessSalary> {
             onTap: () {},
           ),
 
-          Padding(
-            padding: UIStyleProperties.insetsHzt20,
-            child: ScreenTitle(text: 'Enter Salary', size: Constants.subHeading),
-          ),
+          const SeparatorText('Enter Salary', isDense: false),
+
           const TextDropdownField(hintText: 'Salary Amount',),
 
-          Padding(
-            padding: UIStyleProperties.insetsHzt20,
-            child: ScreenTitle(text: 'Select Salary Month', size: Constants.subHeading)
-          ),
+          const SeparatorText('Select Salary Month', isDense: false),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              WidgetUtils.spaceHzt5,
               Expanded(
                 child: CustomDropdown(
                   hint: 'month',
@@ -101,29 +94,22 @@ class _ProcessSalaryState extends State<ProcessSalary> {
             ],
           ),
 
-          WidgetUtils.spaceVrt10,
 
           // IF WPS TRUE
           if(wps)...[
-            Padding(
-              padding: UIStyleProperties.insetsHzt20,
-              child: ScreenTitle(text: 'Enter Personal Number', size: Constants.subHeading),
-            ),
+            const SeparatorText('Enter Personal Number', isDense: false),
             CustomTextField(
-              // label: '',
               hintText: 'Personal Number',
+              marginTop: 0.0,
               controller: TextEditingController(),
               // lines: 5,
             ),
           ],
 
-          Padding(
-            padding: UIStyleProperties.insetsHzt20,
-            child: ScreenTitle(text: 'Enter Comments', size: Constants.subHeading),
-          ),
+          const SeparatorText('Enter Comments', isDense: false),
 
           CustomTextField(
-            // label: '',
+            marginTop: 0.0,
             hintText: 'Comments..',
             controller: TextEditingController(),
             lines: 2,
@@ -145,32 +131,23 @@ class _ProcessSalaryState extends State<ProcessSalary> {
   Widget customTabBar() => Container(
     decoration: BoxDecoration(
         color: AppColors.primaryColor,
-        borderRadius: BorderRadius.circular(18)
+        borderRadius: BorderRadius.circular(12)
     ),
-    height: Get.height * 0.07,
-    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+    height: Get.height * 0.05,
+    margin: const EdgeInsets.symmetric(horizontal: 50),
+    padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
     child: Row(
-      children: [
-        Expanded(
-          child: CustomButton(
-            label: 'WPS',
-            invert: wps,
-            verticalMargin: 0,
-            // alignment: Alignment.center,
-            // verticalMargin: 15,
-            onTap: () => setState(() => wps = true),
-          ),
+      children: List.generate(2, (index) => Expanded(
+        child: CustomButton(
+          label: index < 1 ? 'WPS' : 'NonWPS',
+          invert: _controller.selectedTab.value == index,
+          verticalMargin: 0,
+          fontSize: Constants.smallText,
+          alignment: Alignment.center,
+          radius: 10,
+          onTap: () => _controller.handleTab(index),
         ),
-        Expanded(
-          child: CustomButton(
-            label: 'NonWPS',
-            invert: !wps,
-            // alignment: Alignment.center,
-            // verticalMargin: 15,
-            onTap: () => setState(() => wps = false),
-          ),
-        ),
-      ],
+      )),
     ),
   );
 }

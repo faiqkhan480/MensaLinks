@@ -13,21 +13,25 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool? hideText, filled, editIcon;
   final int? lines;
+  final double? marginTop;
+  final TextInputType? keyboardType;
   const CustomTextField({
     Key? key,
     this.label,
+    this.marginTop,
     required this.controller,
     this.hideText,
     this.hintText,
     this.editIcon = false,
     this.lines,
     this.filled,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: EdgeInsets.only(top: marginTop ?? 10),
       alignment: Alignment.centerLeft,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,9 +48,7 @@ class CustomTextField extends StatelessWidget {
             maxLines: lines ?? 1,
             decoration: InputDecoration(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(
-                  15,
-                ),
+                borderRadius: BorderRadius.circular(15),
                 borderSide: const BorderSide(
                   color: AppColors.primaryColor,
                 ),
@@ -69,8 +71,8 @@ class CustomTextField extends StatelessWidget {
               ),
               hintText: hintText,
               hintStyle: TextStyle(
-                fontWeight: FontWeight.w500,
-                color: filled != null && filled! ? AppColors.primaryColor : AppColors.ultraDarkGrey,
+                fontWeight: FontWeight.w700,
+                color: filled != null && filled! ? AppColors.primaryColor : AppColors.darkGrey,
               ),
               labelStyle: const TextStyle(
                 fontWeight: FontWeight.w500,
