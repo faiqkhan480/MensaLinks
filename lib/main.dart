@@ -20,21 +20,23 @@ class MensaLinks extends StatelessWidget {
     return GetMaterialApp(
       title: Constants.appName,
       translations: Lang(),
+
       locale: Constants.currentLocale,
       fallbackLocale: const Locale('en', 'US'),
       theme: ThemeData(
-          fontFamily: "Ubuntu",
-          primaryColor: AppColors.primaryColor,
-          textTheme: const TextTheme(
-            subtitle1: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
-          ),
-          iconTheme: const IconThemeData(color: AppColors.primaryColor),
+        fontFamily: "Ubuntu",
+        primaryColor: AppColors.primaryColor,
+        textTheme: const TextTheme(
+          subtitle1: TextStyle(
+              color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+        ),
+        iconTheme: const IconThemeData(color: AppColors.primaryColor),
       ),
 
       debugShowCheckedModeBanner: false,
       color: AppColors.primaryColor,
       // initialRoute: AppRoutes.SPLASH,
-      initialRoute: AppRoutes.HOME,
+      initialRoute: AppRoutes.SPLASH,
       // scrollBehavior: ScrollBehavior(androidOverscrollIndicator: AndroidOverscrollIndicator.),
       getPages: AppPages.list,
     );

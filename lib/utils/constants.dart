@@ -5,22 +5,29 @@ class Constants {
 
   static double pageTitle = 0.063;
   static double radius = 50;
-  static double bottomSize = 0.33;
+  static double bottomSize = 0.36;
   static double buttonTextSize = 18;
   static double title = 30;
-  static double heading = 25;
+  static double heading = 22;
   static double subHeading = 22;
   static double heading20 = 20;
   static double heading18 = 18;
   static double regularText = 16;
   static double smallText = 14;
   static double extraSmallText = 12;
+  static double textFieldRadius = 11;
 
   static Locale currentLocale = const Locale('en', 'US');
 
   static ScrollPhysics scrollPhysics = const BouncingScrollPhysics();
 
-  static List<String> tableHeaders = ['No', 'Name', 'EID No', 'DOB', 'Contact No.'];
+  static List<String> tableHeaders = [
+    'No',
+    'Name',
+    'EID No',
+    'DOB',
+    'Contact No.'
+  ];
   static List<int> tableCellValues = [1, 2, 2, 3, 3];
 
   static List<String> months = [

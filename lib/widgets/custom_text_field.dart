@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
@@ -16,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   final int? lines;
   final double? marginTop;
   final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
   const CustomTextField({
     Key? key,
     this.label,
@@ -27,6 +29,7 @@ class CustomTextField extends StatelessWidget {
     this.lines,
     this.filled,
     this.keyboardType,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -39,51 +42,62 @@ class CustomTextField extends StatelessWidget {
         children: [
           label != null
               ? Padding(
-                padding: UIStyleProperties.insetsVrt15,
-                child: TitleText(
+                  padding: UIStyleProperties.insetsVrt15,
+                  child: TitleText(
                     text: label!,
                     color: AppColors.primaryColor,
                     weight: FontWeight.bold,
                     size: Constants.heading20,
                   ),
-              )
+                )
               : const SizedBox(),
           TextFormField(
+            keyboardType: keyboardType,
+            inputFormatters: inputFormatters,
             maxLines: lines ?? 1,
             decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Constants.textFieldRadius),
-                borderSide: const BorderSide(
-                  color: AppColors.primaryColor,
+                border: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(Constants.textFieldRadius),
+                  borderSide: const BorderSide(
+                    color: AppColors.primaryColor,
+                  ),
                 ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Constants.textFieldRadius,),
-                borderSide: const BorderSide(
-                  color: AppColors.primaryColor,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                    Constants.textFieldRadius,
+                  ),
+                  borderSide: const BorderSide(
+                    color: AppColors.primaryColor,
+                  ),
                 ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Constants.textFieldRadius,),
-                borderSide: const BorderSide(
-                  color: AppColors.primaryColor,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                    Constants.textFieldRadius,
+                  ),
+                  borderSide: const BorderSide(
+                    color: AppColors.primaryColor,
+                  ),
                 ),
-              ),
-              hintText: hintText,
-              hintStyle: TextStyle(
-                fontWeight: FontWeight.w700,
-                color: filled != null && filled! ? AppColors.primaryColor : AppColors.darkGrey,
-              ),
-              labelStyle: const TextStyle(
-                fontWeight: FontWeight.w500,
-                color: AppColors.darkGrey,
-              ),
-              suffixIcon: editIcon! ? const Icon(Icons.edit_rounded, color: AppColors.primaryColor) : null,
-              filled: filled,
-              fillColor: AppColors.ultraDarkGrey,
-              isDense: true,
-              contentPadding: UIStyleProperties.insets15
-            ),
+                hintText: hintText,
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  color: filled != null && filled!
+                      ? AppColors.primaryColor
+                      : AppColors.darkGrey,
+                ),
+                labelStyle: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.darkGrey,
+                ),
+                suffixIcon: editIcon!
+                    ? const Icon(Icons.edit_rounded,
+                        color: AppColors.primaryColor)
+                    : null,
+                filled: filled,
+                fillColor: AppColors.ultraDarkGrey,
+                isDense: true,
+                contentPadding: UIStyleProperties.insets15),
             controller: controller,
             obscureText: hideText ?? false,
           ),
@@ -96,7 +110,9 @@ class CustomTextField extends StatelessWidget {
 class TextDropdownField extends StatelessWidget {
   final int? flexField, flexDropdown;
   final String? hintText;
-  const TextDropdownField({Key? key, this.flexDropdown, this.flexField, this.hintText}) : super(key: key);
+  const TextDropdownField(
+      {Key? key, this.flexDropdown, this.flexField, this.hintText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +131,8 @@ class TextDropdownField extends StatelessWidget {
             child: TextFormField(
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
+                  contentPadding:
+                      EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
                   isDense: true,
                   border: InputBorder.none,
                   errorBorder: InputBorder.none,
@@ -125,8 +142,7 @@ class TextDropdownField extends StatelessWidget {
                   hintStyle: const TextStyle(
                     fontWeight: FontWeight.w700,
                     color: AppColors.darkGrey,
-                  )
-              ),
+                  )),
               // controller: controller,
               // obscureText: hideText ?? false,
             ),
@@ -141,7 +157,11 @@ class TextDropdownField extends StatelessWidget {
                 items: ['AED', 'ARR'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w700, size: Constants.smallText),
+                    child: TitleText(
+                        text: value,
+                        color: AppColors.primaryColor,
+                        weight: FontWeight.w700,
+                        size: Constants.smallText),
                   );
                 }).toList(),
                 decoration: const InputDecoration(
@@ -156,9 +176,9 @@ class TextDropdownField extends StatelessWidget {
                 ),
                 icon: RotatedBox(
                     quarterTurns: 2,
-                    child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-                onChanged: (val) => null
-            ),
+                    child: SvgPicture.asset(Assets.upArrow,
+                        height: 15, color: AppColors.primaryColor)),
+                onChanged: (val) => null),
           ),
         ],
       ),

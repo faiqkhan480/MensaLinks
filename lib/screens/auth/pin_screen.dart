@@ -36,21 +36,23 @@ class PinScreen extends StatelessWidget {
             color: AppColors.primaryColor,
           ),
         ),
-
         Container(
           // padding: UIStyleProperties.topInset10,
           alignment: Alignment.center,
           child: CustomPinCodeField(
             controller: _controller.pinField,
             backgroundColor: AppColors.skyLightColor,
-            isObscured: false,
+            isObscured: true,
             fieldHeight: 80,
             fieldWidth: 55,
             keyboardType: TextInputType.none,
             onComplete: (val) => _controller.handleComplete(args),
+            //     (val) {
+            //   _controller.isRePinScreen.value = true;
+            //   return Get.toNamed(AppRoutes.RE_Enter_PIN);
+            // }
           ),
         ),
-
         Flexible(
           child: CustomPinKeyboard(
             controller: _controller,

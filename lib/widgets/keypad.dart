@@ -7,81 +7,77 @@ class CustomPinKeyboard extends StatelessWidget {
   final Function delete;
   final Function? onSubmit;
   final PinController? controller;
-
-  const CustomPinKeyboard({Key? key, required this.delete, this.onSubmit, this.controller}) : super(key: key);
+  final Function(String?)? onKeyPress;
+  const CustomPinKeyboard(
+      {Key? key,
+      required this.delete,
+      this.onKeyPress,
+      this.onSubmit,
+      this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 30, right: 30),
       padding: const EdgeInsets.only(bottom: 100),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            numberButton(
-              number: 1,
-              //    size: buttonSize,
-              //   color: buttonColor,
-            ),
-            numberButton(
-              number: 2,
-              //     size: buttonSize,
-              //     color: buttonColor,
-            ),
-            numberButton(
-              number: 3,
-              //  size: buttonSize,
-              //   color: buttonColor,
-            ),
+            numberButton(number: 1, onKeyPress: onKeyPress
+                //    size: buttonSize,
+                //   color: buttonColor,
+                ),
+            numberButton(number: 2, onKeyPress: onKeyPress
+                //     size: buttonSize,
+                //     color: buttonColor,
+                ),
+            numberButton(number: 3, onKeyPress: onKeyPress
+                //  size: buttonSize,
+                //   color: buttonColor,
+                ),
           ],
         ),
-            // const SizedBox(height: 10),
-            Row(
+        // const SizedBox(height: 10),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            numberButton(
-              number: 4,
-              //   size: buttonSize,
-              //  color: buttonColor,
-            ),
-            numberButton(
-              number: 5,
-              //   size: buttonSize,
-              //   color: buttonColor,
-            ),
-            numberButton(
-              number: 6,
-              //  size: buttonSize,
-              //     color: buttonColor,
-            ),
+            numberButton(number: 4, onKeyPress: onKeyPress
+                //   size: buttonSize,
+                //  color: buttonColor,
+                ),
+            numberButton(number: 5, onKeyPress: onKeyPress
+                //   size: buttonSize,
+                //   color: buttonColor,
+                ),
+            numberButton(number: 6, onKeyPress: onKeyPress
+                //  size: buttonSize,
+                //     color: buttonColor,
+                ),
           ],
         ),
-            // const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            numberButton(
-              number: 7,
-              //     size: buttonSize,
-              //   color: buttonColor,
-            ),
-            numberButton(
-              number: 8,
-              //      size: buttonSize,
-              //   color: buttonColor,
-            ),
-            numberButton(
-              number: 9,
-              //     size: buttonSize,
-              //   color: buttonColor,
-            ),
+            numberButton(number: 7, onKeyPress: onKeyPress
+                //     size: buttonSize,
+                //   color: buttonColor,
+                ),
+            numberButton(number: 8, onKeyPress: onKeyPress
+                //      size: buttonSize,
+                //   color: buttonColor,
+                ),
+            numberButton(number: 9, onKeyPress: onKeyPress
+                //     size: buttonSize,
+                //   color: buttonColor,
+                ),
           ],
         ),
-            // const SizedBox(height: 10),
-            Row(
+        // const SizedBox(height: 10),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // this button is used to delete the last number
@@ -110,14 +106,18 @@ class CustomPinKeyboard extends StatelessWidget {
     );
   }
 
-  Widget numberButton({required int number}) {
+  Widget numberButton({required int number, Function(String?)? onKeyPress}) {
     return SizedBox(
       child: TextButton(
           child: Text(
             number.toString(),
-            style: const TextStyle(fontSize: 30, color: AppColors.primaryColor, fontWeight: FontWeight.w400),
+            style: const TextStyle(
+                fontSize: 30,
+                color: AppColors.primaryColor,
+                fontWeight: FontWeight.w400),
           ),
-          onPressed: () => controller!.handleChange(number.toString())),
+          onPressed: () =>
+              onKeyPress ?? controller!.handleChange(number.toString())),
     );
   }
 }
