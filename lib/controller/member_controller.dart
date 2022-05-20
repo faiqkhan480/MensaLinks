@@ -13,12 +13,13 @@ class MemberController extends GetxController {
   void submitPullBackRequest() => pullBack.value = true;
 
   void confirmPullRequest() {
+    String _msg = "100.00 AED has been withdrawn from the card ending with **** and credited to your account";
     pullBack.value = false;
     Get.off(() =>
         Loading(
             waveLoading: false,
-            msgBefore: "100.00 AED has been withdrawn from the card ending with **** and credited to your account",
-            msgAfter: "100.00 AED has been withdrawn from the card ending with **** and credited to your account",
+            msgBefore: _msg,
+            msgAfter: _msg,
             onComplete: () => null,
             onDone: () {
               Get.close(2);

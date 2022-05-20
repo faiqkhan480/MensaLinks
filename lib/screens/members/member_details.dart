@@ -14,11 +14,14 @@ import '../../widgets/text_widgets.dart';
 class MemberDetails extends StatelessWidget {
   const MemberDetails({Key? key}) : super(key: key);
 
+  get args => Get.arguments;
+
   void handleClick() {
+    bool forStaff = args == "for_staff";
     Get.off(() =>
         Loading(
           waveLoading: false,
-          msgBefore: 'Request Submitted Successfully',
+          msgBefore: (forStaff) ? "Card Request Submitted Successfully!" : "Request Submitted Successfully",
           msgAfter: 'KYC Verification in Progress. We will let you know once completed.',
           onComplete: () => null,
           onDone: () {
@@ -33,7 +36,7 @@ class MemberDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
-      pageTitle: 'Create Account For Family',
+      pageTitle: args,
       padding: UIStyleProperties.insetsVrt5Hzt10,
       child: body(),
     );
@@ -48,7 +51,7 @@ class MemberDetails extends StatelessWidget {
             // physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
-                const SeparatorText("Download & Review Member Details"),
+                SeparatorText((args == "for_staff") ? "Download & Review Staff Details" : "Download & Review Member Details"),
 
                 CustomButton(
                   label: 'Download',
@@ -73,7 +76,7 @@ class MemberDetails extends StatelessWidget {
           bottom: 20,
           child: CustomButton(
             verticalMargin: 10,
-            label: 'done',
+            label: 'confirm',
             onTap: handleClick,
           ),
         ),

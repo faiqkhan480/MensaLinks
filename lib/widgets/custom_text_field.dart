@@ -52,23 +52,19 @@ class CustomTextField extends StatelessWidget {
             maxLines: lines ?? 1,
             decoration: InputDecoration(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(Constants.textFieldRadius),
                 borderSide: const BorderSide(
                   color: AppColors.primaryColor,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(
-                  15,
-                ),
+                borderRadius: BorderRadius.circular(Constants.textFieldRadius,),
                 borderSide: const BorderSide(
                   color: AppColors.primaryColor,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(
-                  15,
-                ),
+                borderRadius: BorderRadius.circular(Constants.textFieldRadius,),
                 borderSide: const BorderSide(
                   color: AppColors.primaryColor,
                 ),
@@ -86,6 +82,7 @@ class CustomTextField extends StatelessWidget {
               filled: filled,
               fillColor: AppColors.ultraDarkGrey,
               isDense: true,
+              contentPadding: UIStyleProperties.insets15
             ),
             controller: controller,
             obscureText: hideText ?? false,

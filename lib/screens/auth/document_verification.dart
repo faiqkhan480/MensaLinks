@@ -8,7 +8,6 @@ import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../widgets/custom_button.dart';
-import '../../widgets/done_screen.dart';
 import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/text_widgets.dart';
@@ -19,7 +18,7 @@ class DocumentVerification extends StatelessWidget {
   get args => Get.arguments;
 
   void handleDone() {
-    if(args['forWorker']) {
+    if(args['type'] == "for_worker") {
       Get.off(() =>
           Loading(
             waveLoading: false,
@@ -35,7 +34,7 @@ class DocumentVerification extends StatelessWidget {
           ),
       );
     } else {
-      Get.toNamed(AppRoutes.MEMBERSDETAILS);
+      Get.toNamed(AppRoutes.MEMBERSDETAILS, arguments: args['type']);
     }
   }
 

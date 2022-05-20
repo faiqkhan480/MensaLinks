@@ -60,15 +60,15 @@ class CustomDropdown extends StatelessWidget {
                 filled: filled,
                 fillColor: AppColors.ultraDarkGrey,
                 border: InputBorder.none,
-                focusedBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: AppColors.primaryColor, width: 1.0)),
-                enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: AppColors.primaryColor, width: 1.0)),
-                errorBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.red, width: 1.0)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(Constants.textFieldRadius)),
+                    borderSide: const BorderSide(color: AppColors.primaryColor, width: 1.0)),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(Constants.textFieldRadius)),
+                    borderSide: const BorderSide(color: AppColors.primaryColor, width: 1.0)),
+                errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(Constants.textFieldRadius)),
+                    borderSide: const BorderSide(color: Colors.red, width: 1.0)),
                 contentPadding: const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
                 // labelText: widget.title,
               ),
@@ -93,10 +93,10 @@ class DropdownMenuField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.primaryColor, width: 1.0),
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(Constants.textFieldRadius),
       ),
       // padding: UIStyleProperties.leftInset10,
-      height: Get.height * 0.060,
+      height: Get.height * 0.058,
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

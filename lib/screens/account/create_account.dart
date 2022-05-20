@@ -28,7 +28,8 @@ class CreateAccount extends StatelessWidget {
   }
 
   Widget body() {
-    bool forWorker = args == 'for_worker';
+    bool forWorker = args == "for_worker";
+    bool forStaff = args == "for_staff";
     return SingleChildScrollView(
       padding: UIStyleProperties.insetsVrt8Hzt20,
       physics: const BouncingScrollPhysics(),
@@ -40,28 +41,28 @@ class CreateAccount extends StatelessWidget {
           // WidgetUtils.spaceVrt10,
 
           CustomTextField(
-            hintText: controller.familyFormSubmitted() ? 'Mobile Number' : 'Nick Name',
+            hintText: controller.familyFormSubmitted() ? "Mobile Number" : (forStaff ? "Staff ID" : "Nick Name"),
             controller: TextEditingController(),
           ),
           WidgetUtils.spaceVrt20,
           CustomTextField(
-            hintText: controller.familyFormSubmitted() ? 'Email' : 'First Name',
+            hintText: controller.familyFormSubmitted() ? "Email" : "First Name",
             controller: TextEditingController(),
           ),
           WidgetUtils.spaceVrt20,
           CustomTextField(
-            hintText: controller.familyFormSubmitted() ? 'Address Line 1' : 'Last Name',
+            hintText: controller.familyFormSubmitted() ? "Address Line 1" : "Last Name",
             controller: TextEditingController(),
           ),
           WidgetUtils.spaceVrt20,
           if(controller.familyFormSubmitted())...[
             CustomTextField(
-              hintText: 'Address Line 2',
+              hintText: "Address Line 2",
               controller: TextEditingController(),
             ),
             WidgetUtils.spaceVrt20,
             CustomTextField(
-              hintText: 'PO Box',
+              hintText: "PO Box",
               controller: TextEditingController(),
             ),
           ]
@@ -72,35 +73,30 @@ class CreateAccount extends StatelessWidget {
                 Expanded(
                     flex: 5,
                     child: CustomTextField(
-                      hintText: 'ID Number',
+                      hintText: "ID Number",
                       controller: TextEditingController(),
                 )),
                 WidgetUtils.spaceHzt10,
-                Expanded(flex: 4, child: DropdownMenuField(values: Constants.months, value: 'Emirates ID',)),
+                Expanded(flex: 4, child: DropdownMenuField(values: Constants.months, value: "Emirates ID",)),
               ],
             ),
 
-            const SeparatorText('ID Expiry Date'),
+            // EXPIRY DATE DROPDOWNS
+            const SeparatorText("ID Expiry Date"),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: CustomDropdown(
-                    hint: 'day',
-                    width: Get.width * 0.25,
+                    hint: "day",
                     values: Constants.months,
-                    onValueSelected: (String? item) {
-                      // log('Selected Date: $item');
-                      // controller.birthDate.value = item;
-                    },
-                    // selectedValue: controller.birthDate.value,
+                    onValueSelected: (String? item) {},
                   ),
                 ),
                 WidgetUtils.spaceHzt5,
                 Expanded(
                   child: CustomDropdown(
-                    hint: 'month',
-                    width: Get.width * 0.25,
+                    hint: "month",
                     values: List.generate(
                       31,
                           (index) {
@@ -113,36 +109,28 @@ class CreateAccount extends StatelessWidget {
                 WidgetUtils.spaceHzt5,
                 Expanded(
                   child: CustomDropdown(
-                    hint: 'year',
-                    width: Get.width * 0.25,
+                    hint: "year",
                     values: List.generate(
                       30,
                           (index) {
                         return (1990 + index).toString();
                       },
                     ),
-                    onValueSelected: (String? item) {
-                      // log('Selected Year: $item');
-                      // controller.birthYear.value = item;
-                    },
+                    onValueSelected: (String? item) {},
                     // selectedValue: controller.birthYear.value,
                   ),
                 ),
               ],
             ),
 
-            const SeparatorText('dob'),
-            // Padding(
-            //   padding: UIStyleProperties.insetsVrt20,
-            //   child: ScreenTitle(text: 'Date Of Birth', size: Constants.heading18),
-            // ),
+            // DATE OF BIRTH SELECTIONS DROPDOWNS
+            const SeparatorText("dob"),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: CustomDropdown(
-                    hint: 'day',
-                    width: Get.width * 0.25,
+                    hint: "day",
                     values: Constants.months,
                     onValueSelected: (String? item) {
                       // log('Selected Date: $item');
@@ -154,11 +142,9 @@ class CreateAccount extends StatelessWidget {
                 WidgetUtils.spaceHzt5,
                 Expanded(
                   child: CustomDropdown(
-                    hint: 'month',
-                    width: Get.width * 0.25,
+                    hint: "month",
                     values: List.generate(
-                      31,
-                          (index) {
+                      31, (index) {
                         return (index + 1).toString();
                       },
                     ),
@@ -168,18 +154,13 @@ class CreateAccount extends StatelessWidget {
                 WidgetUtils.spaceHzt5,
                 Expanded(
                   child: CustomDropdown(
-                    hint: 'year',
-                    width: Get.width * 0.25,
+                    hint: "year",
                     values: List.generate(
-                      30,
-                          (index) {
+                      30, (index) {
                         return (1990 + index).toString();
                       },
                     ),
-                    onValueSelected: (String? item) {
-                      // log('Selected Year: $item');
-                      // controller.birthYear.value = item;
-                    },
+                    onValueSelected: (String? item) {},
                     // selectedValue: controller.birthYear.value,
                   ),
                 ),
@@ -187,19 +168,22 @@ class CreateAccount extends StatelessWidget {
             ),
           ],
 
-          WidgetUtils.spaceVrt20,
+          if(controller.familyFormSubmitted())
+            WidgetUtils.spaceVrt40
+          else
+            WidgetUtils.spaceVrt20,
           if(controller.familyFormSubmitted())
             CustomButton(
-            label: 'Save & Add Next',
+            label: "Save & Add Next",
             // alignment: Alignment.center,
             verticalMargin: 15,
             onTap: () => controller.handleFamilyForm(false),
           ),
           CustomButton(
-            label: controller.familyFormSubmitted() ? 'finish' : 'next',
+            label: controller.familyFormSubmitted() ? "finish" : "next",
             // alignment: Alignment.center,
             verticalMargin: 15,
-            onTap: () =>  controller.familyFormSubmitted() ? controller.toVerifyDoc(forWorker) : controller.handleFamilyForm(true),
+            onTap: () =>  controller.familyFormSubmitted() ? controller.toVerifyDoc(args) : controller.handleFamilyForm(true),
           ),
         ],
       ),

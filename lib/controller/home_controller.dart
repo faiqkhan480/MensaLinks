@@ -4,6 +4,7 @@ import 'package:mensa_links/routes/app_routes.dart';
 import '../widgets/done_screen.dart';
 
 class HomeController extends GetxController {
+  RxBool businessLogin = true.obs;
   RxBool familyFormSubmitted = false.obs;
   RxBool salaryProcessed = false.obs;
   RxInt selectedTab = 0.obs;
@@ -12,9 +13,9 @@ class HomeController extends GetxController {
     familyFormSubmitted.value = val;
   }
 
-  void toVerifyDoc(bool type) {
+  void toVerifyDoc(String type) {
     var args = {
-      "forWorker": type
+      "type": type
     };
     Get.toNamed(AppRoutes.DOCUMENTVERIFICATION, arguments: args);
   }

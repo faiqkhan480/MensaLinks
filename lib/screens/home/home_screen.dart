@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/controller/home_controller.dart';
 import 'package:mensa_links/utils/screen_properties.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
 
@@ -11,16 +11,12 @@ import '../../utils/constants.dart';
 import '../../utils/widget_util.dart';
 import '../../widgets/text_widgets.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    //   statusBarColor: Colors.white,
-    //   statusBarBrightness: Brightness.dark,
-    //   statusBarIconBrightness: Brightness.dark
-    // ));
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -28,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             backBody(),
 
-            frontBody(),
+            Obx(frontBody),
           ],
         ),
       ),
@@ -90,47 +86,72 @@ class HomeScreen extends StatelessWidget {
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.vertical(top: Radius.circular(50))
       ),
-      child: ListView(
-        padding: UIStyleProperties.insetsVrt30Hzt35,
-        physics: Constants.scrollPhysics,
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
+      padding: UIStyleProperties.insetsVrt30Hzt35,
+      child: Column(
+        // padding: UIStyleProperties.insetsVrt30Hzt35,
+        // physics: Constants.scrollPhysics,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TitleText(
-            text: 'For Family',
-            weight: FontWeight.w400,
-            color: AppColors.white,
-            size: Constants.heading20,
-            // align: TextAlign.center,
-          ),
+          // IF HOUSE HOLD LOGIN
+          if(!controller.businessLogin())...[
+            TitleText(
+              text: 'For Family',
+              weight: FontWeight.w400,
+              color: AppColors.white,
+              size: Constants.heading20,
+              // align: TextAlign.center,
+            ),
+            // ON FAMILY
+            boxRow(
+                "Create\nAccount",
+                    () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: 'for_family'),
+                "Transfer\nMoney",
+                    () => Get.toNamed(AppRoutes.TRANSFERMONEY)
+            ),
 
-          // ON FAMILY
-          boxRow(
-             "Create\nAccount",
-             () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: 'for_family'),
-              "Transfer\nMoney",
-              () => Get.toNamed(AppRoutes.TRANSFERMONEY)
-          ),
+            TitleText(
+              text: 'For Domestic workers',
+              weight: FontWeight.w400,
+              color: AppColors.white,
+              size: Constants.heading20,
+              // align: TextAlign.center,
+            ),
 
-          TitleText(
-            text: 'For Domestic workers',
-            weight: FontWeight.w400,
-            color: AppColors.white,
-            size: Constants.heading20,
-            // align: TextAlign.center,
-          ),
+            // ON WORKER
+            boxRow(
+                "Create\nAccount",
+                    () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: 'for_worker'),
+                "Process\nSalary",
+                    () => Get.toNamed(AppRoutes.PROCESSSALRY)
+            ),
+          ]
+          // IF BUSINESS LOGIN
+          else...[
+            const Spacer(flex: 1),
+            CustomButton(
+              label: "Apply Staff Card",
+              invert: true,
+              radius: 10,
+              onTap: () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: 'for_staff'),
+              horizontalMargin: 20,
+            ),
+            WidgetUtils.spaceVrt40,
+            CustomButton(
+              label: "Process Staff Salary",
+              invert: true,
+              radius: 10,
+              onTap: () => Get.toNamed(AppRoutes.REGISTERPAYMENT),
+              horizontalMargin: 20,
+            ),
+            const Spacer(flex: 3),
+          ],
 
-          // ON WORKER
-          boxRow(
-             "Create\nAccount",
-             () => Get.toNamed(AppRoutes.CREATEACCOUNT, arguments: 'for_worker'),
-             "Process\nSalary",
-             () => Get.toNamed(AppRoutes.PROCESSSALRY)
-          ),
           WidgetUtils.spaceVrt15,
           CustomButton(
               label: "Register Payment",
               invert: true,
               radius: 10,
+              alignment: Alignment.center,
               onTap: () => Get.toNamed(AppRoutes.REGISTERPAYMENT),
             horizontalMargin: 20,
           ),
@@ -140,10 +161,12 @@ class HomeScreen extends StatelessWidget {
               invert: true,
             radius: 10,
             minHeight: 0.05,
+            alignment: Alignment.center,
             fontSize: Constants.regularText,
               horizontalMargin: 20,
               onTap: () => Get.toNamed(AppRoutes.MANAGEACCOUNT),
           ),
+          const Spacer(),
         ],
       ),
     );
