@@ -140,7 +140,7 @@ class HomeScreen extends GetView<HomeController> {
               label: "Process Staff Salary",
               invert: true,
               radius: 10,
-              onTap: () => Get.toNamed(AppRoutes.REGISTERPAYMENT),
+              onTap: () => Get.toNamed(AppRoutes.PROCESSSTAFFSALARY),
               horizontalMargin: 20,
             ),
             const Spacer(flex: 3),

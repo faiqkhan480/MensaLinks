@@ -16,7 +16,7 @@ class CustomDropdown extends StatelessWidget {
   final String? label;
   final String? hint, selectedValue;
   final double? width;
-  final bool? filled;
+  final bool? filled, invert;
 
   const CustomDropdown({
     Key? key,
@@ -26,7 +26,8 @@ class CustomDropdown extends StatelessWidget {
     required this.values,
     this.selectedValue,
     this.hint,
-    this.filled
+    this.filled,
+    this.invert = false,
   }) : super(key: key);
 
   @override
@@ -54,11 +55,15 @@ class CustomDropdown extends StatelessWidget {
               hint: TitleText(
                 text: hint ?? '',
                 weight: FontWeight.w700,
-                color: filled != null && filled! ? AppColors.primaryColor : AppColors.darkGrey,
+                color: filled != null && filled! ?
+                AppColors.primaryColor :
+                invert! ?
+                AppColors.white :
+                AppColors.darkGrey,
               ),
               decoration: InputDecoration(
-                filled: filled,
-                fillColor: AppColors.ultraDarkGrey,
+                filled: (filled ?? false) || invert!,
+                fillColor: invert! ? AppColors.primaryColor : AppColors.ultraDarkGrey,
                 border: InputBorder.none,
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(Constants.textFieldRadius)),
@@ -74,7 +79,7 @@ class CustomDropdown extends StatelessWidget {
               ),
               icon: RotatedBox(
                   quarterTurns: 2,
-                  child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
+                  child: SvgPicture.asset(Assets.upArrow, height: 15, color: invert! ? AppColors.white : AppColors.primaryColor)),
               onChanged: onValueSelected
           )
         ],
@@ -106,6 +111,7 @@ class DropdownMenuField extends StatelessWidget {
                 text: value,
                 color: AppColors.primaryColor,
                 weight: FontWeight.w700,
+                size: Constants.regularText,
               ),
             ),
           ),

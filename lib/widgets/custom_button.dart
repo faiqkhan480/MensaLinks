@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
   final Alignment? alignment;
   final String? trailing;
   final EdgeInsets? padding;
-  final bool invert;
+  final bool invert, bordered;
   CustomButton({
     Key? key,
     required this.label,
@@ -29,6 +29,7 @@ class CustomButton extends StatelessWidget {
     this.padding,
     this.fontSize,
     this.invert = false,
+    this.bordered = false,
   }) : super(key: key);
 
   @override
@@ -57,6 +58,7 @@ class CustomButton extends StatelessWidget {
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(radius ?? 15),
+              side: bordered ? const BorderSide(color: AppColors.primaryColor) : BorderSide.none,
             ),
           ),
         ),
@@ -81,7 +83,7 @@ class CustomButton extends StatelessWidget {
               // Image.asset(trailing!, scale: 2.0),
               RotatedBox(
                   quarterTurns: quarterTurns ?? 0,
-                  child: SvgPicture.asset(trailing!, height: 15, color: AppColors.white)),
+                  child: SvgPicture.asset(trailing!, height: 15, color: invert ? AppColors.primaryColor : AppColors.white)),
               // SvgPicture.asset(trailing!, color: Colors.white, height: 20,),
           ],
         ),

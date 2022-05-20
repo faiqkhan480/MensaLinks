@@ -18,4 +18,5 @@ class AppRoutes {
   static const String MEMBEREDIT = "/member_edit";
   static const String DEPENDENTCARD = "/dependent_card";
   static const String MEMBERSDETAILS = "/members_details";
+  static const String PROCESSSTAFFSALARY = "/process_staff_salary";
 }

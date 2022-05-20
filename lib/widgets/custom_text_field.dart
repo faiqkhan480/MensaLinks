@@ -16,6 +16,7 @@ class CustomTextField extends StatelessWidget {
   final int? lines;
   final double? marginTop;
   final TextInputType? keyboardType;
+  final EdgeInsets? contentPadding;
   const CustomTextField({
     Key? key,
     this.label,
@@ -27,6 +28,7 @@ class CustomTextField extends StatelessWidget {
     this.lines,
     this.filled,
     this.keyboardType,
+    this.contentPadding,
   }) : super(key: key);
 
   @override
@@ -82,7 +84,7 @@ class CustomTextField extends StatelessWidget {
               filled: filled,
               fillColor: AppColors.ultraDarkGrey,
               isDense: true,
-              contentPadding: UIStyleProperties.insets15
+              contentPadding: contentPadding ?? UIStyleProperties.insets15
             ),
             controller: controller,
             obscureText: hideText ?? false,

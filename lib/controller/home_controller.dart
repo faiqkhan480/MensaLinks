@@ -8,6 +8,7 @@ class HomeController extends GetxController {
   RxBool familyFormSubmitted = false.obs;
   RxBool salaryProcessed = false.obs;
   RxInt selectedTab = 0.obs;
+  RxInt radioSelection = 0.obs;
 
   void handleFamilyForm(bool val) {
     familyFormSubmitted.value = val;
@@ -28,7 +29,13 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoutes.PIN, arguments: "salary");
   }
 
+  void handleConfirmStaffSalary() {
+    Get.toNamed(AppRoutes.PIN, arguments: "staff");
+  }
+
   void handleRegisterPayment() {
     Get.off(const DoneScreen(message: "Thank you! Verification in progress.", counts: 1,));
   }
+
+  void setRadioValue(int val) => radioSelection.value = val;
 }

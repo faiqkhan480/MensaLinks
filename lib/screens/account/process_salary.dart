@@ -18,6 +18,7 @@ class ProcessSalary extends StatelessWidget {
   const ProcessSalary({Key? key}) : super(key: key);
 
   HomeController get _controller => Get.find<HomeController>();
+  get _args => Get.arguments;
 
   void handleBack() {
     if(_controller.salaryProcessed()) {
@@ -29,10 +30,9 @@ class ProcessSalary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var args = Get.arguments;
-
+    bool forStaff = _args == "from_staff";
     return SimpleDefaultScreenLayout(
-      pageTitle: "Process Salary for Domestic Worker",
+      pageTitle: forStaff ? "Process Staff Salary" : "Process Salary for Domestic Worker",
       padding: UIStyleProperties.insetsVrt10Hzt25,
       handleBack: handleBack,
       child: Obx(body),
@@ -41,6 +41,7 @@ class ProcessSalary extends StatelessWidget {
 
   Widget body() {
     bool wps = _controller.selectedTab.value == 0;
+    bool forStaff = _args == "from_staff";
     return SingleChildScrollView(
       padding: UIStyleProperties.insetsVrt8Hzt10,
       physics: const BouncingScrollPhysics(),
@@ -49,8 +50,8 @@ class ProcessSalary extends StatelessWidget {
         children: [
           if(_controller.salaryProcessed())
             CustomTextField(
-              hintText: 'Worker Name',
-              label: 'Worker',
+              hintText: "Worker Name",
+              label: forStaff ? "Staff" : "Worker",
               controller: TextEditingController(),
             )
           else...[
@@ -60,7 +61,7 @@ class ProcessSalary extends StatelessWidget {
 
             CustomButton(
               verticalMargin: 30,
-              label: 'Select Worker',
+              label: forStaff ? "Select Staff" : "Select Worker",
               trailing: Assets.upArrow,
               quarterTurns: 2,
               padding: UIStyleProperties.insetsVrt20Hzt10,
@@ -69,7 +70,7 @@ class ProcessSalary extends StatelessWidget {
             ),
           ],
 
-          separatorText(_controller.salaryProcessed() ? 'Salary Amount' : 'Enter Salary'),
+          separatorText(_controller.salaryProcessed() ? (forStaff ? 'Staff' : 'Salary Amount') : 'Enter Salary'),
 
           const TextDropdownField(hintText: 'Salary Amount',),
 
@@ -138,7 +139,7 @@ class ProcessSalary extends StatelessWidget {
             label: _controller.salaryProcessed() ? 'Confirm' : 'Process Salary',
             alignment: Alignment.center,
             // verticalMargin: 15,
-            onTap: () => _controller.salaryProcessed() ? _controller.handleConfirm() : _controller.handleProcessSalary(true),
+            onTap: () => _controller.salaryProcessed() ? (forStaff ? _controller.handleConfirmStaffSalary() : _controller.handleConfirm()) : _controller.handleProcessSalary(true),
           ),
         ],
       ),
