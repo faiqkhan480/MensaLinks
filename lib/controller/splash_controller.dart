@@ -7,13 +7,14 @@ class SplashController extends GetxController {
 
   @override
   void onInit() async {
-    await Future.delayed(
-      const Duration(milliseconds: 500),
+    super.onInit();
+    Future.delayed(
+      const Duration(milliseconds: 800),
       () {
         isInitialized.value = false;
         Future.delayed(
           const Duration(
-            milliseconds: 1600,
+            milliseconds: 1800,
           ),
           () {
             loading.value = false;
@@ -21,7 +22,6 @@ class SplashController extends GetxController {
         );
       },
     );
-    super.onInit();
   }
 
   void onSignUpPressed() {
