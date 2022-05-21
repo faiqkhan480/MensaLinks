@@ -30,7 +30,7 @@ class RegisterScanner extends StatelessWidget {
         Assets.logo,
       ),
       child: Container(
-        width: SizeConfig.screenWidth,
+        width: Get.width,
         decoration: BoxDecoration(
           color: AppColors.backgroundColor,
           borderRadius: BorderRadius.only(

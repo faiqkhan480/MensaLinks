@@ -11,6 +11,8 @@ import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/simple_default_layout.dart';
 import 'package:mensa_links/widgets/text_widgets.dart';
 
+import '../../utils/screen_properties.dart';
+
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);
 
@@ -19,7 +21,7 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
       pageTitle: "createAccount",
-      pageTitleSize: 0.060,
+      // pageTitleSize: 0.060,
       showAppBarBackButton: true,
       child: _body(
       ),
@@ -29,6 +31,7 @@ class Register extends StatelessWidget {
   Widget _body() {
     return ListView(
       physics: Constants.scrollPhysics,
+      padding: UIStyleProperties.insetsVrt8Hzt20,
       children: [
         Container(
           margin: const EdgeInsets.only(
@@ -38,7 +41,7 @@ class Register extends StatelessWidget {
           ),
           child: TitleText(
             text: 'scanID'.tr,
-            size: Constants.subHeading,
+            size: Constants.heading20,
             align: TextAlign.center,
             color: AppColors.primaryColor,
             weight: FontWeight.bold,

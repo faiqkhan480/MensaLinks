@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/utils/screen_properties.dart';
+import 'package:mensa_links/utils/widget_util.dart';
 
 import '../../controller/splash_controller.dart';
 import '../../utils/assets.dart';
@@ -120,7 +122,7 @@ class Splash extends GetView<SplashController> {
                   text: 'signUpAs'.tr,
                   weight: FontWeight.bold,
                   color: AppColors.primaryColor,
-                  size: Constants.heading,
+                  size: Constants.subHeading,
                 ),
                 const SizedBox(
                   height: 30,
@@ -138,24 +140,25 @@ class Splash extends GetView<SplashController> {
                 ),
               ],
             )
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TitleText(
-                  text: 'welcome'.tr,
-                  weight: FontWeight.bold,
-                  color: AppColors.primaryColor,
-                  size: Constants.heading,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                CustomButton(
-                  label: 'signUpButton'.tr,
-                  onTap: controller.onSignUpPressed,
-                ),
-              ],
-            ),
+          : Padding(
+            padding: UIStyleProperties.topInsets40,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  TitleText(
+                    text: 'welcome'.tr,
+                    weight: FontWeight.bold,
+                    color: AppColors.primaryColor,
+                    size: Constants.heading,
+                  ),
+                  WidgetUtils.spaceVrt40,
+                  CustomButton(
+                    label: 'signUpButton'.tr,
+                    onTap: controller.onSignUpPressed,
+                  ),
+                ],
+              ),
+          ),
     );
   }
 }

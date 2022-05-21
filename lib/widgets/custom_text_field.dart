@@ -48,7 +48,7 @@ class CustomTextField extends StatelessWidget {
         children: [
           label != null
               ? Padding(
-                padding: labelVerticalPadding ?? UIStyleProperties.insetsVrt15,
+                padding: labelVerticalPadding ?? UIStyleProperties.topInset15,
                 child: TitleText(
                     text: label!,
                     color: labelColor,

@@ -34,6 +34,7 @@ class UIStyleProperties {
   static const bottomInsets10 = EdgeInsets.only(bottom: 10);
   static const leftInset10 = EdgeInsets.only(left: 10);
   static const topInset10 = EdgeInsets.only(top: 10);
+  static const topInset15 = EdgeInsets.only(top: 15);
   static const topInsets20 = EdgeInsets.only(top: 20);
   static const topInsets30 = EdgeInsets.only(top: 30);
   static const topInsets40 = EdgeInsets.only(top: 40);

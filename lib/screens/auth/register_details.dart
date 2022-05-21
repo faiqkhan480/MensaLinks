@@ -58,7 +58,54 @@ class PersonalDetails extends StatelessWidget {
             labelSize: Constants.heading18,
             controller: TextEditingController(),
             keyboardType: TextInputType.number,
+            marginTop: 0,
             inputFormatters: [MaskTextInputFormatter(mask: emiratesIDFormat)],
+          ),
+          Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: CustomDropdown(
+                        label: 'iDExpiry'.tr,
+                        hint: 'day'.tr,
+                        values: List.generate(31, (index) {return (index + 1).toString();},
+                        ),
+                        onValueSelected: (String? item) {
+                          log('Selected Date: $item');
+                          controller.expiryDate.value = item;
+                          },
+                        selectedValue: controller.expiryDate.value,
+                      ),
+                    ),
+                    WidgetUtils.spaceHzt5,
+                    Expanded(
+                      child: CustomDropdown(
+                        label: '',
+                        hint: 'month'.tr,
+                        values: controller.months,
+                        onValueSelected: (String? item) {
+                          log('Selected Month: $item');
+                          controller.expiryMonth.value = item;
+                          },
+                        selectedValue: controller.expiryMonth.value,
+                      ),
+                    ),
+                    WidgetUtils.spaceHzt5,
+                    Expanded(
+                      child: CustomDropdown(
+                      label: '',
+                      hint: 'year'.tr,
+                      values: List.generate(30, (index) {return (1990 + index).toString();},),
+                      onValueSelected: (String? item) {
+                          log('Selected Year: $item');
+                          controller.expiryYear.value = item;
+                      },
+                      selectedValue: controller.expiryYear.value,
+                    ),
+                  ),
+              ],
+            ),
           ),
           Obx(
                 () => Row(
@@ -66,14 +113,9 @@ class PersonalDetails extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomDropdown(
-                    label: 'iDExpiry'.tr,
+                    label: 'dob'.tr,
                     hint: 'day'.tr,
-                    width: SizeConfig.screenWidth * 0.25,
-                    values: List.generate(
-                      31,
-                          (index) {
-                        return (index + 1).toString();
-                      },
+                    values: List.generate(31, (index) {return (index + 1).toString();},
                     ),
                     onValueSelected: (String? item) {
                       log('Selected Date: $item');
@@ -87,7 +129,6 @@ class PersonalDetails extends StatelessWidget {
                   child: CustomDropdown(
                     label: '',
                     hint: 'month'.tr,
-                    width: SizeConfig.screenWidth * 0.25,
                     values: controller.months,
                     onValueSelected: (String? item) {
                       log('Selected Month: $item');
@@ -101,76 +142,12 @@ class PersonalDetails extends StatelessWidget {
                   child: CustomDropdown(
                     label: '',
                     hint: 'year'.tr,
-                    width: SizeConfig.screenWidth * 0.25,
-                    values: List.generate(
-                      30,
-                          (index) {
-                        return (1990 + index).toString();
-                      },
-                    ),
+                    values: List.generate(30, (index) {return (1990 + index).toString();},),
                     onValueSelected: (String? item) {
                       log('Selected Year: $item');
                       controller.expiryYear.value = item;
                     },
                     selectedValue: controller.expiryYear.value,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Obx(
-                () => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: CustomDropdown(
-                    label: 'dob'.tr,
-                    hint: 'day'.tr,
-                    width: SizeConfig.screenWidth * 0.25,
-                    values: List.generate(
-                      31,
-                          (index) {
-                        return (index + 1).toString();
-                      },
-                    ),
-                    onValueSelected: (String? item) {
-                      log('Selected Date: $item');
-                      controller.birthDate.value = item;
-                    },
-                    selectedValue: controller.birthDate.value,
-                  ),
-                ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    label: '',
-                    hint: 'month'.tr,
-                    width: SizeConfig.screenWidth * 0.25,
-                    values: controller.months,
-                    onValueSelected: (String? item) {
-                      log('Selected Month: $item');
-                      controller.birthMonth.value = item;
-                    },
-                    selectedValue: controller.birthMonth.value,
-                  ),
-                ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    label: '',
-                    hint: 'year'.tr,
-                    width: SizeConfig.screenWidth * 0.25,
-                    values: List.generate(
-                      30,
-                          (index) {
-                        return (1990 + index).toString();
-                      },
-                    ),
-                    onValueSelected: (String? item) {
-                      log('Selected Year: $item');
-                      controller.birthYear.value = item;
-                    },
-                    selectedValue: controller.birthYear.value,
                   ),
                 ),
               ],
