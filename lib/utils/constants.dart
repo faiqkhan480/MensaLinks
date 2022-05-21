@@ -21,8 +21,10 @@ class Constants {
 
   static ScrollPhysics scrollPhysics = const BouncingScrollPhysics();
 
-  static List<String> tableHeaders = ['No', 'Name', 'EID No', 'DOB', 'Contact No.'];
+  static List<String> tableHeaders = ['No.', 'Name', 'EID No', 'DOB', 'Contact No.'];
+  static List<String> payRollTableHeaders = ['No.', 'Name', 'Month', 'Amount', 'Phone No.', 'Remarks'];
   static List<int> tableCellValues = [1, 2, 2, 3, 3];
+  static List<int> payRollTableCellValues = [1, 2, 2, 2, 3, 3];
   static List<String> tabs = ["WPS", "NonWps"];
 
   static List<String> months = [

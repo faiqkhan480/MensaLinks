@@ -7,6 +7,7 @@ class HomeController extends GetxController {
   RxBool businessLogin = true.obs;
   RxBool familyFormSubmitted = false.obs;
   RxBool salaryProcessed = false.obs;
+  RxBool isSave = false.obs;
   RxInt selectedTab = 0.obs;
   RxInt radioSelection = 0.obs;
 
@@ -21,16 +22,23 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoutes.DOCUMENTVERIFICATION, arguments: args);
   }
 
+  void setValues() {
+    salaryProcessed.value = false;
+    isSave.value = false;
+  }
+
   void handleTab(int val) => selectedTab.value = val;
 
   void handleProcessSalary(bool val) => salaryProcessed.value = val;
 
   void handleConfirm() {
+    isSave.value = true;
     Get.toNamed(AppRoutes.PIN, arguments: "salary");
   }
 
   void handleConfirmStaffSalary() {
-    Get.toNamed(AppRoutes.PIN, arguments: "staff");
+    isSave.value = true;
+    Get.toNamed(AppRoutes.PROCESSSALRY, arguments: "from_staff");
   }
 
   void handleRegisterPayment() {
@@ -38,4 +46,8 @@ class HomeController extends GetxController {
   }
 
   void setRadioValue(int val) => radioSelection.value = val;
+
+  void handleSaveAndProceedSalary() {
+
+  }
 }

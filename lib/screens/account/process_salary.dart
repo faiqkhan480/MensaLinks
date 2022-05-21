@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/home_controller.dart';
+import 'package:mensa_links/routes/app_routes.dart';
 import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
@@ -11,6 +12,7 @@ import '../../utils/widget_util.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_dropdown.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/radio_buttons.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/text_widgets.dart';
 
@@ -22,7 +24,8 @@ class ProcessSalary extends StatelessWidget {
 
   void handleBack() {
     if(_controller.salaryProcessed()) {
-      _controller.handleProcessSalary(false);
+      _controller.setValues();
+      // _controller.handleProcessSalary(false);
     } else {
       Get.back();
     }
@@ -56,8 +59,12 @@ class ProcessSalary extends StatelessWidget {
             )
           else...[
             WidgetUtils.spaceVrt25,
-            customTabBar(),
-            WidgetUtils.spaceVrt10,
+            if(!_controller.isSave())...[
+              customTabBar(),
+              WidgetUtils.spaceVrt10,
+            ]
+            else
+              RadioButtons(controller: _controller),
 
             CustomButton(
               verticalMargin: 30,
@@ -116,7 +123,7 @@ class ProcessSalary extends StatelessWidget {
 
 
           // IF WPS TRUE
-          if(wps)
+          if(wps && _controller.radioSelection < 2)
             CustomTextField(
               label: _controller.salaryProcessed() ? 'Personal Number' : 'Enter Personal Number',
               hintText: 'Personal Number',
@@ -135,7 +142,28 @@ class ProcessSalary extends StatelessWidget {
 
           WidgetUtils.spaceVrt20,
 
-          CustomButton(
+          if(_controller.isSave())
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomButton(
+                  label: "Process Salary",
+                  alignment: Alignment.center,
+                  minHeight: 0.010,
+                  minWidth: 0.40,
+                  onTap: () => Get.toNamed(AppRoutes.MEMBERSDETAILS, arguments: "payRoll"),
+                ),
+                CustomButton(
+                  label: "Save & Next",
+                  // alignment: Alignment.center,
+                  minHeight: 0.020,
+                  minWidth: 0.40,
+                  onTap: () => null,
+                ),
+              ],
+            )
+          else
+            CustomButton(
             label: _controller.salaryProcessed() ? 'Confirm' : 'Process Salary',
             alignment: Alignment.center,
             // verticalMargin: 15,

@@ -12,6 +12,7 @@ import '../../utils/assets.dart';
 import '../../utils/screen_properties.dart';
 import '../../widgets/custom_dropdown.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/radio_buttons.dart';
 import '../../widgets/simple_default_layout.dart';
 
 class ProcessStaffSalary extends StatelessWidget {
@@ -19,10 +20,20 @@ class ProcessStaffSalary extends StatelessWidget {
 
   HomeController get _controller => Get.find<HomeController>();
 
+  void handleBack() {
+    // if(_controller.salaryProcessed()) {
+      // _controller.setValues();
+      _controller.setRadioValue(0);
+    // } else {
+      Get.back();
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
       pageTitle: 'Process Staff Salary',
+      handleBack: handleBack,
       child: Obx(body),
     );
   }
@@ -102,24 +113,28 @@ class ProcessStaffSalary extends StatelessWidget {
 
           // RADIO BUTTONS
           WidgetUtils.spaceVrt10,
-          radioButtons(),
+          RadioButtons(controller: _controller),
 
-          if(_controller.radioSelection.value == 1)...[
-            CustomTextField(
+          if(_controller.radioSelection.value > 0)...[
+            if(_controller.radioSelection.value == 1)
+              CustomTextField(
               hintText: "Personal Number",
               controller: TextEditingController(),
               contentPadding: UIStyleProperties.insetsVrt10Hzt15,
             ),
+
             CustomTextField(
               hintText: "Comments",
+              lines: _controller.radioSelection.value,
               controller: TextEditingController(),
             ),
-
+          ],
+          if(_controller.radioSelection.value > 0)...[
             CustomButton(
               label: "Save & Add Next",
               // alignment: Alignment.center,
               verticalMargin: 15,
-              onTap: () => null,
+              onTap: _controller.handleConfirmStaffSalary,
             ),
             CustomButton(
               label: "Process Salary",
@@ -128,45 +143,6 @@ class ProcessStaffSalary extends StatelessWidget {
               onTap: () =>  Get.toNamed(AppRoutes.PROCESSSALRY, arguments: "from_staff"),
             ),
           ],
-        ],
-      ),
-    );
-  }
-
-  Widget radioButtons() {
-    return Padding(
-      padding: UIStyleProperties.insetsVrt10,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(Constants.tabs.length, (index) => radio(index < 1 ? 1 : 2)),
-      ),
-    );
-  }
-
-  Widget radio(int val) {
-    return InkWell(
-      onTap: () => _controller.radioSelection(val),
-      radius: 20,
-      child: Wrap(
-        // crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: _controller.radioSelection.value == val ? AppColors.primaryColor : Colors.transparent,
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColors.slightlyGrey, width: 1.8)
-            ),
-            margin: EdgeInsets.only(right: 2, left: (val + 5).toDouble()),
-            height: Constants.heading18,
-            width: Constants.heading18,
-          ),
-          TitleText(
-            text: Constants.tabs.elementAt(val-1),
-            color: AppColors.slightlyGrey,
-            size: Constants.regularText,
-            weight: FontWeight.bold,
-          )
         ],
       ),
     );

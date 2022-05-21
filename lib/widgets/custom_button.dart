@@ -61,6 +61,11 @@ class CustomButton extends StatelessWidget {
               side: bordered ? const BorderSide(color: AppColors.primaryColor) : BorderSide.none,
             ),
           ),
+          // textStyle: MaterialStateProperty.all(TextStyle(
+          //   fontSize: fontSize ?? Constants.buttonTextSize,
+          //   fontWeight: FontWeight.bold,
+          //     color: invert ? AppColors.primaryColor : AppColors.white
+          // ))
         ),
         child: trailing == null ?
         TitleText(
