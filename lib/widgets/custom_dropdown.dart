@@ -38,12 +38,15 @@ class CustomDropdown extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if(label != null)
-            TitleText(
-            text: label!,
-            color: AppColors.primaryColor.withOpacity(0.5),
-            weight: FontWeight.bold,
-            size: Constants.heading18,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: TitleText(
+              text: label!,
+              color: AppColors.primaryColor.withOpacity(0.5),
+              weight: FontWeight.bold,
+              size: Constants.heading18,
           ),
+            ),
           DropdownButtonFormField(
               value: selectedValue,
               items: values.map((String value) {

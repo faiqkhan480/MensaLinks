@@ -15,13 +15,17 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool? hideText, filled, editIcon;
   final int? lines;
-  final double? marginTop;
+  final double? marginTop, labelSize;
   final TextInputType? keyboardType;
-  final EdgeInsets? contentPadding;
+  final EdgeInsets? contentPadding, labelVerticalPadding;
   final List<TextInputFormatter>? inputFormatters;
+  final Color? labelColor;
   const CustomTextField({
     Key? key,
     this.label,
+    this.labelColor,
+    this.labelSize,
+    this.labelVerticalPadding,
     this.marginTop,
     required this.controller,
     this.hideText,
@@ -44,12 +48,12 @@ class CustomTextField extends StatelessWidget {
         children: [
           label != null
               ? Padding(
-                padding: UIStyleProperties.insetsVrt15,
+                padding: labelVerticalPadding ?? UIStyleProperties.insetsVrt15,
                 child: TitleText(
                     text: label!,
-                    color: AppColors.primaryColor,
+                    color: labelColor,
                     weight: FontWeight.bold,
-                    size: Constants.heading20,
+                    size: labelSize ?? Constants.heading20,
                   ),
               )
               : const SizedBox(),

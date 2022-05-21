@@ -51,6 +51,8 @@ class UIStyleProperties {
   static const insetsVrt25Hzt20 = EdgeInsets.symmetric(horizontal: 20, vertical: 25);
   static const insetsHzt15 = EdgeInsets.symmetric(vertical: 0, horizontal: 15);
   static const insetsHzt20 = EdgeInsets.symmetric(vertical: 0, horizontal: 20);
+  static const insetsVrt5 = EdgeInsets.symmetric(vertical: 5, horizontal: 0);
+  static const insetsVrt8 = EdgeInsets.symmetric(vertical: 8, horizontal: 0);
   static const insetsVrt10 = EdgeInsets.symmetric(vertical: 10, horizontal: 0);
   static const insetsVrt15 = EdgeInsets.symmetric(vertical: 15, horizontal: 0);
   static const insetsVrt20 = EdgeInsets.symmetric(vertical: 20, horizontal: 0);
