@@ -1,12 +1,4 @@
 import 'package:get/get.dart';
-import 'package:mensa_links/bindings/home_binding.dart';
-import 'package:mensa_links/bindings/member_binding.dart';
-import 'package:mensa_links/screens/members/dependent_card.dart';
-import 'package:mensa_links/screens/members/edit_member.dart';
-import 'package:mensa_links/screens/members/member_details.dart';
-// import 'package:mensa_links/screens/members/member_list.dart';
-// import 'package:mensa_links/screens/auth/account_created.dart';
-// import 'package:mensa_links/screens/auth/pin_screen.dart';
 
 // IMPORT BINDINGS
 import '../bindings/home_binding.dart';

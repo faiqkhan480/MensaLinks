@@ -1,15 +1,31 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mensa_links/routes/app_routes.dart';
 
 import '../widgets/done_screen.dart';
 
 class HomeController extends GetxController {
-  RxBool businessLogin = true.obs;
+  final GetStorage _box = GetStorage();
+
+  RxBool businessLogin = false.obs;
   RxBool familyFormSubmitted = false.obs;
   RxBool salaryProcessed = false.obs;
   RxBool isSave = false.obs;
   RxInt selectedTab = 0.obs;
   RxInt radioSelection = 0.obs;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    setLoginType();
+  }
+
+  void setLoginType() {
+    if(_box.read("loginType") != null) {
+      businessLogin.value = _box.read("loginType") == "business";
+    }
+  }
 
   void handleFamilyForm(bool val) {
     familyFormSubmitted.value = val;

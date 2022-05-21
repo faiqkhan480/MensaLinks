@@ -3,17 +3,18 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/controller/emirates_id_scanner_controller.dart';
-import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/utils/assets.dart';
-import 'package:mensa_links/utils/colors.dart';
-import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/utils/size_config.dart';
-import 'package:mensa_links/widgets/custom_animated_checkmark.dart';
-import 'package:mensa_links/widgets/custom_button.dart';
-import 'package:mensa_links/widgets/simple_default_layout.dart';
-import 'package:mensa_links/widgets/text_widgets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../../controller/emirates_id_scanner_controller.dart';
+import '../../routes/app_routes.dart';
+import '../../utils/assets.dart';
+import '../../utils/colors.dart';
+import '../../utils/constants.dart';
+import '../../utils/size_config.dart';
+import '../../widgets/custom_animated_checkmark.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/simple_default_layout.dart';
+import '../../widgets/text_widgets.dart';
 
 class RegisterScanner extends StatelessWidget {
   RegisterScanner({Key? key}) : super(key: key);

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/lang/lang.dart';
-import 'package:mensa_links/utils/colors.dart';
-import 'package:mensa_links/utils/constants.dart';
+import 'package:get_storage/get_storage.dart';
+
+import 'lang/lang.dart';
+import 'utils/colors.dart';
+import 'utils/constants.dart';
 
 import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent, // transparent status bar));
   runApp(const MensaLinks());
 }

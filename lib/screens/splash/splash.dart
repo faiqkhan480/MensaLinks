@@ -10,9 +10,8 @@ import 'package:mensa_links/utils/size_config.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/text_widgets.dart';
 
-class Splash extends StatelessWidget {
-  final controller = Get.put(SplashController());
-  Splash({Key? key}) : super(key: key);
+class Splash extends GetView<SplashController> {
+  const Splash({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -134,14 +133,14 @@ class Splash extends StatelessWidget {
                 ),
                 CustomButton(
                   label: 'houseHead'.tr,
-                  onTap: () => Get.toNamed(AppRoutes.REGISTER),
+                  onTap: () => controller.handleNavigation("houseHead"),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 CustomButton(
                   label: 'business'.tr,
-                  onTap: () => Get.toNamed(AppRoutes.REGISTER),
+                  onTap: () => controller.handleNavigation("business"),
                 ),
               ],
             )

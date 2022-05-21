@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../routes/app_routes.dart';
 
 class SplashController extends GetxController {
   Rx<bool> isInitialized = true.obs;
@@ -26,5 +29,11 @@ class SplashController extends GetxController {
 
   void onSignUpPressed() {
     onSignUp.value = true;
+  }
+
+  void handleNavigation(String type) {
+    final _box = GetStorage();
+    _box.write("loginType", type);
+    Get.toNamed(AppRoutes.REGISTER);
   }
 }
