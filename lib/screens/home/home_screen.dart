@@ -49,7 +49,7 @@ class HomeScreen extends GetView<HomeController> {
               ),
               
               IconButton(
-                  onPressed: () => null,
+                  onPressed: controller.handleLogout,
                   icon: const Icon(Icons.power_settings_new_rounded, color: AppColors.primaryColor, size: 30,)
               )
             ],

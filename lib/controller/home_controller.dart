@@ -66,4 +66,8 @@ class HomeController extends GetxController {
   void handleSaveAndProceedSalary() {
 
   }
+
+  void handleLogout() {
+    Get.offNamedUntil(AppRoutes.SPLASH, (route) => false);
+  }
 }

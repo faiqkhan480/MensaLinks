@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/controller/splash_controller.dart';
-import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/utils/assets.dart';
-import 'package:mensa_links/utils/colors.dart';
-import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/widgets/custom_button.dart';
-import 'package:mensa_links/widgets/text_widgets.dart';
+
+import '../../controller/splash_controller.dart';
+import '../../utils/assets.dart';
+import '../../utils/colors.dart';
+import '../../utils/constants.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/text_widgets.dart';
 
 class Splash extends GetView<SplashController> {
   const Splash({Key? key}) : super(key: key);
