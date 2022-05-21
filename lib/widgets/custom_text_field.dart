@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
@@ -17,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final double? marginTop;
   final TextInputType? keyboardType;
   final EdgeInsets? contentPadding;
+  final List<TextInputFormatter>? inputFormatters;
   const CustomTextField({
     Key? key,
     this.label,
@@ -29,6 +31,7 @@ class CustomTextField extends StatelessWidget {
     this.filled,
     this.keyboardType,
     this.contentPadding,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -51,6 +54,8 @@ class CustomTextField extends StatelessWidget {
               )
               : const SizedBox(),
           TextFormField(
+            keyboardType: keyboardType,
+            inputFormatters: inputFormatters,
             maxLines: lines ?? 1,
             decoration: InputDecoration(
               border: OutlineInputBorder(

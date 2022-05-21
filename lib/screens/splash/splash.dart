@@ -65,7 +65,10 @@ class Splash extends StatelessWidget {
                     // child: Container(
                     //   width: 40,
                     //   height: 40,
-                    //   decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white,),
+                    //   decoration: const BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     color: Colors.white,
+                    //   ),
                     // ),
                     duration: _animationDuration,
                   )
@@ -86,7 +89,9 @@ class Splash extends StatelessWidget {
                     // child: Container(
                     //   width: 40,
                     //   height: 40,
-                    //   decoration: BoxDecoration(color: Colors.white.withOpacity(0.3), shape: BoxShape.circle),
+                    //   decoration: BoxDecoration(
+                    //       color: Colors.white.withOpacity(0.3),
+                    //       shape: BoxShape.circle),
                     // ),
                     duration: _animationDuration,
                   )
@@ -99,7 +104,9 @@ class Splash extends StatelessWidget {
                     height: SizeConfig.screenHeight * 0.7,
                     child: Center(
                       // child: SvgPicture.asset(Assets.rightGear),
-                      child: SvgPicture.asset(Assets.linksLogo,),
+                      child: SvgPicture.asset(
+                        Assets.linksLogo,
+                      ),
                     ),
                   )
                 : const SizedBox(),

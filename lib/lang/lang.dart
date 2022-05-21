@@ -11,7 +11,9 @@ class Lang extends Translations {
           'business': 'Business',
           'createAccount': 'Create Account',
           'scanID': 'Please Scan Your Valid Emirates ID',
-          'scanIdDesc': 'UAE Central Bank requires us to obtain copy and information of your valid Emirates ID',
+          "pleaseScanTheCode": "Please scan the code",
+          'scanIdDesc':
+              'UAE Central Bank requires us to obtain copy and information of your valid Emirates ID',
           'scanNow': 'Scan Now',
           'personalDetails': 'Personal Details',
           'fullName': 'Full Name',
@@ -22,22 +24,24 @@ class Lang extends Translations {
           'year': 'Year',
           'dob': 'Date of Birth',
           'next': 'Next',
+          'continue': 'Continue',
           'enterContactDetail': 'Please enter your contact details',
           'mobile': 'Mobile Number',
           'email': 'Email',
           'address1': 'Address Line 1',
           'address2': 'Address Line 2',
           'poBox': 'P.O. Box',
-
           'document_verification': 'Document Verification',
           'plz_upload_document': 'Please upload the below documents',
           'passport': 'Passport',
           'visa': 'Visa',
-          'doc_verification_msg': 'In order to complete the account creation we need to be 100% sure that You are You. As we are financial service. we have to comply with KYC & AML requirements.',
+          'doc_verification_msg':
+              'In order to complete the account creation we need to be 100% sure that You are You. As we are financial service. we have to comply with KYC & AML requirements.',
           'done': 'Done',
           'account_successfully_created': 'Account Successfully Created',
           'set_your_new_pin': 'Set Your New Security PIN',
           'enter_your_new_pin': 'Enter Your New Pin',
+          're_enter_your_new_pin': 'Re Enter Your New Pin',
           'welcome_msg': 'Welcome To MensaLinks',
           'ok': 'OK',
           'finish': 'Finish',
@@ -46,8 +50,9 @@ class Lang extends Translations {
           'for_worker': 'Create Account For Domestic Worker',
           'for_staff': 'Apply Staff Card',
           'confirm': 'Confirm',
+          "pleaseScanEmiratesID":
+              "Please Scan Your Valid Emirates ID - Front Side",
           '': '',
-
         },
         'zh_CN': {
           'welcome': '欢迎来到 MensaLinks!',

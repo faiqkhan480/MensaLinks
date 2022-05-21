@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
 import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/screens/auth/contact_detail.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
@@ -32,7 +32,7 @@ class RegisterDetails extends StatelessWidget {
 
 class PersonalDetails extends StatelessWidget {
   const PersonalDetails({Key? key}) : super(key: key);
-
+  final emiratesIDFormat = "###-####-######-#";
   @override
   Widget build(BuildContext context) {
     final AuthController controller = Get.find<AuthController>();
@@ -71,8 +71,11 @@ class PersonalDetails extends StatelessWidget {
             CustomTextField(
               label: 'iDNumber'.tr,
               controller: TextEditingController(),
+              keyboardType: TextInputType.number,
+              inputFormatters: [MaskTextInputFormatter(mask: emiratesIDFormat)],
             ),
-            Obx(() => Row(
+            Obx(
+              () => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
@@ -82,7 +85,7 @@ class PersonalDetails extends StatelessWidget {
                       width: SizeConfig.screenWidth * 0.25,
                       values: List.generate(
                         31,
-                            (index) {
+                        (index) {
                           return (index + 1).toString();
                         },
                       ),
@@ -115,7 +118,7 @@ class PersonalDetails extends StatelessWidget {
                       width: SizeConfig.screenWidth * 0.25,
                       values: List.generate(
                         30,
-                            (index) {
+                        (index) {
                           return (1990 + index).toString();
                         },
                       ),
@@ -130,7 +133,7 @@ class PersonalDetails extends StatelessWidget {
               ),
             ),
             Obx(
-                  () => Row(
+              () => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
@@ -140,7 +143,7 @@ class PersonalDetails extends StatelessWidget {
                       width: SizeConfig.screenWidth * 0.25,
                       values: List.generate(
                         31,
-                            (index) {
+                        (index) {
                           return (index + 1).toString();
                         },
                       ),
@@ -173,7 +176,7 @@ class PersonalDetails extends StatelessWidget {
                       width: SizeConfig.screenWidth * 0.25,
                       values: List.generate(
                         30,
-                            (index) {
+                        (index) {
                           return (1990 + index).toString();
                         },
                       ),
@@ -199,9 +202,8 @@ class PersonalDetails extends StatelessWidget {
               onPressed: () => null,
               child: Text(' Edit Info '),
               style: TextButton.styleFrom(
-                primary: AppColors.darkGrey,
-                textStyle: TextStyle(decoration: TextDecoration.underline)
-              ),
+                  primary: AppColors.darkGrey,
+                  textStyle: TextStyle(decoration: TextDecoration.underline)),
             )
           ],
         ),

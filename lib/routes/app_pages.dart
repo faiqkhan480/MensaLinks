@@ -1,4 +1,12 @@
 import 'package:get/get.dart';
+import 'package:mensa_links/bindings/home_binding.dart';
+import 'package:mensa_links/bindings/member_binding.dart';
+import 'package:mensa_links/screens/members/dependent_card.dart';
+import 'package:mensa_links/screens/members/edit_member.dart';
+import 'package:mensa_links/screens/members/member_details.dart';
+// import 'package:mensa_links/screens/members/member_list.dart';
+// import 'package:mensa_links/screens/auth/account_created.dart';
+// import 'package:mensa_links/screens/auth/pin_screen.dart';
 
 // IMPORT BINDINGS
 import '../bindings/home_binding.dart';
@@ -7,6 +15,7 @@ import '../bindings/auth_binding.dart';
 
 
 // APP VIEWS
+import '../screens/auth/register_scanner_screen.dart';
 import '../screens/splash/splash.dart';
 import '../screens/auth/register.dart';
 import '../screens/auth/register_details.dart';
@@ -40,20 +49,22 @@ class AppPages {
     GetPage(
         name: AppRoutes.REGISTER,
         binding: AuthBinding(),
-        page: () => Register()
+        page: () => Register()),
+    GetPage(
+        name: AppRoutes.REGISTERSCANNER,
+        binding: AuthBinding(),
+        page: () => RegisterScanner()),
+    GetPage(
+      name: AppRoutes.REGISTERDETAIL,
+      page: () => const RegisterDetails(),
     ),
     GetPage(
-        name: AppRoutes.REGISTERDETAIL,
-        page: () => const RegisterDetails()
-    ),
-    GetPage(
-        name: AppRoutes.CONTACTDETAIL,
-        page: () => const ContactDetails()
+      name: AppRoutes.CONTACTDETAIL,
+      page: () => const ContactDetails(),
     ),
     GetPage(
         name: AppRoutes.DOCUMENTVERIFICATION,
-        page: () => const DocumentVerification()
-    ),
+        page: () => const DocumentVerification()),
     GetPage(
         name: AppRoutes.ACCOUNTCREATED,
         page: () => const AccountCreated()

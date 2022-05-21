@@ -4,10 +4,12 @@ class AppRoutes {
   static const String SPLASH = "/splash";
   static const String REGISTER = "/register";
   static const String REGISTERDETAIL = "/register_details";
+  static const String REGISTERSCANNER = "/register_scan_id";
   static const String CONTACTDETAIL = "/contact_details";
   static const String DOCUMENTVERIFICATION = "/document_verification";
   static const String ACCOUNTCREATED = "/account_created";
   static const String PIN = "/pin";
+  static const String RE_Enter_PIN = "/re-enter-pin";
   static const String HOME = "/home";
   static const String CREATEACCOUNT = "/create_account";
   static const String MANAGEACCOUNT = "/manage_account";

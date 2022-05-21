@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
 import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/screens/auth/register_details.dart';
 import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
@@ -21,8 +20,12 @@ class Register extends StatelessWidget {
     return SimpleDefaultScreenLayout(
       // showAppBar: false,
       showAppBarBackButton: true,
-      appbarTitle: SvgPicture.asset(Assets.logo,),
-      child: RegisterForm(controller: controller,),
+      appbarTitle: SvgPicture.asset(
+        Assets.logo,
+      ),
+      child: RegisterForm(
+        controller: controller,
+      ),
     );
   }
 }
@@ -98,7 +101,7 @@ class RegisterForm extends StatelessWidget {
           CustomButton(
             onTap: () async {
               // await controller.onScanNow();
-              Get.toNamed(AppRoutes.REGISTERDETAIL);
+              Get.toNamed(AppRoutes.REGISTERSCANNER);
             },
             label: 'scanNow'.tr,
           ),

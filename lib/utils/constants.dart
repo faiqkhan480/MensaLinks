@@ -5,7 +5,7 @@ class Constants {
 
   static double pageTitle = 0.063;
   static double radius = 50;
-  static double bottomSize = 0.33;
+  static double bottomSize = 0.36;
   static double buttonTextSize = 18;
   static double title = 30;
   static double heading = 25;
