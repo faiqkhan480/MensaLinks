@@ -9,6 +9,6 @@ class Assets {
   static const linksLogo = _svgs + 'links_logo.svg';
   static const upArrow = _svgs + 'up-arrow-svgrepo-com.svg';
   static const bin = _svgs + 'trash-can.svg';
-  static const rightGear = _svgs + 'right_gear.svg';
+  static const rightGear = _svgs + 'right_gear.png';
   static const leftGear = _svgs + 'left_gear.svg';
 }

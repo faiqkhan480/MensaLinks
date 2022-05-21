@@ -6,7 +6,6 @@ import 'package:mensa_links/routes/app_routes.dart';
 import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/utils/size_config.dart';
 import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/text_widgets.dart';
 
@@ -15,14 +14,13 @@ class Splash extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig.init(context: context);
     Duration _animationDuration = const Duration(milliseconds: 1000);
     return Scaffold(
       body: Stack(
         children: [
           SizedBox(
-            width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight,
+            width: Get.width,
+            height: Get.height,
             child: ColoredBox(
               color: AppColors.primaryColor,
               child: Container(),
@@ -42,8 +40,8 @@ class Splash extends GetView<SplashController> {
                   ),
                 ),
               ),
-              width: SizeConfig.screenWidth,
-              height: SizeConfig.screenHeight * Constants.bottomSize,
+              width: Get.width,
+              height: Get.height * Constants.bottomSize,
               child: Obx(
                 () => getBottomWidget(),
               ),
@@ -52,15 +50,13 @@ class Splash extends GetView<SplashController> {
           Obx(
             () => controller.loading.value
                 ? AnimatedPositioned(
-                    left: controller.isInitialized.value
-                        ? 0
-                        : SizeConfig.screenWidth * 0.45,
+                    left: controller.isInitialized.value ? 0 : Get.width * .25,
                     bottom: controller.isInitialized.value
-                        ? SizeConfig.screenHeight * 0.5
-                        : SizeConfig.screenHeight * 0.65,
-                    width: 40,
-                    height: 40,
-                    child: SvgPicture.asset(Assets.leftGear),
+                        ? Get.height * 0.5
+                        : Get.height * 0.65,
+                    width: Get.width * .35,
+                    height: Get.width * .35,
+                    child: SvgPicture.asset(Assets.leftGear, fit: BoxFit.fill),
                     // child: Container(
                     //   width: 40,
                     //   height: 40,
@@ -76,15 +72,13 @@ class Splash extends GetView<SplashController> {
           Obx(
             () => controller.loading.value
                 ? AnimatedPositioned(
-                    right: controller.isInitialized.value
-                        ? 0
-                        : SizeConfig.screenWidth * 0.45,
+                    right: controller.isInitialized.value ? 0 : Get.width * .24,
                     bottom: controller.isInitialized.value
-                        ? SizeConfig.screenHeight * 0.5
-                        : SizeConfig.screenHeight * 0.65,
-                    width: 40,
-                    height: 40,
-                    child: SvgPicture.asset(Assets.rightGear),
+                        ? Get.height * 0.5
+                        : Get.height * 0.65,
+                    width: Get.width * .35,
+                    height: Get.width * .35,
+                    child: Image.asset(Assets.rightGear),
                     // child: Container(
                     //   width: 40,
                     //   height: 40,
@@ -99,8 +93,8 @@ class Splash extends GetView<SplashController> {
           Obx(
             () => !controller.loading.value
                 ? SizedBox(
-                    width: SizeConfig.screenWidth,
-                    height: SizeConfig.screenHeight * 0.7,
+                    width: Get.width,
+                    height: Get.height * 0.7,
                     child: Center(
                       // child: SvgPicture.asset(Assets.rightGear),
                       child: SvgPicture.asset(
