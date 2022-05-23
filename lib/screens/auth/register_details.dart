@@ -20,22 +20,18 @@ import '../../utils/widget_util.dart';
 class RegisterDetails extends StatelessWidget {
   const RegisterDetails({Key? key}) : super(key: key);
 
+  AuthController get _controller => Get.find<AuthController>();
+  final emiratesIDFormat = "###-####-######-#";
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
       pageTitle: 'createAccount',
       pageTitleSize: Constants.pageTitle,
-      child: PersonalDetails(),
+      child: Obx(body),
     );
   }
-}
 
-class PersonalDetails extends StatelessWidget {
-  const PersonalDetails({Key? key}) : super(key: key);
-  final emiratesIDFormat = "###-####-######-#";
-  @override
-  Widget build(BuildContext context) {
-    final AuthController controller = Get.find<AuthController>();
+  Widget body() {
     return SingleChildScrollView(
       physics: Constants.scrollPhysics,
       padding: UIStyleProperties.insetsVrt8Hzt20,
@@ -45,67 +41,69 @@ class PersonalDetails extends StatelessWidget {
           WidgetUtils.spaceVrt25,
           const SeparatorText("personalDetails"),
           CustomTextField(
+            readOnly: _controller.isReadOnly(),
             label: 'fullName'.tr,
             labelColor: AppColors.slightlyGrey,
             labelVerticalPadding: UIStyleProperties.insetsVrt8,
             labelSize: Constants.heading18,
-            controller: TextEditingController(),
+            controller: _controller.fullName,
           ),
           CustomTextField(
+            readOnly: _controller.isReadOnly(),
             label: 'iDNumber'.tr,
             labelColor: AppColors.slightlyGrey,
             labelVerticalPadding: UIStyleProperties.insetsVrt8,
             labelSize: Constants.heading18,
-            controller: TextEditingController(),
+            controller: _controller.idNumber,
             keyboardType: TextInputType.number,
             marginTop: 0,
             inputFormatters: [MaskTextInputFormatter(mask: emiratesIDFormat)],
           ),
-          Obx(
-                () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: CustomDropdown(
-                        label: 'iDExpiry'.tr,
-                        hint: 'day'.tr,
-                        values: List.generate(31, (index) {return (index + 1).toString();},
-                        ),
-                        onValueSelected: (String? item) {
-                          log('Selected Date: $item');
-                          controller.expiryDate.value = item;
-                          },
-                        selectedValue: controller.expiryDate.value,
-                      ),
-                    ),
-                    WidgetUtils.spaceHzt5,
-                    Expanded(
-                      child: CustomDropdown(
-                        label: '',
-                        hint: 'month'.tr,
-                        values: controller.months,
-                        onValueSelected: (String? item) {
-                          log('Selected Month: $item');
-                          controller.expiryMonth.value = item;
-                          },
-                        selectedValue: controller.expiryMonth.value,
-                      ),
-                    ),
-                    WidgetUtils.spaceHzt5,
-                    Expanded(
-                      child: CustomDropdown(
-                      label: '',
-                      hint: 'year'.tr,
-                      values: List.generate(30, (index) {return (1990 + index).toString();},),
-                      onValueSelected: (String? item) {
-                          log('Selected Year: $item');
-                          controller.expiryYear.value = item;
-                      },
-                      selectedValue: controller.expiryYear.value,
-                    ),
-                  ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  label: 'iDExpiry'.tr,
+                  hint: 'day'.tr,
+                  values: List.generate(31, (index) {return (index + 1).toString();},),
+                  onValueSelected: (String? item) {
+                    // log('Selected Date: $item');
+                    // _controller.expiryDate.value = item;
+                  },
+                  selectedValue: _controller.expiryDate.value,
+                ),
+              ),
+              WidgetUtils.spaceHzt5,
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  label: '',
+                  hint: 'month'.tr,
+                  values: _controller.months,
+                  onValueSelected: (String? item) {
+                    // log('Selected Month: $item');
+                    // _controller.expiryMonth.value = item;
+                  },
+                  selectedValue: _controller.expiryMonth.value,
+                ),
+              ),
+              WidgetUtils.spaceHzt5,
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  label: '',
+                  hint: 'year'.tr,
+                  values: List.generate(35, (index) {return (1990 + index).toString();},),
+                  onValueSelected: (String? item) {
+                    // log('Selected Year: $item');
+                    _controller.expiryYear.value = item!;
+                  },
+                  selectedValue: _controller.expiryYear.value,
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0, top: 20),
@@ -116,48 +114,48 @@ class PersonalDetails extends StatelessWidget {
               size: Constants.heading18,
             ),
           ),
-          Obx(
-                () => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: CustomDropdown(
-                    hint: 'day'.tr,
-                    values: List.generate(31, (index) {return (index + 1).toString();},
-                    ),
-                    onValueSelected: (String? item) {
-                      log('Selected Date: $item');
-                      controller.expiryDate.value = item;
-                    },
-                    selectedValue: controller.expiryDate.value,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  hint: 'day'.tr,
+                  values: List.generate(31, (index) {return (index + 1).toString();},
                   ),
+                  onValueSelected: (String? item) {
+                    log('Selected Date: $item');
+                    _controller.expiryDate.value = item!;
+                  },
+                  selectedValue: _controller.expiryDate.value,
                 ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    hint: 'month'.tr,
-                    values: controller.months,
-                    onValueSelected: (String? item) {
-                      log('Selected Month: $item');
-                      controller.expiryMonth.value = item;
-                    },
-                    selectedValue: controller.expiryMonth.value,
-                  ),
+              ),
+              WidgetUtils.spaceHzt5,
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  hint: 'month'.tr,
+                  values: _controller.months,
+                  onValueSelected: (String? item) {
+                    log('Selected Month: $item');
+                    _controller.expiryMonth.value = item!;
+                  },
+                  selectedValue: _controller.expiryMonth.value,
                 ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    hint: 'year'.tr,
-                    values: List.generate(30, (index) {return (1990 + index).toString();},),
-                    onValueSelected: (String? item) {
-                      log('Selected Year: $item');
-                      controller.expiryYear.value = item;
-                    },
-                    selectedValue: controller.expiryYear.value,
-                  ),
+              ),
+              WidgetUtils.spaceHzt5,
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  hint: 'year'.tr,
+                  values: List.generate(35, (index) {return (1990 + index).toString();},),
+                  onValueSelected: (String? item) {
+                    _controller.expiryYear.value = item!;
+                  },
+                  selectedValue: _controller.expiryYear.value,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           // WidgetUtils.spaceVrt25,
           CustomButton(
@@ -168,14 +166,14 @@ class PersonalDetails extends StatelessWidget {
           ),
 
           TextButton(
-            onPressed: () => null,
+            onPressed: () => _controller.handleEditForm(false),
             child: const Text(' Edit Info '),
             style: TextButton.styleFrom(
                 primary: AppColors.darkGrey,
                 textStyle: TextStyle(
                     decoration: TextDecoration.underline,
                     fontWeight: FontWeight.bold,
-                  fontSize: Constants.heading18
+                    fontSize: Constants.heading18
                 )),
           )
         ],

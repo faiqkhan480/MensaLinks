@@ -17,7 +17,7 @@ class CustomDropdown extends StatelessWidget {
   final String? hint, selectedValue;
   final double? width, fontSize;
   final EdgeInsets? contentPadding;
-  final bool? filled, invert;
+  final bool? filled, invert, readOnly;
 
   const CustomDropdown({
     Key? key,
@@ -30,6 +30,7 @@ class CustomDropdown extends StatelessWidget {
     this.hint,
     this.filled,
     this.contentPadding,
+    this.readOnly = false,
     this.invert = false,
   }) : super(key: key);
 
@@ -93,7 +94,7 @@ class CustomDropdown extends StatelessWidget {
               icon: RotatedBox(
                   quarterTurns: 2,
                   child: SvgPicture.asset(Assets.upArrow, height: 15, color: invert! ? AppColors.white : AppColors.primaryColor)),
-              onChanged: onValueSelected
+              onChanged: readOnly! ? null : onValueSelected,
           )
         ],
       ),

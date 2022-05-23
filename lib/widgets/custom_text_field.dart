@@ -13,7 +13,7 @@ class CustomTextField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final TextEditingController controller;
-  final bool? hideText, filled, editIcon;
+  final bool? hideText, filled, editIcon, readOnly;
   final int? lines;
   final double? marginTop, labelSize;
   final TextInputType? keyboardType;
@@ -36,6 +36,7 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType,
     this.contentPadding,
     this.inputFormatters,
+    this.readOnly,
   }) : super(key: key);
 
   @override
@@ -58,6 +59,7 @@ class CustomTextField extends StatelessWidget {
               )
               : const SizedBox(),
           TextFormField(
+            readOnly: readOnly ?? false,
             keyboardType: keyboardType,
             inputFormatters: inputFormatters,
             maxLines: lines ?? 1,
