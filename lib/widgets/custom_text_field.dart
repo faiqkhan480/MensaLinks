@@ -162,7 +162,7 @@ class TextDropdownField extends StatelessWidget {
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   // filled: true,
-                  contentPadding: EdgeInsets.only(right: 10),
+                  contentPadding: EdgeInsets.only(right: 10, bottom: 10),
                   // labelText: widget.title,
                 ),
                 icon: RotatedBox(

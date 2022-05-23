@@ -107,13 +107,21 @@ class PersonalDetails extends StatelessWidget {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0, top: 20),
+            child: TitleText(
+              text: "dob",
+              color: AppColors.primaryColor.withOpacity(0.5),
+              weight: FontWeight.bold,
+              size: Constants.heading18,
+            ),
+          ),
           Obx(
                 () => Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: CustomDropdown(
-                    label: 'dob'.tr,
                     hint: 'day'.tr,
                     values: List.generate(31, (index) {return (index + 1).toString();},
                     ),
@@ -127,7 +135,6 @@ class PersonalDetails extends StatelessWidget {
                 WidgetUtils.spaceHzt5,
                 Expanded(
                   child: CustomDropdown(
-                    label: '',
                     hint: 'month'.tr,
                     values: controller.months,
                     onValueSelected: (String? item) {
@@ -140,7 +147,6 @@ class PersonalDetails extends StatelessWidget {
                 WidgetUtils.spaceHzt5,
                 Expanded(
                   child: CustomDropdown(
-                    label: '',
                     hint: 'year'.tr,
                     values: List.generate(30, (index) {return (1990 + index).toString();},),
                     onValueSelected: (String? item) {

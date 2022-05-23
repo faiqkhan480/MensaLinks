@@ -27,6 +27,7 @@ class Constants {
   static List<int> payRollTableCellValues = [1, 2, 2, 2, 3, 3];
   static List<String> tabs = ["WPS", "NonWps"];
 
+  static List<String> members = ["Abc", "Edf", "Cge"];
   static List<String> months = [
     'Jan',
     'Feb',

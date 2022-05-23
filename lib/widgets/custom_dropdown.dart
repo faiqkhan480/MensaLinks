@@ -15,18 +15,21 @@ class CustomDropdown extends StatelessWidget {
   final Function(String?) onValueSelected;
   final String? label;
   final String? hint, selectedValue;
-  final double? width;
+  final double? width, fontSize;
+  final EdgeInsets? contentPadding;
   final bool? filled, invert;
 
   const CustomDropdown({
     Key? key,
     this.label,
+    this.fontSize,
     required this.onValueSelected,
     this.width,
     required this.values,
     this.selectedValue,
     this.hint,
     this.filled,
+    this.contentPadding,
     this.invert = false,
   }) : super(key: key);
 
@@ -52,11 +55,18 @@ class CustomDropdown extends StatelessWidget {
               items: values.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value),
+                  child: TitleText(
+                    text: value,
+                    size: fontSize,
+                    weight: FontWeight.w700,
+                    color: invert == true ? AppColors.white : AppColors.primaryColor,
+                  ),
                 );
               }).toList(),
+              dropdownColor: invert == true ? AppColors.ultraDarkGrey : AppColors.white,
               hint: TitleText(
                 text: hint ?? '',
+                size: fontSize,
                 weight: FontWeight.w700,
                 color: filled != null && filled! ?
                 AppColors.primaryColor :
@@ -77,7 +87,7 @@ class CustomDropdown extends StatelessWidget {
                 errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(Constants.textFieldRadius)),
                     borderSide: const BorderSide(color: Colors.red, width: 1.0)),
-                contentPadding: const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+                contentPadding: contentPadding ?? EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0, top: 10.0),
                 // labelText: widget.title,
               ),
               icon: RotatedBox(

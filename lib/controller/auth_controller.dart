@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:easy_card_scanner/credit_card_scanner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AuthController extends GetxController {
   Rxn<String> expiryDate = Rxn<String>();

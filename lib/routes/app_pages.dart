@@ -36,7 +36,7 @@ class AppPages {
     GetPage(
         name: AppRoutes.SPLASH,
         binding: SplashBinding(),
-        page: () => Splash()
+        page: () =>  Splash()
     ),
     GetPage(
         name: AppRoutes.REGISTER,

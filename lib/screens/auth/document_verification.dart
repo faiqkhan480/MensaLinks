@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mensa_links/utils/assets.dart';
 
 import '../../controller/home_controller.dart';
@@ -12,10 +15,17 @@ import '../../widgets/loading.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/text_widgets.dart';
 
-class DocumentVerification extends StatelessWidget {
+class DocumentVerification extends StatefulWidget {
   const DocumentVerification({Key? key}) : super(key: key);
 
+  @override
+  State<DocumentVerification> createState() => _DocumentVerificationState();
+}
+
+class _DocumentVerificationState extends State<DocumentVerification> {
   get args => Get.arguments;
+  final ImagePicker _picker = ImagePicker();
+  File? _image;
 
   void handleDone() {
     if(args['type'] == "for_worker") {
@@ -35,6 +45,16 @@ class DocumentVerification extends StatelessWidget {
       );
     } else {
       Get.toNamed(AppRoutes.MEMBERSDETAILS, arguments: args['type']);
+    }
+  }
+
+  Future uploadImage() async {
+    var image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if(image != null){
+      setState(() {
+        _image = image as File;
+      });
     }
   }
 
@@ -72,7 +92,7 @@ class DocumentVerification extends StatelessWidget {
               padding: UIStyleProperties.insetsVrt20Hzt10,
               radius: 10,
               alignment: Alignment.center,
-              onTap: () {},
+              onTap: uploadImage,
             ),
 
             if(!isFromHome)...[
@@ -82,7 +102,7 @@ class DocumentVerification extends StatelessWidget {
                 trailing: Assets.upArrow,
                 padding: UIStyleProperties.insetsVrt20Hzt10,
                 radius: 10,
-                onTap: () {},
+                onTap: uploadImage,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 40, bottom: 10, left: 20, right: 20),

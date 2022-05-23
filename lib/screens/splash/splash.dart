@@ -1,164 +1,175 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mensa_links/utils/screen_properties.dart';
 import 'package:mensa_links/utils/widget_util.dart';
 
 import '../../controller/splash_controller.dart';
+import '../../routes/app_routes.dart';
 import '../../utils/assets.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/text_widgets.dart';
 
-class Splash extends GetView<SplashController> {
-  const Splash({Key? key}) : super(key: key);
+class Splash extends StatefulWidget {
+   Splash({Key? key}) : super(key: key);
+
+  @override
+  State<Splash> createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
+  bool loading = true, onSignUp = false;
+  bool isInitialized = true;
+  late AnimationController  _animationController;
+  late Animation<Alignment>  _leftAlignAnimation, _rightAlignAnimation;
+
+  void onSignUpPressed() {
+    setState(() => onSignUp = true);
+  }
+
+  void handleNavigation(String type) {
+    final _box = GetStorage();
+    _box.write("loginType", type);
+    Get.toNamed(AppRoutes.REGISTER);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _animationController = AnimationController(vsync: this,duration: const Duration(milliseconds: 1500));
+    _leftAlignAnimation = AlignmentTween(begin:  const Alignment(-1,1),end:   const Alignment(-.25,0)).animate(_animationController);
+    _rightAlignAnimation = AlignmentTween(begin:  const Alignment(1,1),end: const Alignment(.25,0)).animate(_animationController);
+    //animation should be for x = -1 to .25, y = 1-0
+    Future.delayed(
+      const Duration(milliseconds: 1000), () {
+        setState(() => isInitialized = false);
+        _animationController.forward();
+        Future.delayed(
+          const Duration(milliseconds: 1800,), () {
+            setState(() => loading = false);},
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     Duration _animationDuration = const Duration(milliseconds: 1000);
     return Scaffold(
+      backgroundColor: AppColors.primaryColor,
       body: Stack(
+        alignment: AlignmentDirectional.center,
         children: [
+
+          Container(height: Get.height,),
+
+          if(loading)
+            gearLeftImg(_animationDuration),
+          // if(controller.loading.value)
+          if(loading)
+            gearRightImg(_animationDuration),
+
+          if(!loading)
           SizedBox(
             width: Get.width,
-            height: Get.height,
-            child: ColoredBox(
-              color: AppColors.primaryColor,
-              child: Container(),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.backgroundColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(
-                    Constants.radius,
-                  ),
-                  topRight: Radius.circular(
-                    Constants.radius,
-                  ),
-                ),
-              ),
-              width: Get.width,
-              height: Get.height * Constants.bottomSize,
-              child: Obx(
-                () => getBottomWidget(),
+            child: Center(
+              child: SvgPicture.asset(
+                Assets.linksLogo,
               ),
             ),
-          ),
-          Obx(
-            () => controller.loading.value
-                ? AnimatedPositioned(
-                    left: controller.isInitialized.value ? 0 : Get.width * .25,
-                    bottom: controller.isInitialized.value
-                        ? Get.height * 0.5
-                        : Get.height * 0.65,
-                    width: Get.width * .35,
-                    height: Get.width * .35,
-                    child: SvgPicture.asset(Assets.leftGear, fit: BoxFit.fill),
-                    // child: Container(
-                    //   width: 40,
-                    //   height: 40,
-                    //   decoration: const BoxDecoration(
-                    //     shape: BoxShape.circle,
-                    //     color: Colors.white,
-                    //   ),
-                    // ),
-                    duration: _animationDuration,
-                  )
-                : const SizedBox(),
-          ),
-          Obx(
-            () => controller.loading.value
-                ? AnimatedPositioned(
-                    right: controller.isInitialized.value ? 0 : Get.width * .24,
-                    bottom: controller.isInitialized.value
-                        ? Get.height * 0.5
-                        : Get.height * 0.65,
-                    width: Get.width * .35,
-                    height: Get.width * .35,
-                    child: Image.asset(Assets.rightGear),
-                    // child: Container(
-                    //   width: 40,
-                    //   height: 40,
-                    //   decoration: BoxDecoration(
-                    //       color: Colors.white.withOpacity(0.3),
-                    //       shape: BoxShape.circle),
-                    // ),
-                    duration: _animationDuration,
-                  )
-                : const SizedBox(),
-          ),
-          Obx(
-            () => !controller.loading.value
-                ? SizedBox(
-                    width: Get.width,
-                    height: Get.height * 0.7,
-                    child: Center(
-                      // child: SvgPicture.asset(Assets.rightGear),
-                      child: SvgPicture.asset(
-                        Assets.linksLogo,
-                      ),
-                    ),
-                  )
-                : const SizedBox(),
-          ),
+          )
         ],
+      ),
+      bottomNavigationBar: getBottomWidget(),
+    );
+
+  }
+
+  Widget gearLeftImg(Duration duration) {
+    //animation should be for x = -1 to .25, y = 1-0
+    return AlignTransition(
+        alignment: _leftAlignAnimation,
+
+        child: SvgPicture.asset(Assets.leftGear, fit: BoxFit.fill,height: Get.width * .35, width: Get.width * .35,));
+  }
+
+  Widget gearRightImg(Duration duration) {
+    //animation should be for x = 1 to .25 y = 1-0
+    return  AlignTransition(
+      alignment: _rightAlignAnimation,
+      child: Image.asset(Assets.rightGear,height: Get.width * .35,
+          width: Get.width * .35
       ),
     );
   }
 
   Widget getBottomWidget() {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 1000),
-      child: controller.onSignUp.value
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TitleText(
-                  text: 'signUpAs'.tr,
-                  weight: FontWeight.bold,
-                  color: AppColors.primaryColor,
-                  size: Constants.subHeading,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                CustomButton(
-                  label: 'houseHead'.tr,
-                  onTap: () => controller.handleNavigation("houseHead"),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                CustomButton(
-                  label: 'business'.tr,
-                  onTap: () => controller.handleNavigation("business"),
-                ),
-              ],
-            )
-          : Padding(
-            padding: UIStyleProperties.topInsets40,
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  TitleText(
-                    text: 'welcome'.tr,
-                    weight: FontWeight.bold,
-                    color: AppColors.primaryColor,
-                    size: Constants.heading,
-                  ),
-                  WidgetUtils.spaceVrt40,
-                  CustomButton(
-                    label: 'signUpButton'.tr,
-                    onTap: controller.onSignUpPressed,
-                  ),
-                ],
-              ),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(
+            Constants.radius,
           ),
+          topRight: Radius.circular(
+            Constants.radius,
+          ),
+        ),
+      ),
+      width: Get.width,
+      height: Get.height * Constants.bottomSize,
+      padding: const EdgeInsets.only(top: 0),
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 1000),
+        child: onSignUp ?
+        Column(
+          key: const ValueKey("typeSelection"),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TitleText(
+              text: 'signUpAs'.tr,
+              weight: FontWeight.bold,
+              color: AppColors.primaryColor,
+              size: Constants.subHeading,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            CustomButton(
+              label: 'houseHead'.tr,
+              onTap: () => handleNavigation("houseHead"),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            CustomButton(
+              label: 'business'.tr,
+              onTap: () => handleNavigation("business"),
+            ),
+          ],
+        ) :
+        Column(
+          key: const ValueKey("welcome"),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TitleText(
+              text: 'welcome'.tr,
+              weight: FontWeight.bold,
+              color: AppColors.primaryColor,
+              size: Constants.heading,
+            ),
+            WidgetUtils.spaceVrt40,
+            CustomButton(
+              label: 'signUpButton'.tr,
+              onTap: onSignUpPressed,
+            ),
+          ],
+        )
+      ),
     );
   }
 }

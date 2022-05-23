@@ -10,7 +10,13 @@ import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 
 void main() async {
-  await GetStorage.init();
+  try {
+    await GetStorage.init();
+    print("RUN SUCCESS");
+  } on Exception catch (e) {
+    // TODO
+    print("ERR::: $e");
+  }
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent, // transparent status bar));
   runApp(const MensaLinks());
 }
