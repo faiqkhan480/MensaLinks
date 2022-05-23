@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mensa_links/routes/app_routes.dart';
 
 import '../widgets/done_screen.dart';
 
 class HomeController extends GetxController {
   final GetStorage _box = GetStorage();
+  final ImagePicker _picker = ImagePicker();
+  File? _image;
 
   RxBool businessLogin = false.obs;
   RxBool familyFormSubmitted = false.obs;
@@ -48,7 +53,7 @@ class HomeController extends GetxController {
   void handleProcessSalary(bool val) => salaryProcessed.value = val;
 
   void handleConfirm() {
-    isSave.value = true;
+    // isSave.value = true;
     Get.toNamed(AppRoutes.PIN, arguments: "salary");
   }
 
@@ -69,5 +74,15 @@ class HomeController extends GetxController {
 
   void handleLogout() {
     Get.offNamedUntil(AppRoutes.SPLASH, (route) => false);
+  }
+
+  Future uploadImage() async {
+    var image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if(image != null){
+      // setState(() {
+        _image = image as File;
+      // });
+    }
   }
 }

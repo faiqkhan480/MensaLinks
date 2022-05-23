@@ -55,7 +55,7 @@ class ProcessStaffSalary extends StatelessWidget {
             bordered: true,
             radius: Constants.textFieldRadius,
             minHeight: 0.06,
-            onTap: () {},
+            onTap: _controller.uploadImage,
           ),
           WidgetUtils.spaceVrt5,
           TitleText(

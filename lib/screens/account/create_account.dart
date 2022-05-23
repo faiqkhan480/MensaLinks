@@ -131,10 +131,8 @@ class CreateAccount extends StatelessWidget {
                 Expanded(
                   child: CustomDropdown(
                     hint: "day",
-                    values: Constants.months,
+                    values: List.generate(31, (index) =>  (index + 1).toString(),),
                     onValueSelected: (String? item) {
-                      // log('Selected Date: $item');
-                      // controller.birthDate.value = item;
                     },
                     // selectedValue: controller.birthDate.value,
                   ),
@@ -143,11 +141,7 @@ class CreateAccount extends StatelessWidget {
                 Expanded(
                   child: CustomDropdown(
                     hint: "month",
-                    values: List.generate(
-                      31, (index) {
-                        return (index + 1).toString();
-                      },
-                    ),
+                    values: Constants.months,
                     onValueSelected: (String? item) {},
                   ),
                 ),

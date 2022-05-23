@@ -27,6 +27,7 @@ class ProcessSalary extends StatelessWidget {
       _controller.setValues();
       // _controller.handleProcessSalary(false);
     } else {
+      _controller.setValues();
       Get.back();
     }
   }
@@ -168,7 +169,11 @@ class ProcessSalary extends StatelessWidget {
             label: _controller.salaryProcessed() ? 'Confirm' : 'Process Salary',
             alignment: Alignment.center,
             // verticalMargin: 15,
-            onTap: () => _controller.salaryProcessed() ? (forStaff ? _controller.handleConfirmStaffSalary() : _controller.handleConfirm()) : _controller.handleProcessSalary(true),
+            onTap: () => _controller.salaryProcessed() ? (
+                forStaff && _controller.isSave() ?
+                _controller.handleConfirmStaffSalary() :
+                _controller.handleConfirm()) :
+            _controller.handleProcessSalary(true),
           ),
         ],
       ),

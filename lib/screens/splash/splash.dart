@@ -21,8 +21,7 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
-  bool loading = true, onSignUp = false;
-  bool isInitialized = true;
+  bool loading = true, onSignUp = false, isInitialized = true, hasStarted = false;
   late AnimationController  _animationController;
   late Animation<Alignment>  _leftAlignAnimation, _rightAlignAnimation;
 
@@ -36,6 +35,22 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
     Get.toNamed(AppRoutes.REGISTER);
   }
 
+  Future initialize() async {
+    Future.delayed(
+      const Duration(milliseconds: 1000), () {
+      setState(() {
+        hasStarted = true;
+        isInitialized = false;
+      });
+      _animationController.forward();
+      Future.delayed(
+        const Duration(milliseconds: 1800,), () {
+        setState(() => loading = false);},
+      );
+    },
+    );
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -44,16 +59,7 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
     _leftAlignAnimation = AlignmentTween(begin:  const Alignment(-1,1),end:   const Alignment(-.25,0)).animate(_animationController);
     _rightAlignAnimation = AlignmentTween(begin:  const Alignment(1,1),end: const Alignment(.25,0)).animate(_animationController);
     //animation should be for x = -1 to .25, y = 1-0
-    Future.delayed(
-      const Duration(milliseconds: 1000), () {
-        setState(() => isInitialized = false);
-        _animationController.forward();
-        Future.delayed(
-          const Duration(milliseconds: 1800,), () {
-            setState(() => loading = false);},
-        );
-      },
-    );
+    initialize();
   }
 
   @override
@@ -67,10 +73,10 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
 
           Container(height: Get.height,),
 
-          if(loading)
+          if(loading && hasStarted)
             gearLeftImg(_animationDuration),
           // if(controller.loading.value)
-          if(loading)
+          if(loading && hasStarted)
             gearRightImg(_animationDuration),
 
           if(!loading)

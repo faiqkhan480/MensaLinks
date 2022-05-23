@@ -34,12 +34,12 @@ class PinController extends GetxController {
         // reEnterPin.value = true;
         break;
       default:
-        Get.to(() =>
+        Get.off(() =>
             Loading(
               msgBefore: "Pin Set Successfully!\nProceed To Sign In",
               waveLoading: false,
               onComplete: () => null,
-              onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
+              onDone: () => Get.offAndToNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
             ),
         );
         break;
@@ -48,12 +48,12 @@ class PinController extends GetxController {
 
   void handleSubmitPin() {
     if(reEnterPin()){
-      Get.to(() =>
+      Get.off(() =>
           Loading(
             msgBefore: "Pin Set Successfully!\nProceed To Sign In",
             waveLoading: false,
             onComplete: () => null,
-            onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
+            onDone: () => Get.offAndToNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
           ),
       );
     }
