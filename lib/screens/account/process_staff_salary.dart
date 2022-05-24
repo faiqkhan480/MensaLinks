@@ -70,7 +70,7 @@ class ProcessStaffSalary extends StatelessWidget {
 
           CustomDropdown(
             hint: "Select Staff",
-            values: List.generate(5, (index) => (index + 1).toString(),),
+            values: List.generate(Constants.members.length, (index) => Constants.members.elementAt(index),),
             onValueSelected: (String? item) {},
             invert: true,
           ),
@@ -82,12 +82,7 @@ class ProcessStaffSalary extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   hint: "Salary Month",
-                  values: List.generate(
-                    31,
-                        (index) {
-                      return (index + 1).toString();
-                    },
-                  ),
+                  values: Constants.months,
                   onValueSelected: (String? item) {},
                 ),
               ),
@@ -95,12 +90,7 @@ class ProcessStaffSalary extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   hint: "year",
-                  values: List.generate(
-                    30,
-                        (index) {
-                      return (1990 + index).toString();
-                    },
-                  ),
+                  values: Constants.listOfYears,
                   onValueSelected: (String? item) {},
                   // selectedValue: controller.birthYear.value,
                 ),

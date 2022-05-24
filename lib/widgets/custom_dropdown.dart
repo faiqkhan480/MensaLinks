@@ -105,7 +105,8 @@ class CustomDropdown extends StatelessWidget {
 class DropdownMenuField extends StatelessWidget {
   final List<String> values;
   final String value;
-  const DropdownMenuField({Key? key, required this.values, required this.value}) : super(key: key);
+  final Function(String?)? onValueSelected;
+  const DropdownMenuField({Key? key, required this.values, required this.value, this.onValueSelected}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -132,14 +133,18 @@ class DropdownMenuField extends StatelessWidget {
           const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0, width: 1),
           PopupMenuButton(
             padding: EdgeInsets.zero,
-              onSelected: (item) {},
+              onSelected: (item) {
+                if(onValueSelected != null)
+                 onValueSelected!(item.toString());
+              },
               icon: RotatedBox(
                   quarterTurns: 2,
                   child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-                  itemBuilder: (BuildContext context) => List<PopupMenuEntry>.generate(values.length,
+            itemBuilder: (BuildContext context) => List<PopupMenuEntry>.generate(values.length,
                   (index) =>  PopupMenuItem(value: values.elementAt(index),
                     child: Text(values.elementAt(index)),
-                  ),),
+                  ),
+            ),
           )
         ],
       ),

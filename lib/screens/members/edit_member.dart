@@ -91,7 +91,7 @@ class EditMember extends StatelessWidget {
                   ),
                 ),
                 WidgetUtils.spaceHzt10,
-                Expanded(child: DropdownMenuField(values: Constants.months, value: 'Emirates ID',)),
+                Expanded(child: DropdownMenuField(values: ['Emirates ID', "National ID"], value: controller.emiratesId.value, onValueSelected: controller.handleEmiratesID,)),
               ],
             ),
             // ID EXPIRY DATE SELECTION
@@ -118,12 +118,7 @@ class EditMember extends StatelessWidget {
                   child: CustomDropdown(
                     hint: 'month',
                     filled: true,
-                    values: List.generate(
-                      31,
-                          (index) {
-                        return (index + 1).toString();
-                      },
-                    ),
+                    values: Constants.months,
                     onValueSelected: (String? item) {},
                   ),
                 ),
@@ -132,12 +127,7 @@ class EditMember extends StatelessWidget {
                   child: CustomDropdown(
                     hint: 'year',
                     filled: true,
-                    values: List.generate(
-                      30,
-                          (index) {
-                        return (1990 + index).toString();
-                      },
-                    ),
+                    values: Constants.expiryYears,
                     onValueSelected: (String? item) {
                       // log('Selected Year: $item');
                       // controller.birthYear.value = item;
@@ -172,12 +162,7 @@ class EditMember extends StatelessWidget {
                   child: CustomDropdown(
                     hint: 'month',
                     filled: true,
-                    values: List.generate(
-                      31,
-                          (index) {
-                        return (index + 1).toString();
-                      },
-                    ),
+                    values: Constants.months,
                     onValueSelected: (String? item) {},
                   ),
                 ),
@@ -186,12 +171,7 @@ class EditMember extends StatelessWidget {
                   child: CustomDropdown(
                     hint: 'year',
                     filled: true,
-                    values: List.generate(
-                      30,
-                          (index) {
-                        return (1990 + index).toString();
-                      },
-                    ),
+                    values: Constants.listOfYears,
                     onValueSelected: (String? item) {},
                     // selectedValue: controller.birthYear.value,
                   ),

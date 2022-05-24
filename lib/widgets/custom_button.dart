@@ -85,11 +85,9 @@ class CustomButton extends StatelessWidget {
             ),
 
             if(trailing != null)
-              // Image.asset(trailing!, scale: 2.0),
               RotatedBox(
                   quarterTurns: quarterTurns ?? 0,
                   child: SvgPicture.asset(trailing!, height: 15, color: invert ? AppColors.primaryColor : AppColors.white)),
-              // SvgPicture.asset(trailing!, color: Colors.white, height: 20,),
           ],
         ),
       ),

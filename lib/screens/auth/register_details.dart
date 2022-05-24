@@ -43,6 +43,7 @@ class RegisterDetails extends StatelessWidget {
           CustomTextField(
             readOnly: _controller.isReadOnly(),
             label: 'fullName'.tr,
+            filled: _controller.isReadOnly(),
             labelColor: AppColors.slightlyGrey,
             labelVerticalPadding: UIStyleProperties.insetsVrt8,
             labelSize: Constants.heading18,
@@ -50,6 +51,7 @@ class RegisterDetails extends StatelessWidget {
           ),
           CustomTextField(
             readOnly: _controller.isReadOnly(),
+            filled: _controller.isReadOnly(),
             label: 'iDNumber'.tr,
             labelColor: AppColors.slightlyGrey,
             labelVerticalPadding: UIStyleProperties.insetsVrt8,
@@ -65,6 +67,7 @@ class RegisterDetails extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
                   label: 'iDExpiry'.tr,
                   hint: 'day'.tr,
                   values: List.generate(31, (index) {return (index + 1).toString();},),
@@ -79,6 +82,7 @@ class RegisterDetails extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
                   label: '',
                   hint: 'month'.tr,
                   values: _controller.months,
@@ -93,9 +97,10 @@ class RegisterDetails extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
                   label: '',
                   hint: 'year'.tr,
-                  values: List.generate(35, (index) {return (1990 + index).toString();},),
+                  values: Constants.expiryYears,
                   onValueSelected: (String? item) {
                     // log('Selected Year: $item');
                     _controller.expiryYear.value = item!;
@@ -120,6 +125,7 @@ class RegisterDetails extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
                   hint: 'day'.tr,
                   values: List.generate(31, (index) {return (index + 1).toString();},
                   ),
@@ -134,25 +140,27 @@ class RegisterDetails extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
                   hint: 'month'.tr,
                   values: _controller.months,
                   onValueSelected: (String? item) {
                     log('Selected Month: $item');
                     _controller.expiryMonth.value = item!;
                   },
-                  selectedValue: _controller.expiryMonth.value,
+                  selectedValue: _controller.birthMonth.value,
                 ),
               ),
               WidgetUtils.spaceHzt5,
               Expanded(
                 child: CustomDropdown(
                   readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
                   hint: 'year'.tr,
-                  values: List.generate(35, (index) {return (1990 + index).toString();},),
+                  values: Constants.listOfYears,
                   onValueSelected: (String? item) {
                     _controller.expiryYear.value = item!;
                   },
-                  selectedValue: _controller.expiryYear.value,
+                  selectedValue: _controller.birthYear.value,
                 ),
               ),
             ],

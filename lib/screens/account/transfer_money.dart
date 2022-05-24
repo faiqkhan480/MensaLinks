@@ -52,7 +52,7 @@ class TransferMoney extends StatelessWidget {
             hint: "Purpose",
             invert: true,
             fontSize: Constants.heading18,
-            values: List.generate(Constants.members.length, (index) => Constants.members.elementAt(index),),
+            values: List.generate(Constants.purposes.length, (index) => Constants.purposes.elementAt(index),),
             onValueSelected: (String? item) {},
             contentPadding: UIStyleProperties.insetsVrt20Hzt10,
             // selectedValue: controller.birthYear.value,

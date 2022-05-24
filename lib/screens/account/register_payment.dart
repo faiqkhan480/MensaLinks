@@ -48,7 +48,12 @@ class RegisterPayment extends StatelessWidget {
                 child: CustomDropdown(
                   hint: 'day',
                   width: Get.width * 0.25,
-                  values: Constants.months,
+                  values: List.generate(
+                    31,
+                        (index) {
+                      return (index + 1).toString();
+                    },
+                  ),
                   onValueSelected: (String? item) {
                     // log('Selected Date: $item');
                     // controller.birthDate.value = item;
@@ -61,12 +66,7 @@ class RegisterPayment extends StatelessWidget {
                 child: CustomDropdown(
                   hint: 'month',
                   width: Get.width * 0.25,
-                  values: List.generate(
-                    31,
-                        (index) {
-                      return (index + 1).toString();
-                    },
-                  ),
+                  values: Constants.months,
                   onValueSelected: (String? item) {},
                 ),
               ),
@@ -75,12 +75,7 @@ class RegisterPayment extends StatelessWidget {
                 child: CustomDropdown(
                   hint: 'year',
                   width: Get.width * 0.25,
-                  values: List.generate(
-                    30,
-                        (index) {
-                      return (1990 + index).toString();
-                    },
-                  ),
+                  values: Constants.listOfYears,
                   onValueSelected: (String? item) {
                     // log('Selected Year: $item');
                     // controller.birthYear.value = item;
@@ -99,7 +94,7 @@ class RegisterPayment extends StatelessWidget {
             trailing: Assets.upArrow,
             minHeight: 0.06,
             radius: 10,
-            onTap: () {},
+            onTap: _controller.uploadImage,
           ),
 
           WidgetUtils.spaceVrt25,

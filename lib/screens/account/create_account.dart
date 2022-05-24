@@ -77,7 +77,7 @@ class CreateAccount extends StatelessWidget {
                       controller: TextEditingController(),
                 )),
                 WidgetUtils.spaceHzt10,
-                Expanded(flex: 4, child: DropdownMenuField(values: Constants.months, value: "Emirates ID",)),
+                Expanded(flex: 4, child: DropdownMenuField(values: ['Emirates ID', "National ID"], value: controller.emiratesId.value, onValueSelected: controller.handleEmiratesID)),
               ],
             ),
 
@@ -89,14 +89,6 @@ class CreateAccount extends StatelessWidget {
                 Expanded(
                   child: CustomDropdown(
                     hint: "day",
-                    values: Constants.months,
-                    onValueSelected: (String? item) {},
-                  ),
-                ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    hint: "month",
                     values: List.generate(
                       31,
                           (index) {
@@ -109,13 +101,16 @@ class CreateAccount extends StatelessWidget {
                 WidgetUtils.spaceHzt5,
                 Expanded(
                   child: CustomDropdown(
+                    hint: "month",
+                    values: Constants.months,
+                    onValueSelected: (String? item) {},
+                  ),
+                ),
+                WidgetUtils.spaceHzt5,
+                Expanded(
+                  child: CustomDropdown(
                     hint: "year",
-                    values: List.generate(
-                      30,
-                          (index) {
-                        return (1990 + index).toString();
-                      },
-                    ),
+                    values: Constants.expiryYears,
                     onValueSelected: (String? item) {},
                     // selectedValue: controller.birthYear.value,
                   ),
@@ -149,11 +144,7 @@ class CreateAccount extends StatelessWidget {
                 Expanded(
                   child: CustomDropdown(
                     hint: "year",
-                    values: List.generate(
-                      30, (index) {
-                        return (1990 + index).toString();
-                      },
-                    ),
+                    values: Constants.listOfYears,
                     onValueSelected: (String? item) {},
                     // selectedValue: controller.birthYear.value,
                   ),

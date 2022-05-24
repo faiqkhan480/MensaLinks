@@ -56,8 +56,8 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
     // TODO: implement initState
     super.initState();
     _animationController = AnimationController(vsync: this,duration: const Duration(milliseconds: 1500));
-    _leftAlignAnimation = AlignmentTween(begin:  const Alignment(-1,1),end:   const Alignment(-.25,0)).animate(_animationController);
-    _rightAlignAnimation = AlignmentTween(begin:  const Alignment(1,1),end: const Alignment(.25,0)).animate(_animationController);
+    _leftAlignAnimation = AlignmentTween(begin:  const Alignment(-1,1),end:   const Alignment(-.38,0)).animate(_animationController);
+    _rightAlignAnimation = AlignmentTween(begin:  const Alignment(1,1),end: const Alignment(.38,0)).animate(_animationController);
     //animation should be for x = -1 to .25, y = 1-0
     initialize();
   }
@@ -99,7 +99,7 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
     //animation should be for x = -1 to .25, y = 1-0
     return AlignTransition(
         alignment: _leftAlignAnimation,
-
+        // alignment: const Alignment(-0.28,0),
         child: SvgPicture.asset(Assets.leftGear, fit: BoxFit.fill,height: Get.width * .35, width: Get.width * .35,));
   }
 

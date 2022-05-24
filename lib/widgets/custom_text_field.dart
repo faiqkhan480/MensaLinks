@@ -151,7 +151,7 @@ class TextDropdownField extends StatelessWidget {
                 value: 'AED',
                 isDense: true,
                 // style: const TextStyle(fontWeight: FontWeight.w700),
-                items: ['AED', 'ARR'].map((String value) {
+                items: ['AED', 'USD'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w700, size: Constants.smallText),

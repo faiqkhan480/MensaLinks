@@ -80,7 +80,7 @@ class DependentCard extends StatelessWidget {
               hint: "Reasons",
               invert: true,
               fontSize: Constants.heading18,
-              values: List.generate(Constants.members.length, (index) => Constants.members.elementAt(index),),
+              values: ["Transfer someone else", "Mistakenly transfer"],
               onValueSelected: (String? item) {},
               // contentPadding: UIStyleProperties.insetsVrt20Hzt10,
               // selectedValue: controller.birthYear.value,

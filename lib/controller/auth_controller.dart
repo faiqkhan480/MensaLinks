@@ -48,10 +48,10 @@ class AuthController extends GetxController {
     idNumber.text = "784-xxxx-xxxxxx-x";
     expiryDate.value = "26";
     expiryMonth.value = "Jun";
-    expiryYear.value = "2023";
+    expiryYear.value = "2022";
     birthDate.value = "20";
     birthMonth.value = "Mar";
-    birthYear.value = "2001";
+    birthYear.value = "2008";
   }
 
   void handleEditForm(bool val) {

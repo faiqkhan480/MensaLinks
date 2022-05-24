@@ -28,6 +28,7 @@ dependencies:
   qr_code_scanner: ^0.7.0 #Used to scan QR Code (Temporarliy used for Design)
   mask_text_input_formatter: ^2.3.0 #Use for formatting Inputs
   image_picker: ^0.8.5+3
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

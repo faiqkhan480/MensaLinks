@@ -12,6 +12,7 @@ class HomeController extends GetxController {
   final ImagePicker _picker = ImagePicker();
   File? _image;
 
+  RxString emiratesId = "Emirates ID".obs;
   RxBool businessLogin = false.obs;
   RxBool familyFormSubmitted = false.obs;
   RxBool salaryProcessed = false.obs;
@@ -84,5 +85,9 @@ class HomeController extends GetxController {
         _image = image as File;
       // });
     }
+  }
+
+  void handleEmiratesID(String? val) {
+    emiratesId.value = val!;
   }
 }

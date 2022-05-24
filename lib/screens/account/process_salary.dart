@@ -93,12 +93,7 @@ class ProcessSalary extends StatelessWidget {
                 child: CustomDropdown(
                   hint: 'month',
                   width: Get.width * 0.25,
-                  values: List.generate(
-                    31,
-                        (index) {
-                      return (index + 1).toString();
-                    },
-                  ),
+                  values: Constants.months,
                   onValueSelected: (String? item) {},
                 ),
               ),
@@ -107,12 +102,7 @@ class ProcessSalary extends StatelessWidget {
                 child: CustomDropdown(
                   hint: 'year',
                   width: Get.width * 0.25,
-                  values: List.generate(
-                    30,
-                        (index) {
-                      return (1990 + index).toString();
-                    },
-                  ),
+                  values: Constants.listOfYears,
                   onValueSelected: (String? item) {
                     // log('Selected Year: $item');
                     // controller.birthYear.value = item;
