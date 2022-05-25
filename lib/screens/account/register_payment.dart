@@ -75,7 +75,7 @@ class RegisterPayment extends StatelessWidget {
                 child: CustomDropdown(
                   hint: 'year',
                   width: Get.width * 0.25,
-                  values: Constants.listOfYears,
+                  values: Constants.paymentYears,
                   onValueSelected: (String? item) {
                     // log('Selected Year: $item');
                     // controller.birthYear.value = item;

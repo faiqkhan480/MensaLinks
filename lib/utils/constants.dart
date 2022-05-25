@@ -30,6 +30,12 @@ class Constants {
 
   static List<String> members = ["Samuel", "John"];
   static List<String> purposes = ["Support", "Donation", "Education", "Other"];
+  static List<String> reviewMembers = ["Rahul Raj", "Siddarth", "Qiangj", "Abdul"];
+  static List<String> membersList = ["Chiao Yu Wang", "Mr. Ashraf", "Ahmed", "John", "Akber", "Noman", "Raza", "Sami"];
+  static List<String> paymentYears = List.generate(
+      2, (index) => DateTime(DateTime.now().year - index).year.toString())
+      .reversed
+      .toList();
   static List<String> listOfYears = List.generate(
       30, (index) => DateTime(DateTime.now().year - index).year.toString())
       .reversed

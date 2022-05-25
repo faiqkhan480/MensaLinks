@@ -10,13 +10,7 @@ import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 
 void main() async {
-  try {
-    await GetStorage.init();
-    print("RUN SUCCESS");
-  } on Exception catch (e) {
-    // TODO
-    print("ERR::: $e");
-  }
+  await GetStorage.init();
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent, // transparent status bar));
   runApp(const MensaLinks());
 }
@@ -44,8 +38,8 @@ class MensaLinks extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       color: AppColors.primaryColor,
-      // initialRoute: AppRoutes.SPLASH,
       initialRoute: AppRoutes.SPLASH,
+      // initialRoute: AppRoutes.HOME,
       // scrollBehavior: ScrollBehavior(androidOverscrollIndicator: AndroidOverscrollIndicator.),
       getPages: AppPages.list,
     );

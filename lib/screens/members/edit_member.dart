@@ -40,7 +40,7 @@ class EditMember extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           CustomTextField(
-            hintText: controller.contactDetail() ? 'Mobile Number' : 'Contact Details',
+            hintText: controller.contactDetail() ? 'Mobile Number' : 'Nick Name',
             controller: TextEditingController(),
             filled: true,
             editIcon: true,

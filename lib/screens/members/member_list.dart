@@ -27,7 +27,7 @@ class MemberList extends StatelessWidget {
     return SimpleDefaultScreenLayout(
       pageTitle: args != 'pull' ? "Edit member" : 'Manage Dependent Accounts',
       child: body(),
-      bottomNavigation: bottomWidget(),
+      bottomNavigation: args == 'pull' ? bottomWidget() : null,
     );
   }
 
@@ -35,16 +35,16 @@ class MemberList extends StatelessWidget {
     return ListView.builder(
       padding: UIStyleProperties.topInsets20,
       physics: Constants.scrollPhysics,
-      itemCount: 10,
-      itemBuilder: (context, index) => memberTitle(),
+      itemCount: Constants.membersList.length,
+      itemBuilder: (context, index) => memberTitle(index),
     );
   }
 
-  Widget memberTitle() {
+  Widget memberTitle(int index) {
     return ListTile(
       onTap: () => Get.toNamed(args == "pull" ? AppRoutes.DEPENDENTCARD : AppRoutes.MEMBEREDIT, arguments: args),
       title: TitleText(
-        text: "Chiao Yu Wang",
+        text: Constants.membersList.elementAt(index),
         color: AppColors.primaryColor,
         weight: FontWeight.w700,
         size: Constants.regularText,

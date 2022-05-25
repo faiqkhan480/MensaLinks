@@ -75,7 +75,7 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
 
           if(loading && hasStarted)
             gearLeftImg(_animationDuration),
-          // if(controller.loading.value)
+
           if(loading && hasStarted)
             gearRightImg(_animationDuration),
 
@@ -98,13 +98,16 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
   Widget gearLeftImg(Duration duration) {
     //animation should be for x = -1 to .25, y = 1-0
     return AlignTransition(
-        alignment: _leftAlignAnimation,
+        alignment:
+        // const Alignment(-.25,0),
+        _leftAlignAnimation,
         // alignment: const Alignment(-0.28,0),
         child: SvgPicture.asset(Assets.leftGear, fit: BoxFit.fill,height: Get.width * .35, width: Get.width * .35,));
   }
 
   Widget gearRightImg(Duration duration) {
     //animation should be for x = 1 to .25 y = 1-0
+    // if
     return  AlignTransition(
       alignment: _rightAlignAnimation,
       child: Image.asset(Assets.rightGear,height: Get.width * .35,
