@@ -7,15 +7,11 @@ class UIStyleProperties {
   static final borderRadius15 = BorderRadius.circular(15);
   static final borderRadius10 = BorderRadius.circular(10);
   static final borderRadius30 = BorderRadius.circular(30);
-  static const borderRadiusHztRight60 =
-      BorderRadius.horizontal(right: Radius.circular(ScreenValues.boxRadius));
-  static const borderRadiusHztLeft60 =
-      BorderRadius.horizontal(left: Radius.circular(ScreenValues.boxRadius));
+  static const borderRadiusHztRight60 = BorderRadius.horizontal(right: Radius.circular(ScreenValues.boxRadius));
+  static const borderRadiusHztLeft60 = BorderRadius.horizontal(left: Radius.circular(ScreenValues.boxRadius));
   static final defaultBorder = Border.all(color: AppColors.primaryColor);
-  static final borderWithWidth2 =
-      Border.all(width: 2, color: AppColors.primaryColor);
-  static final thickBorder =
-      Border.all(width: 10, color: AppColors.slightlyGrey);
+  static final borderWithWidth2 = Border.all(width: 2, color: AppColors.primaryColor);
+  static final thickBorder = Border.all(width: 10, color: AppColors.slightlyGrey);
 
   //Margin or Padding
 

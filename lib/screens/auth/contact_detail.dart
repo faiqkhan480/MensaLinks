@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
 import 'package:mensa_links/routes/app_routes.dart';
 import 'package:mensa_links/screens/auth/account_created.dart';
@@ -16,9 +17,10 @@ import 'package:mensa_links/widgets/text_widgets.dart';
 import '../../utils/screen_properties.dart';
 
 class ContactDetails extends StatelessWidget {
-  const ContactDetails({Key? key}) : super(key: key);
+  ContactDetails({Key? key}) : super(key: key);
 
   AuthController get controller => Get.find<AuthController>();
+  final GetStorage _box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +82,23 @@ class ContactDetails extends StatelessWidget {
             verticalMargin: 10,
             label: 'next',
             onTap: () {
-              Get.toNamed(AppRoutes.DOCUMENTVERIFICATION);
+              bool businessLogin = _box.read("loginType") == "business";
+              if(!businessLogin) {
+                Get.off(() =>
+                    Loading(
+                      msgBefore: "",
+                      onComplete: () {
+                        Future.delayed(
+                          const Duration(seconds: 3),
+                              () => Get.toNamed(AppRoutes.ACCOUNTCREATED),
+                        );
+                      },
+                    ),
+                );
+              }
+              else {
+                Get.toNamed(AppRoutes.DOCUMENTVERIFICATION);
+              }
               // Get.to(
               //   () => Loading(
               //     onComplete: () {

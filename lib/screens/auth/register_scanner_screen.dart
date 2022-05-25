@@ -20,9 +20,11 @@ class RegisterScanner extends StatelessWidget {
   RegisterScanner({Key? key}) : super(key: key);
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
+  EmiratesIdScanController emiratesIdController = Get.put(EmiratesIdScanController());
+
   @override
   Widget build(BuildContext context) {
-    final emiratesIdController = Get.put(EmiratesIdScanController());
+    var args = Get.arguments;
     return SimpleDefaultScreenLayout(
       // showAppBar: false,
       showAppBarBackButton: true,
@@ -43,6 +45,7 @@ class RegisterScanner extends StatelessWidget {
           ),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               margin: const EdgeInsets.only(
@@ -72,6 +75,20 @@ class RegisterScanner extends StatelessWidget {
                 weight: FontWeight.bold,
               ),
             ),
+      Container(
+        margin: const EdgeInsets.only(
+          top: 20,
+          left: 10,
+          right: 10,
+        ),
+        child: TitleText(
+          text: args ?? " - Front Side",
+          size: Constants.subHeading,
+          // align: TextAlign.center,
+          color: AppColors.primaryColor,
+          weight: FontWeight.bold,
+        ),
+      ),
             const SizedBox(
               height: 50,
             ),
@@ -131,23 +148,24 @@ class RegisterScanner extends StatelessWidget {
                 ),
               ),
             ),
-            Obx(() =>
-                Spacer(flex: emiratesIdController.hasScanned.value ? 1 : 2)),
-            Obx(() {
-              if (!emiratesIdController.hasScanned.value) {
-                return const SizedBox();
-              }
-              return Flexible(
-                flex: 2,
-                child: CustomButton(
-                  onTap: () async {
-                    // await controller.onScanNow();
-                    Get.offAndToNamed(AppRoutes.REGISTERDETAIL);
-                  },
-                  label: 'continue'.tr,
-                ),
-              );
-            }),
+            // Obx(() =>
+            //     Spacer(flex: emiratesIdController.hasFrontScanned.value ? 1 : 2)),
+                const Spacer(),
+            // Obx(() {
+            //   if (!emiratesIdController.hasFrontScanned.value) {
+            //     return const SizedBox();
+            //   }
+              // return Flexible(
+              //   flex: 2,
+              //   child: CustomButton(
+              //     onTap: () async {
+              //       // await controller.onScanNow();
+              //       Get.offAndToNamed(AppRoutes.REGISTERDETAIL);
+              //     },
+              //     label: 'continue'.tr,
+              //   ),
+              // );
+            // }),
           ],
         ),
       ),

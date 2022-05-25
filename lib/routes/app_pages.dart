@@ -52,7 +52,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.CONTACTDETAIL,
-      page: () => const ContactDetails(),
+      page: () =>  ContactDetails(),
     ),
     GetPage(
         name: AppRoutes.DOCUMENTVERIFICATION,
