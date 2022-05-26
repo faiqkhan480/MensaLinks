@@ -30,7 +30,11 @@ class PinScreen extends StatelessWidget {
         Padding(
           padding: UIStyleProperties.insetsVrt20Hzt20,
           child: TitleText(
-            text: _controller.reEnterPin() ? "Re-Enter Your New PIN To Confirm" : "enter_your_new_pin",
+            text: _controller.reEnterPin() ?
+            "Re-Enter Your New PIN To Confirm" :
+            args != null ?
+            "Enter your PIN" :
+            "enter_your_new_pin",
             size: Constants.heading20,
             weight: FontWeight.w700,
             color: AppColors.primaryColor,

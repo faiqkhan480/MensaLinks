@@ -128,7 +128,7 @@ class TextDropdownField extends StatelessWidget {
             child: TextFormField(
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
+                contentPadding: const EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
                   isDense: true,
                   border: InputBorder.none,
                   errorBorder: InputBorder.none,
@@ -145,34 +145,42 @@ class TextDropdownField extends StatelessWidget {
             ),
           ),
           const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0),
-          Expanded(
-            flex: flexDropdown ?? 1,
-            child: DropdownButtonFormField(
-                value: 'AED',
-                isDense: true,
-                // style: const TextStyle(fontWeight: FontWeight.w700),
-                items: ['AED', 'USD'].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w700, size: Constants.smallText),
-                  );
-                }).toList(),
-                decoration: const InputDecoration(
-                  // fillColor: Colors.white,
-                  border: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  // filled: true,
-                  contentPadding: EdgeInsets.only(right: 10, bottom: 10),
-                  // labelText: widget.title,
-                ),
-                icon: RotatedBox(
-                    quarterTurns: 2,
-                    child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-                onChanged: (val) => null
+          const Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: TitleText(
+              text: "AED",
+              weight: FontWeight.w700,
+              align: TextAlign.center,
             ),
           ),
+          // Expanded(
+          //   flex: flexDropdown ?? 1,
+          //   child: DropdownButtonFormField(
+          //       value: 'AED',
+          //       isDense: true,
+          //       // style: const TextStyle(fontWeight: FontWeight.w700),
+          //       items: ['AED', 'USD'].map((String value) {
+          //         return DropdownMenuItem<String>(
+          //           value: value,
+          //           child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w700, size: Constants.smallText),
+          //         );
+          //       }).toList(),
+          //       decoration: const InputDecoration(
+          //         // fillColor: Colors.white,
+          //         border: InputBorder.none,
+          //         errorBorder: InputBorder.none,
+          //         enabledBorder: InputBorder.none,
+          //         focusedBorder: InputBorder.none,
+          //         // filled: true,
+          //         contentPadding: EdgeInsets.only(right: 10, bottom: 10),
+          //         // labelText: widget.title,
+          //       ),
+          //       icon: RotatedBox(
+          //           quarterTurns: 2,
+          //           child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
+          //       onChanged: (val) => null
+          //   ),
+          // ),
         ],
       ),
     );
