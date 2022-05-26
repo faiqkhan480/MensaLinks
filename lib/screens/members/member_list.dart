@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/controller/member_controller.dart';
 import 'package:mensa_links/routes/app_routes.dart';
 
 import '../../utils/assets.dart';
@@ -18,8 +19,13 @@ class MemberList extends StatelessWidget {
 
   get args => Get.arguments;
 
-  void handleSubmit () {
+  void handleSubmit () {}
 
+  void handleNavigate(index) {
+    if(args != "pull") {
+      Get.find<MemberController>().setFormValues(index);
+    }
+    Get.toNamed(args == "pull" ? AppRoutes.DEPENDENTCARD : AppRoutes.MEMBEREDIT, arguments: args == "pull" ? args : index,);
   }
 
   @override
@@ -42,7 +48,7 @@ class MemberList extends StatelessWidget {
 
   Widget memberTitle(int index) {
     return ListTile(
-      onTap: () => Get.toNamed(args == "pull" ? AppRoutes.DEPENDENTCARD : AppRoutes.MEMBEREDIT, arguments: args),
+      onTap: () => handleNavigate(index),
       title: TitleText(
         text: Constants.membersList.elementAt(index),
         color: AppColors.primaryColor,
