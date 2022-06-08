@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/home_controller.dart';
@@ -173,12 +172,15 @@ class HomeScreen extends GetView<HomeController> {
   }
 
   Widget boxRow(String text1, Function() action1, String text2, Function() action2) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        box(text1, action1),
-        box(text2, action2),
-      ],
+    return Padding(
+      padding: UIStyleProperties.insetsVrt30Hzt20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          box(text1, action1),
+          box(text2, action2),
+        ],
+      ),
     );
   }
 
@@ -191,7 +193,6 @@ class HomeScreen extends GetView<HomeController> {
           borderRadius: BorderRadius.circular(20.0)
         ),
         padding: UIStyleProperties.insetsVrt10Hzt25,
-        margin: UIStyleProperties.insetsVrt30Hzt20,
         child: TitleText(
           text: text,
           weight: FontWeight.w700,

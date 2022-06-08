@@ -47,7 +47,7 @@ class TransferMoney extends StatelessWidget {
             // selectedValue: controller.birthYear.value,
           ),
 
-          WidgetUtils.spaceVrt40,
+          WidgetUtils.spaceVrt20,
           CustomDropdown(
             hint: "Purpose",
             invert: true,
@@ -58,7 +58,7 @@ class TransferMoney extends StatelessWidget {
             // selectedValue: controller.birthYear.value,
           ),
 
-          WidgetUtils.spaceVrt25,
+          WidgetUtils.spaceVrt20,
 
           Padding(
             padding: UIStyleProperties.insetsVrt20,
@@ -66,18 +66,14 @@ class TransferMoney extends StatelessWidget {
               children: const [
                 Expanded(flex: 3, child: ScreenTitle(text: 'Amount',)),
                 // WidgetUtils.spaceHzt10,
-                Expanded(flex: 5, child: TextDropdownField(flexField: 4, flexDropdown: 2,)),
+                Expanded(flex: 3, child: TextDropdownField(flexField: 4, flexDropdown: 2,)),
               ],
             ),
           ),
 
-          const Padding(
-            padding: UIStyleProperties.insetsVrt20,
-            child: ScreenTitle(text: 'Comments',),
-          ),
+          ScreenTitle(text: 'Comments',),
 
           CustomTextField(
-            // label: '',
             hintText: 'Enter Your Comments',
             controller: TextEditingController(),
             lines: 8,

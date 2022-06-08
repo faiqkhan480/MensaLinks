@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
@@ -22,6 +21,7 @@ class EditMember extends StatelessWidget {
   }
 
   MemberController get controller => Get.find<MemberController>();
+  get args => Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -39,32 +39,31 @@ class EditMember extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          CustomTextField(
-            hintText: controller.contactDetail() ? 'Mobile Number' : 'Nick Name',
-            controller: TextEditingController(),
-            filled: true,
-            editIcon: true,
+          inputField(
+              hint1: 'Nick Name',
+              hint2: 'Mobile Number',
+              textController1: controller.nickName,
+              textController2: controller.mobile,
           ),
           WidgetUtils.spaceVrt20,
-          CustomTextField(
-            hintText: controller.contactDetail() ? 'Email' : 'First Name',
-            controller: TextEditingController(),
-            filled: true,
-            editIcon: true,
+          inputField(
+            hint1: 'First Name',
+            hint2: 'Email',
+            textController1: controller.firstName,
+            textController2: controller.email,
           ),
           WidgetUtils.spaceVrt20,
-          CustomTextField(
-            hintText: controller.contactDetail() ? 'Address Line 1' : 'Last Name',
-            filled: true,
-            editIcon: true,
-            controller: TextEditingController(),
-            // lines: 5,
+          inputField(
+            hint1: 'Last Name',
+            hint2: 'Address Line 1',
+            textController1: controller.lastname,
+            textController2: controller.address1,
           ),
           WidgetUtils.spaceVrt20,
           if(controller.contactDetail())...[
             CustomTextField(
               hintText: 'Address Line 2',
-              controller: TextEditingController(),
+              controller: controller.address2,
               filled: true,
               editIcon: true,
             ),
@@ -73,7 +72,7 @@ class EditMember extends StatelessWidget {
               hintText: 'PO B.O.X',
               filled: true,
               editIcon: true,
-              controller: TextEditingController(),
+              controller: controller.poBox,
               // lines: 5,
             ),
           ]
@@ -86,7 +85,7 @@ class EditMember extends StatelessWidget {
                     hintText: 'ID Number',
                     filled: true,
                     editIcon: true,
-                    controller: TextEditingController(),
+                    controller: controller.idNum,
                     // lines: 5,
                   ),
                 ),
@@ -96,88 +95,11 @@ class EditMember extends StatelessWidget {
             ),
             // ID EXPIRY DATE SELECTION
             sectionTitle('ID Expiry Date'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    hint: 'day',
-                    filled: true,
-                    values: List.generate(
-                      31,
-                          (index) {
-                        return (index + 1).toString();
-                      },
-                    ),
-                    onValueSelected: (String? item) {},
-                  ),
-                ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    hint: 'month',
-                    filled: true,
-                    values: Constants.months,
-                    onValueSelected: (String? item) {},
-                  ),
-                ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    hint: 'year',
-                    filled: true,
-                    values: Constants.expiryYears,
-                    onValueSelected: (String? item) {
-                      // log('Selected Year: $item');
-                      // controller.birthYear.value = item;
-                    },
-                    // selectedValue: controller.birthYear.value,
-                  ),
-                ),
-              ],
-            ),
+            dateSelection(controller.expiryDate, controller.expiryMonth, controller.expiryYear),
 
             // DATE OF BIRTH SELECTION
             sectionTitle('Date Of Birth'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                      hint: 'day',
-                      values: List.generate(
-                        31,
-                            (index) {
-                          return (index + 1).toString();
-                        },
-                      ),
-                      onValueSelected: (String? item) {},
-                      filled: true
-                  ),
-                ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    hint: 'month',
-                    filled: true,
-                    values: Constants.months,
-                    onValueSelected: (String? item) {},
-                  ),
-                ),
-                WidgetUtils.spaceHzt5,
-                Expanded(
-                  child: CustomDropdown(
-                    hint: 'year',
-                    filled: true,
-                    values: Constants.listOfYears,
-                    onValueSelected: (String? item) {},
-                    // selectedValue: controller.birthYear.value,
-                  ),
-                ),
-              ],
-            ),
+            dateSelection(controller.birthDate, controller.birthMonth, controller.birthYear),
           ],
 
           WidgetUtils.spaceVrt20,
@@ -232,5 +154,60 @@ class EditMember extends StatelessWidget {
         const Icon(Icons.edit_rounded, color: AppColors.primaryColor),
       ],
     ),
+  );
+
+  Widget inputField(
+      {
+    required String hint1,
+    required String hint2,
+    required TextEditingController textController1,
+    required TextEditingController textController2,
+  }) => CustomTextField(
+    hintText: !controller.contactDetail() ? hint1 : hint2,
+    controller: !controller.contactDetail() ? textController1 : textController2,
+    filled: true,
+    editIcon: true,
+  );
+
+  Widget dateSelection(String day, String month, String year) => Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      WidgetUtils.spaceHzt5,
+      Expanded(
+        child: CustomDropdown(
+            hint: 'day',
+          selectedValue: day,
+          values: List.generate(
+              31,
+                  (index) {
+                return (index + 1).toString();
+              },
+            ),
+            onValueSelected: (String? item) {},
+            filled: true,
+        ),
+      ),
+      WidgetUtils.spaceHzt5,
+      Expanded(
+        child: CustomDropdown(
+          hint: 'month',
+          selectedValue: month,
+          filled: true,
+          values: Constants.months,
+          onValueSelected: (String? item) {},
+        ),
+      ),
+      WidgetUtils.spaceHzt5,
+      Expanded(
+        child: CustomDropdown(
+          hint: 'year',
+          selectedValue: year,
+          filled: true,
+          values: Constants.listOfYears,
+          onValueSelected: (String? item) {},
+          // selectedValue: controller.birthYear.value,
+        ),
+      ),
+    ],
   );
 }

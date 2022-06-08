@@ -37,7 +37,7 @@ class RegisterPayment extends StatelessWidget {
           separatorText("Amount Deposited"),
           const TextDropdownField(hintText: "Amount Deposited"),
 
-          WidgetUtils.spaceVrt20,
+          // WidgetUtils.spaceVrt20,
 
           // DATE SELECTIONS
           separatorText('Date',),
@@ -47,13 +47,7 @@ class RegisterPayment extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   hint: 'day',
-                  width: Get.width * 0.25,
-                  values: List.generate(
-                    31,
-                        (index) {
-                      return (index + 1).toString();
-                    },
-                  ),
+                  values: List.generate(31, (index)=>  (index + 1).toString(),),
                   onValueSelected: (String? item) {
                     // log('Selected Date: $item');
                     // controller.birthDate.value = item;
@@ -65,7 +59,6 @@ class RegisterPayment extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   hint: 'month',
-                  width: Get.width * 0.25,
                   values: Constants.months,
                   onValueSelected: (String? item) {},
                 ),
@@ -74,7 +67,6 @@ class RegisterPayment extends StatelessWidget {
               Expanded(
                 child: CustomDropdown(
                   hint: 'year',
-                  width: Get.width * 0.25,
                   values: Constants.paymentYears,
                   onValueSelected: (String? item) {
                     // log('Selected Year: $item');
@@ -86,7 +78,7 @@ class RegisterPayment extends StatelessWidget {
             ],
           ),
 
-          WidgetUtils.spaceVrt20,
+          // WidgetUtils.spaceVrt20,
 
           CustomButton(
             verticalMargin: 30,
@@ -97,12 +89,13 @@ class RegisterPayment extends StatelessWidget {
             onTap: _controller.uploadImage,
           ),
 
-          WidgetUtils.spaceVrt25,
+          // WidgetUtils.spaceVrt25,
 
-          separatorText('Comments',),
+          // separatorText('Comments',),
 
           CustomTextField(
-            // label: '',
+            label: 'Comments',
+            labelVerticalPadding: UIStyleProperties.insetsVrt10,
             hintText: 'Enter Your Comments',
             controller: TextEditingController(),
             lines: 5,

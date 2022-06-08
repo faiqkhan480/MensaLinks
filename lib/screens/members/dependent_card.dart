@@ -43,7 +43,7 @@ class DependentCard extends StatelessWidget {
         children: [
           SeparatorText(_pull ? "Personal Details" : "Card Details",),
           // ScreenTitle(text: _pull ? "Personal Details" : "Card Details", size: Constants.heading18),
-          WidgetUtils.spaceVrt10,
+          // WidgetUtils.spaceVrt10,
           const Align(alignment: Alignment.centerLeft, child: NameBox(name: 'CW')),
           WidgetUtils.spaceVrt20,
           infoRow("NAME", "Chiao Yu Wang"),
@@ -52,12 +52,12 @@ class DependentCard extends StatelessWidget {
             infoRow("Info 2", "**** * ****"),
           ]
           else
-            WidgetUtils.spaceVrt20,
+            // WidgetUtils.spaceVrt20,
           infoRow("Mobile", "+971 50 550 5505"),
           if(controller.pullBack())...[
-            WidgetUtils.spaceVrt20,
+            // WidgetUtils.spaceVrt20,
             infoRow("Amount", "100.00 AED"),
-            WidgetUtils.spaceVrt20,
+            // WidgetUtils.spaceVrt20,
             infoRow("Reason", "Bonus reversed"),
           ],
 

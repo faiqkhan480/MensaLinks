@@ -110,43 +110,51 @@ class DropdownMenuField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.primaryColor, width: 1.0),
-        borderRadius: BorderRadius.circular(Constants.textFieldRadius),
-      ),
-      // padding: UIStyleProperties.leftInset10,
-      height: Get.height * 0.058,
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-           Expanded(
-            child: Center(
-              child: TitleText(
-                text: value,
-                color: AppColors.primaryColor,
-                weight: FontWeight.w700,
-                size: Constants.regularText,
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+
+          border: Border.all(color: AppColors.primaryColor, width: 1.0),
+          borderRadius: BorderRadius.circular(Constants.textFieldRadius),
+        ),
+        // padding: UIStyleProperties.leftInset10,
+        height:49,
+        child: Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+             Expanded(
+               flex: 2,
+              child: Center(
+                child: TitleText(
+                  text: value,
+                  color: AppColors.primaryColor,
+                  weight: FontWeight.w700,
+                  size: Constants.regularText,
+                ),
               ),
             ),
-          ),
-          const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0, width: 1),
-          PopupMenuButton(
-            padding: EdgeInsets.zero,
-              onSelected: (item) {
-                if(onValueSelected != null)
-                 onValueSelected!(item.toString());
-              },
-              icon: RotatedBox(
-                  quarterTurns: 2,
-                  child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-            itemBuilder: (BuildContext context) => List<PopupMenuEntry>.generate(values.length,
-                  (index) =>  PopupMenuItem(value: values.elementAt(index),
-                    child: Text(values.elementAt(index)),
-                  ),
-            ),
-          )
-        ],
+            // const SizedBox(width: 8),
+            // const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0, width: 1),
+            Container( height: 50,width: 1, color: AppColors.primaryColor),
+
+            PopupMenuButton(
+
+              padding: EdgeInsets.zero,
+                onSelected: (item) {
+                  if(onValueSelected != null)
+                   onValueSelected!(item.toString());
+                },
+                icon: RotatedBox(
+                    quarterTurns: 2,
+                    child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
+              itemBuilder: (BuildContext context) => List<PopupMenuEntry>.generate(values.length,
+                    (index) =>  PopupMenuItem( value: values.elementAt(index),
+                      child: Text(values.elementAt(index)),
+                    ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

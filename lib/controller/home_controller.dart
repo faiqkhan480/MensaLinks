@@ -74,7 +74,7 @@ class HomeController extends GetxController {
   }
 
   void handleLogout() {
-    Get.offNamedUntil(AppRoutes.SPLASH, (route) => false);
+    Get.offNamedUntil(AppRoutes.ACCOUNTCREATED, (route) => false, arguments: {'welcome': 'welcome_msg'});
   }
 
   Future uploadImage() async {

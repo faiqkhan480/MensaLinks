@@ -19,7 +19,7 @@ class AccountCreated extends StatelessWidget {
     var args = Get.arguments;
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: Center(child: SvgPicture.asset(Assets.linksLogo, color: Colors.white, height: 150,)),
+      body: Center(child: SvgPicture.asset(Assets.linksLogo, color: Colors.white)),
       bottomNavigationBar: Container(
         decoration: UIStyleProperties.styleRadiusDecoration(radius: 50),
         height: Get.height * 0.28,
