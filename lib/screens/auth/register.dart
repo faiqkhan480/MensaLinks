@@ -1,22 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_mrz_scanner/flutter_mrz_scanner.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/controller/auth_controller.dart';
-import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/utils/assets.dart';
-import 'package:mensa_links/utils/colors.dart';
-import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/utils/size_config.dart';
-import 'package:mensa_links/widgets/custom_button.dart';
-import 'package:mensa_links/widgets/simple_default_layout.dart';
-import 'package:mensa_links/widgets/text_widgets.dart';
 
+import '../../controller/auth_controller.dart';
+import '../../routes/app_routes.dart';
+import '../../utils/colors.dart';
+import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/simple_default_layout.dart';
+import '../../widgets/text_widgets.dart';
 
-class Register extends StatelessWidget {
-  Register({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
-  final AuthController controller = Get.find<AuthController>();
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  final AuthController logic = Get.find<AuthController>();
+
+  bool isParsed = false;
+  MRZController? controller;
+
+  @override
+  void dispose() {
+    controller?.stopPreview();
+    super.dispose();
+  }
+
+  void onControllerCreated(MRZController controller) {
+    this.controller = controller;
+    controller.onParsed = (result) async {
+      if (isParsed) {
+        return;
+      }
+      isParsed = true;
+
+      await showDialog<void>(
+          context: context,
+          builder: (context) => AlertDialog(
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text('Document type: ${result.documentType}'),
+                  Text('Country: ${result.countryCode}'),
+                  Text('Surnames: ${result.surnames}'),
+                  Text('Given names: ${result.givenNames}'),
+                  Text('Document number: ${result.documentNumber}'),
+                  Text('Nationality code: ${result.nationalityCountryCode}'),
+                  Text('Birthdate: ${result.birthDate}'),
+                  Text('Sex: ${result.sex}'),
+                  Text('Expriy date: ${result.expiryDate}'),
+                  Text('Personal number: ${result.personalNumber}'),
+                  Text('Personal number 2: ${result.personalNumber2}'),
+                  ElevatedButton(
+                    child: const Text('ok'),
+                    onPressed: () {
+                      isParsed = false;
+                      return Navigator.pop(context, true);
+                    },
+                  ),
+                ],
+              )));
+    };
+    controller.onError = (error) => print(error);
+
+    controller.startPreview();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
@@ -64,8 +117,14 @@ class Register extends StatelessWidget {
         ),
         CustomButton(
           onTap: () async {
-            // await controller.onScanNow();
             Get.toNamed(AppRoutes.REGISTERSCANNER);
+            // CnicModel cnicModel = await CnicScanner().scanCnic(imageToScan: imageToScan);
+            // if (cnicModel == null) return;
+            // print("NAME:::: ${_cnicModel.cnicHolderName}");
+            // print("NUMBER:::: ${_cnicModel.cnicNumber}");
+            // print("DOB::::: ${_cnicModel.cnicHolderDateOfBirth}");
+            // print("ISSUEDATE::::: ${_cnicModel.cnicIssueDate}");
+            // print("EXPIRYDATE:::: ${_cnicModel.cnicExpiryDate}");
           },
           label: 'scanNow'.tr,
         ),

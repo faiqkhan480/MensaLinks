@@ -20,10 +20,10 @@ class EmiratesIdScanController extends GetxController with StateMixin {
     hasFrontScanned.value = true;
     if(Get.arguments == null) {
       hasFrontScanned.value = false;
-      Get.offAndToNamed(AppRoutes.REGISTERSCANNER, arguments: " - Back Side");
+      // Get.offAndToNamed(AppRoutes.REGISTERSCANNER, arguments: " - Back Side");
     }
     else {
-      Get.offAndToNamed(AppRoutes.REGISTERDETAIL);
+      // Get.offAndToNamed(AppRoutes.REGISTERDETAIL);
     }
   }
 }

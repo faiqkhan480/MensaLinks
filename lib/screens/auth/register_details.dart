@@ -3,17 +3,17 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:mensa_links/controller/auth_controller.dart';
-import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/utils/colors.dart';
-import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/utils/size_config.dart';
-import 'package:mensa_links/widgets/custom_button.dart';
-import 'package:mensa_links/widgets/custom_dropdown.dart';
-import 'package:mensa_links/widgets/custom_text_field.dart';
-import 'package:mensa_links/widgets/simple_default_layout.dart';
-import 'package:mensa_links/widgets/text_widgets.dart';
+import 'package:mensa_links/models/id_card.dart';
 
+import '../../controller/auth_controller.dart';
+import '../../routes/app_routes.dart';
+import '../../utils/colors.dart';
+import '../../utils/constants.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/custom_dropdown.dart';
+import '../../widgets/custom_text_field.dart';
+import '../../widgets/simple_default_layout.dart';
+import '../../widgets/text_widgets.dart';
 import '../../utils/screen_properties.dart';
 import '../../utils/widget_util.dart';
 
@@ -21,6 +21,9 @@ class RegisterDetails extends StatelessWidget {
   const RegisterDetails({Key? key}) : super(key: key);
 
   AuthController get _controller => Get.find<AuthController>();
+
+  // IdCard? get args => IdCard.fromMap(Get.arguments);
+
   final emiratesIDFormat = "###-####-######-#";
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,7 @@ class RegisterDetails extends StatelessWidget {
   }
 
   Widget body() {
+    print(_controller.expiryDate.value);
     return SingleChildScrollView(
       physics: Constants.scrollPhysics,
       padding: UIStyleProperties.insetsVrt8Hzt20,
@@ -70,7 +74,7 @@ class RegisterDetails extends StatelessWidget {
                   filled: _controller.isReadOnly(),
                   label: 'iDExpiry'.tr,
                   hint: 'day'.tr,
-                  values: List.generate(31, (index) {return (index + 1).toString();},),
+                  values: List.generate(31, (index) {return (index + 1).toString().padLeft(2, "0");},),
                   onValueSelected: (String? item) {
                     // log('Selected Date: $item');
                     // _controller.expiryDate.value = item;
@@ -127,13 +131,13 @@ class RegisterDetails extends StatelessWidget {
                   readOnly: _controller.isReadOnly(),
                   filled: _controller.isReadOnly(),
                   hint: 'day'.tr,
-                  values: List.generate(31, (index) {return (index + 1).toString();},
+                  values: List.generate(31, (index) => (index + 1).toString().padLeft(2, "0"),
                   ),
                   onValueSelected: (String? item) {
                     log('Selected Date: $item');
-                    _controller.expiryDate.value = item!;
+                    _controller.birthDate.value = item!;
                   },
-                  selectedValue: _controller.expiryDate.value,
+                  selectedValue: _controller.birthDate.value,
                 ),
               ),
               WidgetUtils.spaceHzt5,
@@ -145,7 +149,7 @@ class RegisterDetails extends StatelessWidget {
                   values: _controller.months,
                   onValueSelected: (String? item) {
                     log('Selected Month: $item');
-                    _controller.expiryMonth.value = item!;
+                    _controller.birthMonth.value = item!;
                   },
                   selectedValue: _controller.birthMonth.value,
                 ),
@@ -158,14 +162,14 @@ class RegisterDetails extends StatelessWidget {
                   hint: 'year'.tr,
                   values: Constants.listOfYears,
                   onValueSelected: (String? item) {
-                    _controller.expiryYear.value = item!;
+                    _controller.birthYear.value = item!;
                   },
                   selectedValue: _controller.birthYear.value,
                 ),
               ),
             ],
           ),
-          // WidgetUtils.spaceVrt25,
+          WidgetUtils.spaceVrt25,
           CustomButton(
             label: 'next'.tr,
             // alignment: Alignment.center,

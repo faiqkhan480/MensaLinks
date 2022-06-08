@@ -29,6 +29,9 @@ dependencies:
   mask_text_input_formatter: ^2.3.0 #Use for formatting Inputs
   image_picker: ^0.8.5+3
   intl: ^0.17.0
+  flutter_mrz_scanner: ^2.0.0
+  mrz_parser: ^2.0.0
+  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_test:

@@ -23,8 +23,7 @@ class CustomAnimatedCheckMark extends StatefulWidget {
   }) : super(key: key);
 }
 
-class _CustomAnimatedCheckMarkState extends State<CustomAnimatedCheckMark>
-    with SingleTickerProviderStateMixin {
+class _CustomAnimatedCheckMarkState extends State<CustomAnimatedCheckMark> with SingleTickerProviderStateMixin {
   late AnimationController checkMarkAnimationController;
   late Animation<double> animatedCheckProgress;
   @override
