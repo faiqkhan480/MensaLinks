@@ -49,7 +49,7 @@ class HomeScreen extends GetView<HomeController> {
               ),
               
               IconButton(
-                  onPressed: () => null,
+                  onPressed: controller.handleLogout,
                   icon: const Icon(Icons.power_settings_new_rounded, color: AppColors.primaryColor, size: 30,)
               )
             ],
@@ -151,7 +151,7 @@ class HomeScreen extends GetView<HomeController> {
               label: "Register Payment",
               invert: true,
               radius: 10,
-              alignment: Alignment.center,
+              // alignment: Alignment.center,
               onTap: () => Get.toNamed(AppRoutes.REGISTERPAYMENT),
             horizontalMargin: 20,
           ),
@@ -161,7 +161,7 @@ class HomeScreen extends GetView<HomeController> {
               invert: true,
             radius: 10,
             minHeight: 0.05,
-            alignment: Alignment.center,
+            // alignment: Alignment.center,
             fontSize: Constants.regularText,
               horizontalMargin: 20,
               onTap: () => Get.toNamed(AppRoutes.MANAGEACCOUNT),

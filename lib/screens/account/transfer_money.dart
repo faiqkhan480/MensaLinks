@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mensa_links/utils/constants.dart';
+import 'package:mensa_links/widgets/custom_dropdown.dart';
 
 import '../../routes/app_routes.dart';
 import '../../utils/assets.dart';
@@ -34,25 +36,26 @@ class TransferMoney extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          CustomButton(
-            verticalMargin: 30,
-            label: 'Select Member',
-            trailing: Assets.upArrow,
-            quarterTurns: 2,
-            padding: UIStyleProperties.insetsVrt20Hzt10,
-            radius: 10,
-            onTap: () {},
+          WidgetUtils.spaceVrt40,
+          CustomDropdown(
+            hint: "Select Member",
+            invert: true,
+            fontSize: Constants.heading18,
+            values: List.generate(Constants.members.length, (index) => Constants.members.elementAt(index),),
+            onValueSelected: (String? item) {},
+            contentPadding: UIStyleProperties.insetsVrt20Hzt10,
+            // selectedValue: controller.birthYear.value,
           ),
 
-          // WidgetUtils.spaceVrt25,
-          CustomButton(
-            verticalMargin: 40,
-            label: 'Purpose',
-            trailing: Assets.upArrow,
-            quarterTurns: 2,
-            padding: UIStyleProperties.insetsVrt20Hzt10,
-            radius: 10,
-            onTap: () {},
+          WidgetUtils.spaceVrt40,
+          CustomDropdown(
+            hint: "Purpose",
+            invert: true,
+            fontSize: Constants.heading18,
+            values: List.generate(Constants.purposes.length, (index) => Constants.purposes.elementAt(index),),
+            onValueSelected: (String? item) {},
+            contentPadding: UIStyleProperties.insetsVrt20Hzt10,
+            // selectedValue: controller.birthYear.value,
           ),
 
           WidgetUtils.spaceVrt25,

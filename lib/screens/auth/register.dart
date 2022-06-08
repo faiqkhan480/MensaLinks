@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
 import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/screens/auth/register_details.dart';
 import 'package:mensa_links/utils/assets.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
@@ -12,6 +11,8 @@ import 'package:mensa_links/widgets/custom_button.dart';
 import 'package:mensa_links/widgets/simple_default_layout.dart';
 import 'package:mensa_links/widgets/text_widgets.dart';
 
+import '../../utils/screen_properties.dart';
+
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);
 
@@ -19,91 +20,56 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
-      // showAppBar: false,
+      pageTitle: "createAccount",
+      // pageTitleSize: 0.060,
       showAppBarBackButton: true,
-      appbarTitle: SvgPicture.asset(Assets.logo,),
-      child: RegisterForm(controller: controller,),
+      child: _body(
+      ),
     );
   }
-}
 
-class RegisterForm extends StatelessWidget {
-  const RegisterForm({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final AuthController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: SizeConfig.screenWidth,
-      decoration: BoxDecoration(
-        color: AppColors.backgroundColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(
-            Constants.radius,
+  Widget _body() {
+    return ListView(
+      physics: Constants.scrollPhysics,
+      padding: UIStyleProperties.insetsVrt8Hzt20,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(
+            top: 20,
+            left: 10,
+            right: 10,
           ),
-          topRight: Radius.circular(
-            Constants.radius,
+          child: TitleText(
+            text: 'scanID'.tr,
+            size: Constants.heading20,
+            align: TextAlign.center,
+            color: AppColors.primaryColor,
+            weight: FontWeight.bold,
           ),
         ),
-      ),
-      child: ListView(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(
-              top: 20,
-              left: 10,
-              right: 10,
-            ),
-            child: TitleText(
-              text: 'createAccount'.tr,
-              size: Constants.heading,
-              color: AppColors.primaryColor,
-              weight: FontWeight.bold,
-              align: TextAlign.center,
-            ),
+        Container(
+          margin: const EdgeInsets.only(
+            top: 20,
+            left: 10,
+            right: 10,
           ),
-          Container(
-            margin: const EdgeInsets.only(
-              top: 20,
-              left: 10,
-              right: 10,
-            ),
-            child: TitleText(
-              text: 'scanID'.tr,
-              size: Constants.subHeading,
-              align: TextAlign.center,
-              color: AppColors.primaryColor,
-              weight: FontWeight.bold,
-            ),
+          child: TitleText(
+            text: 'scanIdDesc'.tr,
+            align: TextAlign.center,
+            color: AppColors.primaryColor,
           ),
-          Container(
-            margin: const EdgeInsets.only(
-              top: 20,
-              left: 10,
-              right: 10,
-            ),
-            child: TitleText(
-              text: 'scanIdDesc'.tr,
-              align: TextAlign.center,
-              color: AppColors.primaryColor,
-            ),
-          ),
-          const SizedBox(
-            height: 70,
-          ),
-          CustomButton(
-            onTap: () async {
-              // await controller.onScanNow();
-              Get.toNamed(AppRoutes.REGISTERDETAIL);
-            },
-            label: 'scanNow'.tr,
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 70,
+        ),
+        CustomButton(
+          onTap: () async {
+            // await controller.onScanNow();
+            Get.toNamed(AppRoutes.REGISTERSCANNER);
+          },
+          label: 'scanNow'.tr,
+        ),
+      ],
     );
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Constants {
   static String appName = 'Mensa Links';
 
   static double pageTitle = 0.063;
   static double radius = 50;
-  static double bottomSize = 0.33;
+  static double bottomSize = 0.36;
   static double buttonTextSize = 18;
   static double title = 30;
   static double heading = 25;
@@ -27,6 +28,22 @@ class Constants {
   static List<int> payRollTableCellValues = [1, 2, 2, 2, 3, 3];
   static List<String> tabs = ["WPS", "NonWps"];
 
+  static List<String> members = ["Samuel", "John"];
+  static List<String> purposes = ["Support", "Donation", "Education", "Other"];
+  static List<String> reviewMembers = ["Rahul Raj", "Siddarth", "Qiangj", "Abdul"];
+  static List<String> membersList = ["Chiao Yu Wang", "Mr. Ashraf", "Ahmed", "John", "Akber", "Noman", "Raza", "Sami"];
+  static List<String> paymentYears = List.generate(
+      2, (index) => DateTime(DateTime.now().year - index).year.toString())
+      .reversed
+      .toList();
+  static List<String> listOfYears = List.generate(
+      30, (index) => DateTime(DateTime.now().year - index).year.toString())
+      .reversed
+      .toList();
+  static List<String> expiryYears = List.generate(
+      30, (index) => DateTime(DateTime(2040).year - index).year.toString())
+      .reversed
+      .toList();
   static List<String> months = [
     'Jan',
     'Feb',

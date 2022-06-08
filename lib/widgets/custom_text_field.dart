@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mensa_links/utils/colors.dart';
@@ -12,14 +13,19 @@ class CustomTextField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final TextEditingController controller;
-  final bool? hideText, filled, editIcon;
+  final bool? hideText, filled, editIcon, readOnly;
   final int? lines;
-  final double? marginTop;
+  final double? marginTop, labelSize;
   final TextInputType? keyboardType;
-  final EdgeInsets? contentPadding;
+  final EdgeInsets? contentPadding, labelVerticalPadding;
+  final List<TextInputFormatter>? inputFormatters;
+  final Color? labelColor;
   const CustomTextField({
     Key? key,
     this.label,
+    this.labelColor,
+    this.labelSize,
+    this.labelVerticalPadding,
     this.marginTop,
     required this.controller,
     this.hideText,
@@ -29,6 +35,8 @@ class CustomTextField extends StatelessWidget {
     this.filled,
     this.keyboardType,
     this.contentPadding,
+    this.inputFormatters,
+    this.readOnly,
   }) : super(key: key);
 
   @override
@@ -41,16 +49,19 @@ class CustomTextField extends StatelessWidget {
         children: [
           label != null
               ? Padding(
-                padding: UIStyleProperties.insetsVrt15,
+                padding: labelVerticalPadding ?? UIStyleProperties.topInset15,
                 child: TitleText(
                     text: label!,
-                    color: AppColors.primaryColor,
+                    color: labelColor,
                     weight: FontWeight.bold,
-                    size: Constants.heading20,
+                    size: labelSize ?? Constants.heading20,
                   ),
               )
               : const SizedBox(),
           TextFormField(
+            readOnly: readOnly ?? false,
+            keyboardType: keyboardType,
+            inputFormatters: inputFormatters,
             maxLines: lines ?? 1,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -140,7 +151,7 @@ class TextDropdownField extends StatelessWidget {
                 value: 'AED',
                 isDense: true,
                 // style: const TextStyle(fontWeight: FontWeight.w700),
-                items: ['AED', 'ARR'].map((String value) {
+                items: ['AED', 'USD'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: TitleText(text: value, color: AppColors.primaryColor, weight: FontWeight.w700, size: Constants.smallText),
@@ -153,7 +164,7 @@ class TextDropdownField extends StatelessWidget {
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   // filled: true,
-                  contentPadding: EdgeInsets.only(right: 10),
+                  contentPadding: EdgeInsets.only(right: 10, bottom: 10),
                   // labelText: widget.title,
                 ),
                 icon: RotatedBox(

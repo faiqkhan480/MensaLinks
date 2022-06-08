@@ -8,6 +8,7 @@ import '../widgets/loading.dart';
 
 class PinController extends GetxController {
   TextEditingController pinField = TextEditingController();
+  RxBool reEnterPin = false.obs;
 
   void handleChange(val) => (pinField.text.length < 4) ? pinField.text = pinField.text + val : null;
 
@@ -28,16 +29,37 @@ class PinController extends GetxController {
         Get.find<HomeController>().setRadioValue(0);
         Get.off(const DoneScreen(message: "Salary Process Request Submitted", counts: 3,));
         break;
+      case "signup":
+        handleSubmitPin();
+        // reEnterPin.value = true;
+        break;
       default:
-        Get.to(() =>
+        Get.off(() =>
             Loading(
               msgBefore: "Pin Set Successfully!\nProceed To Sign In",
               waveLoading: false,
               onComplete: () => null,
-              onDone: () => Get.toNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
+              onDone: () => Get.offAndToNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
             ),
         );
         break;
+    }
+  }
+
+  void handleSubmitPin() {
+    if(reEnterPin()){
+      Get.off(() =>
+          Loading(
+            msgBefore: "Pin Set Successfully!\nProceed To Sign In",
+            waveLoading: false,
+            onComplete: () => null,
+            onDone: () => Get.offAndToNamed(AppRoutes.ACCOUNTCREATED, arguments: {'welcome': 'welcome_msg'}),
+          ),
+      );
+    }
+    else{
+      reEnterPin.value = true;
+      pinField.clear();
     }
   }
 }

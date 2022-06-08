@@ -27,6 +27,7 @@ class ProcessSalary extends StatelessWidget {
       _controller.setValues();
       // _controller.handleProcessSalary(false);
     } else {
+      _controller.setValues();
       Get.back();
     }
   }
@@ -66,14 +67,15 @@ class ProcessSalary extends StatelessWidget {
             else
               RadioButtons(controller: _controller),
 
-            CustomButton(
-              verticalMargin: 30,
-              label: forStaff ? "Select Staff" : "Select Worker",
-              trailing: Assets.upArrow,
-              quarterTurns: 2,
-              padding: UIStyleProperties.insetsVrt20Hzt10,
-              radius: 10,
-              onTap: () {},
+            WidgetUtils.spaceVrt25,
+            CustomDropdown(
+              hint: forStaff ? "Select Staff" : "Select Worker",
+              invert: true,
+              fontSize: Constants.heading18,
+              values: List.generate(Constants.members.length, (index) => Constants.members.elementAt(index),),
+              onValueSelected: (String? item) {},
+              contentPadding: UIStyleProperties.insetsVrt20Hzt10,
+              // selectedValue: controller.birthYear.value,
             ),
           ],
 
@@ -91,12 +93,7 @@ class ProcessSalary extends StatelessWidget {
                 child: CustomDropdown(
                   hint: 'month',
                   width: Get.width * 0.25,
-                  values: List.generate(
-                    31,
-                        (index) {
-                      return (index + 1).toString();
-                    },
-                  ),
+                  values: Constants.months,
                   onValueSelected: (String? item) {},
                 ),
               ),
@@ -105,12 +102,7 @@ class ProcessSalary extends StatelessWidget {
                 child: CustomDropdown(
                   hint: 'year',
                   width: Get.width * 0.25,
-                  values: List.generate(
-                    30,
-                        (index) {
-                      return (1990 + index).toString();
-                    },
-                  ),
+                  values: Constants.listOfYears,
                   onValueSelected: (String? item) {
                     // log('Selected Year: $item');
                     // controller.birthYear.value = item;
@@ -167,7 +159,11 @@ class ProcessSalary extends StatelessWidget {
             label: _controller.salaryProcessed() ? 'Confirm' : 'Process Salary',
             alignment: Alignment.center,
             // verticalMargin: 15,
-            onTap: () => _controller.salaryProcessed() ? (forStaff ? _controller.handleConfirmStaffSalary() : _controller.handleConfirm()) : _controller.handleProcessSalary(true),
+            onTap: () => _controller.salaryProcessed() ? (
+                forStaff && _controller.isSave() ?
+                _controller.handleConfirmStaffSalary() :
+                _controller.handleConfirm()) :
+            _controller.handleProcessSalary(true),
           ),
         ],
       ),
@@ -192,18 +188,24 @@ class ProcessSalary extends StatelessWidget {
     height: Get.height * 0.05,
     margin: const EdgeInsets.symmetric(horizontal: 50),
     padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
-    child: Row(
-      children: List.generate(2, (index) => Expanded(
-        child: CustomButton(
-          label: index < 1 ? 'WPS' : 'NonWPS',
-          invert: _controller.selectedTab.value == index,
-          verticalMargin: 0,
-          fontSize: Constants.smallText,
-          alignment: Alignment.center,
-          radius: 10,
-          onTap: () => _controller.handleTab(index),
-        ),
-      )),
+    child: LayoutBuilder(
+      builder: (context, size) {
+        return Row(
+          children: List.generate(2, (index) => Expanded(
+            child: CustomButton(
+              label: index < 1 ? 'WPS' : 'NonWPS',
+              invert: _controller.selectedTab.value == index,
+              verticalMargin: 0,
+              padding: EdgeInsets.zero,
+              fontSize: size.maxHeight * 0.50,
+              // fontSize: Constants.smallText,
+              alignment: Alignment.center,
+              radius: 10,
+              onTap: () => _controller.handleTab(index),
+            ),
+          )),
+        );
+      }
     ),
   );
 }

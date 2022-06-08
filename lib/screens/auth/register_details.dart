@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mensa_links/controller/auth_controller.dart';
 import 'package:mensa_links/routes/app_routes.dart';
-import 'package:mensa_links/screens/auth/contact_detail.dart';
 import 'package:mensa_links/utils/colors.dart';
 import 'package:mensa_links/utils/constants.dart';
 import 'package:mensa_links/utils/size_config.dart';
@@ -20,191 +20,171 @@ import '../../utils/widget_util.dart';
 class RegisterDetails extends StatelessWidget {
   const RegisterDetails({Key? key}) : super(key: key);
 
+  AuthController get _controller => Get.find<AuthController>();
+  final emiratesIDFormat = "###-####-######-#";
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
       pageTitle: 'createAccount',
       pageTitleSize: Constants.pageTitle,
-      child: PersonalDetails(),
+      child: Obx(body),
     );
   }
-}
 
-class PersonalDetails extends StatelessWidget {
-  const PersonalDetails({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final AuthController controller = Get.find<AuthController>();
-    return Container(
-      // width: SizeConfig.screenWidth,
-      decoration: BoxDecoration(
-        color: AppColors.backgroundColor,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(
-            Constants.radius,
+  Widget body() {
+    return SingleChildScrollView(
+      physics: Constants.scrollPhysics,
+      padding: UIStyleProperties.insetsVrt8Hzt20,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          WidgetUtils.spaceVrt25,
+          const SeparatorText("personalDetails"),
+          CustomTextField(
+            readOnly: _controller.isReadOnly(),
+            label: 'fullName'.tr,
+            filled: _controller.isReadOnly(),
+            labelColor: AppColors.slightlyGrey,
+            labelVerticalPadding: UIStyleProperties.insetsVrt8,
+            labelSize: Constants.heading18,
+            controller: _controller.fullName,
           ),
-          topLeft: Radius.circular(
-            Constants.radius,
+          CustomTextField(
+            readOnly: _controller.isReadOnly(),
+            filled: _controller.isReadOnly(),
+            label: 'iDNumber'.tr,
+            labelColor: AppColors.slightlyGrey,
+            labelVerticalPadding: UIStyleProperties.insetsVrt8,
+            labelSize: Constants.heading18,
+            controller: _controller.idNumber,
+            keyboardType: TextInputType.number,
+            marginTop: 0,
+            inputFormatters: [MaskTextInputFormatter(mask: emiratesIDFormat)],
           ),
-        ),
-      ),
-      child: SingleChildScrollView(
-        physics: Constants.scrollPhysics,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: UIStyleProperties.insetsHzt20,
-              child: TitleText(
-                text: 'personalDetails'.tr,
-                size: Constants.heading18,
-                align: TextAlign.left,
-                weight: FontWeight.w700,
-                color: AppColors.primaryColor,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
+                  label: 'iDExpiry'.tr,
+                  hint: 'day'.tr,
+                  values: List.generate(31, (index) {return (index + 1).toString();},),
+                  onValueSelected: (String? item) {
+                    // log('Selected Date: $item');
+                    // _controller.expiryDate.value = item;
+                  },
+                  selectedValue: _controller.expiryDate.value,
+                ),
               ),
-            ),
-            CustomTextField(
-              label: 'fullName'.tr,
-              controller: TextEditingController(),
-            ),
-            CustomTextField(
-              label: 'iDNumber'.tr,
-              controller: TextEditingController(),
-            ),
-            Obx(() => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: CustomDropdown(
-                      label: 'iDExpiry'.tr,
-                      hint: 'day'.tr,
-                      width: SizeConfig.screenWidth * 0.25,
-                      values: List.generate(
-                        31,
-                            (index) {
-                          return (index + 1).toString();
-                        },
-                      ),
-                      onValueSelected: (String? item) {
-                        log('Selected Date: $item');
-                        controller.expiryDate.value = item;
-                      },
-                      selectedValue: controller.expiryDate.value,
-                    ),
-                  ),
-                  WidgetUtils.spaceHzt5,
-                  Expanded(
-                    child: CustomDropdown(
-                      label: '',
-                      hint: 'month'.tr,
-                      width: SizeConfig.screenWidth * 0.25,
-                      values: controller.months,
-                      onValueSelected: (String? item) {
-                        log('Selected Month: $item');
-                        controller.expiryMonth.value = item;
-                      },
-                      selectedValue: controller.expiryMonth.value,
-                    ),
-                  ),
-                  WidgetUtils.spaceHzt5,
-                  Expanded(
-                    child: CustomDropdown(
-                      label: '',
-                      hint: 'year'.tr,
-                      width: SizeConfig.screenWidth * 0.25,
-                      values: List.generate(
-                        30,
-                            (index) {
-                          return (1990 + index).toString();
-                        },
-                      ),
-                      onValueSelected: (String? item) {
-                        log('Selected Year: $item');
-                        controller.expiryYear.value = item;
-                      },
-                      selectedValue: controller.expiryYear.value,
-                    ),
-                  ),
-                ],
+              WidgetUtils.spaceHzt5,
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
+                  label: '',
+                  hint: 'month'.tr,
+                  values: _controller.months,
+                  onValueSelected: (String? item) {
+                    // log('Selected Month: $item');
+                    // _controller.expiryMonth.value = item;
+                  },
+                  selectedValue: _controller.expiryMonth.value,
+                ),
               ),
-            ),
-            Obx(
-                  () => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: CustomDropdown(
-                      label: 'DOB'.tr,
-                      hint: 'day'.tr,
-                      width: SizeConfig.screenWidth * 0.25,
-                      values: List.generate(
-                        31,
-                            (index) {
-                          return (index + 1).toString();
-                        },
-                      ),
-                      onValueSelected: (String? item) {
-                        log('Selected Date: $item');
-                        controller.birthDate.value = item;
-                      },
-                      selectedValue: controller.birthDate.value,
-                    ),
-                  ),
-                  WidgetUtils.spaceHzt5,
-                  Expanded(
-                    child: CustomDropdown(
-                      label: '',
-                      hint: 'month'.tr,
-                      width: SizeConfig.screenWidth * 0.25,
-                      values: controller.months,
-                      onValueSelected: (String? item) {
-                        log('Selected Month: $item');
-                        controller.birthMonth.value = item;
-                      },
-                      selectedValue: controller.birthMonth.value,
-                    ),
-                  ),
-                  WidgetUtils.spaceHzt5,
-                  Expanded(
-                    child: CustomDropdown(
-                      label: '',
-                      hint: 'year'.tr,
-                      width: SizeConfig.screenWidth * 0.25,
-                      values: List.generate(
-                        30,
-                            (index) {
-                          return (1990 + index).toString();
-                        },
-                      ),
-                      onValueSelected: (String? item) {
-                        log('Selected Year: $item');
-                        controller.birthYear.value = item;
-                      },
-                      selectedValue: controller.birthYear.value,
-                    ),
-                  ),
-                ],
+              WidgetUtils.spaceHzt5,
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
+                  label: '',
+                  hint: 'year'.tr,
+                  values: Constants.expiryYears,
+                  onValueSelected: (String? item) {
+                    // log('Selected Year: $item');
+                    _controller.expiryYear.value = item!;
+                  },
+                  selectedValue: _controller.expiryYear.value,
+                ),
               ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0, top: 20),
+            child: TitleText(
+              text: "dob",
+              color: AppColors.primaryColor.withOpacity(0.5),
+              weight: FontWeight.bold,
+              size: Constants.heading18,
             ),
-            // WidgetUtils.spaceVrt25,
-            CustomButton(
-              label: 'next'.tr,
-              // alignment: Alignment.center,
-              verticalMargin: 45,
-              onTap: () => Get.toNamed(AppRoutes.CONTACTDETAIL),
-            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
+                  hint: 'day'.tr,
+                  values: List.generate(31, (index) {return (index + 1).toString();},
+                  ),
+                  onValueSelected: (String? item) {
+                    log('Selected Date: $item');
+                    _controller.expiryDate.value = item!;
+                  },
+                  selectedValue: _controller.expiryDate.value,
+                ),
+              ),
+              WidgetUtils.spaceHzt5,
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
+                  hint: 'month'.tr,
+                  values: _controller.months,
+                  onValueSelected: (String? item) {
+                    log('Selected Month: $item');
+                    _controller.expiryMonth.value = item!;
+                  },
+                  selectedValue: _controller.birthMonth.value,
+                ),
+              ),
+              WidgetUtils.spaceHzt5,
+              Expanded(
+                child: CustomDropdown(
+                  readOnly: _controller.isReadOnly(),
+                  filled: _controller.isReadOnly(),
+                  hint: 'year'.tr,
+                  values: Constants.listOfYears,
+                  onValueSelected: (String? item) {
+                    _controller.expiryYear.value = item!;
+                  },
+                  selectedValue: _controller.birthYear.value,
+                ),
+              ),
+            ],
+          ),
+          // WidgetUtils.spaceVrt25,
+          CustomButton(
+            label: 'next'.tr,
+            // alignment: Alignment.center,
+            verticalMargin: 45,
+            onTap: () => Get.toNamed(AppRoutes.CONTACTDETAIL),
+          ),
 
-            TextButton(
-              onPressed: () => null,
-              child: Text(' Edit Info '),
-              style: TextButton.styleFrom(
+          TextButton(
+            onPressed: () => _controller.handleEditForm(false),
+            child: const Text(' Edit Info '),
+            style: TextButton.styleFrom(
                 primary: AppColors.darkGrey,
-                textStyle: TextStyle(decoration: TextDecoration.underline)
-              ),
-            )
-          ],
-        ),
+                textStyle: TextStyle(
+                    decoration: TextDecoration.underline,
+                    fontWeight: FontWeight.bold,
+                    fontSize: Constants.heading18
+                )),
+          )
+        ],
       ),
     );
   }

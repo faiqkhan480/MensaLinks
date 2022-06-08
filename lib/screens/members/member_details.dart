@@ -77,7 +77,7 @@ class MemberDetails extends StatelessWidget {
             const SeparatorText("Or"),
 
             // WidgetUtils.spaceVrt25,
-            const CustomTable(isPayRoll: true,)
+            CustomTable(isPayRoll: payRoll,)
           ],
         ),
 

@@ -19,7 +19,7 @@ class PinScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleDefaultScreenLayout(
-      child: loginOtp(),
+      child: Obx(loginOtp),
     );
   }
 
@@ -30,27 +30,29 @@ class PinScreen extends StatelessWidget {
         Padding(
           padding: UIStyleProperties.insetsVrt20Hzt20,
           child: TitleText(
-            text: 'enter_your_new_pin',
+            text: _controller.reEnterPin() ? "Re-Enter Your New PIN To Confirm" : "enter_your_new_pin",
             size: Constants.heading20,
             weight: FontWeight.w700,
             color: AppColors.primaryColor,
           ),
         ),
-
         Container(
           // padding: UIStyleProperties.topInset10,
           alignment: Alignment.center,
           child: CustomPinCodeField(
             controller: _controller.pinField,
             backgroundColor: AppColors.skyLightColor,
-            isObscured: false,
+            isObscured: true,
             fieldHeight: 80,
             fieldWidth: 55,
             keyboardType: TextInputType.none,
             onComplete: (val) => _controller.handleComplete(args),
+            //     (val) {
+            //   _controller.isRePinScreen.value = true;
+            //   return Get.toNamed(AppRoutes.RE_Enter_PIN);
+            // }
           ),
         ),
-
         Flexible(
           child: CustomPinKeyboard(
             controller: _controller,

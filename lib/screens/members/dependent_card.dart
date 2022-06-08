@@ -8,6 +8,7 @@ import '../../utils/constants.dart';
 import '../../utils/screen_properties.dart';
 import '../../utils/widget_util.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/custom_dropdown.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/done_screen.dart';
 import '../../widgets/simple_default_layout.dart';
@@ -75,13 +76,14 @@ class DependentCard extends StatelessWidget {
 
             if(!_pull)
               WidgetUtils.spaceVrt20,
-            CustomButton(
-              label: 'Reasons',
-              trailing: Assets.upArrow,
-              quarterTurns: 2,
-              minHeight: 0.06,
-              verticalMargin: 10,
-              onTap: handleSubmit,
+            CustomDropdown(
+              hint: "Reasons",
+              invert: true,
+              fontSize: Constants.heading18,
+              values: ["Transfer someone else", "Mistakenly transfer"],
+              onValueSelected: (String? item) {},
+              // contentPadding: UIStyleProperties.insetsVrt20Hzt10,
+              // selectedValue: controller.birthYear.value,
             ),
           ],
 

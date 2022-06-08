@@ -22,7 +22,7 @@ class AccountCreated extends StatelessWidget {
       body: Center(child: SvgPicture.asset(Assets.linksLogo, color: Colors.white, height: 150,)),
       bottomNavigationBar: Container(
         decoration: UIStyleProperties.styleRadiusDecoration(radius: 50),
-        height: SizeConfig.screenHeight * 0.30,
+        height: Get.height * 0.28,
         padding: UIStyleProperties.insetsTop20Hzt25,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,13 +34,14 @@ class AccountCreated extends StatelessWidget {
                 text: args?['welcome'] ?? 'account_successfully_created',
                 weight: FontWeight.bold,
                 color: AppColors.primaryColor,
-                size: Constants.heading20,
+                size: Constants.heading,
                 align: TextAlign.center,
               ),
             ),
             CustomButton(
               label: args?['welcome'] != null ? 'Sign In' : 'set_your_new_pin',
-              onTap: () => args?['welcome'] != null ? Get.toNamed(AppRoutes.HOME) : Get.toNamed(AppRoutes.PIN),
+              alignment: Alignment.center,
+              onTap: () => args?['welcome'] != null ? Get.toNamed(AppRoutes.HOME) : Get.toNamed(AppRoutes.PIN, arguments: "signup"),
             ),
           ],
         ),

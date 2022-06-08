@@ -15,18 +15,22 @@ class CustomDropdown extends StatelessWidget {
   final Function(String?) onValueSelected;
   final String? label;
   final String? hint, selectedValue;
-  final double? width;
-  final bool? filled, invert;
+  final double? width, fontSize;
+  final EdgeInsets? contentPadding;
+  final bool? filled, invert, readOnly;
 
   const CustomDropdown({
     Key? key,
     this.label,
+    this.fontSize,
     required this.onValueSelected,
     this.width,
     required this.values,
     this.selectedValue,
     this.hint,
     this.filled,
+    this.contentPadding,
+    this.readOnly = false,
     this.invert = false,
   }) : super(key: key);
 
@@ -38,22 +42,32 @@ class CustomDropdown extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if(label != null)
-            TitleText(
-            text: label!,
-            color: AppColors.primaryColor.withOpacity(0.5),
-            weight: FontWeight.bold,
-            size: Constants.heading18,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: TitleText(
+              text: label!,
+              color: AppColors.primaryColor.withOpacity(0.5),
+              weight: FontWeight.bold,
+              size: Constants.heading18,
           ),
+            ),
           DropdownButtonFormField(
               value: selectedValue,
               items: values.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value),
+                  child: TitleText(
+                    text: value,
+                    size: fontSize,
+                    weight: FontWeight.w700,
+                    color: invert == true ? AppColors.white : AppColors.primaryColor,
+                  ),
                 );
               }).toList(),
+              dropdownColor: invert == true ? AppColors.ultraDarkGrey : AppColors.white,
               hint: TitleText(
                 text: hint ?? '',
+                size: fontSize,
                 weight: FontWeight.w700,
                 color: filled != null && filled! ?
                 AppColors.primaryColor :
@@ -74,13 +88,13 @@ class CustomDropdown extends StatelessWidget {
                 errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(Constants.textFieldRadius)),
                     borderSide: const BorderSide(color: Colors.red, width: 1.0)),
-                contentPadding: const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+                contentPadding: contentPadding ?? EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0, top: 10.0),
                 // labelText: widget.title,
               ),
               icon: RotatedBox(
                   quarterTurns: 2,
                   child: SvgPicture.asset(Assets.upArrow, height: 15, color: invert! ? AppColors.white : AppColors.primaryColor)),
-              onChanged: onValueSelected
+              onChanged: readOnly! ? null : onValueSelected,
           )
         ],
       ),
@@ -91,7 +105,8 @@ class CustomDropdown extends StatelessWidget {
 class DropdownMenuField extends StatelessWidget {
   final List<String> values;
   final String value;
-  const DropdownMenuField({Key? key, required this.values, required this.value}) : super(key: key);
+  final Function(String?)? onValueSelected;
+  const DropdownMenuField({Key? key, required this.values, required this.value, this.onValueSelected}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -118,14 +133,18 @@ class DropdownMenuField extends StatelessWidget {
           const VerticalDivider(color: AppColors.primaryColor, thickness: 1.0, width: 1),
           PopupMenuButton(
             padding: EdgeInsets.zero,
-              onSelected: (item) {},
+              onSelected: (item) {
+                if(onValueSelected != null)
+                 onValueSelected!(item.toString());
+              },
               icon: RotatedBox(
                   quarterTurns: 2,
                   child: SvgPicture.asset(Assets.upArrow, height: 15, color: AppColors.primaryColor)),
-                  itemBuilder: (BuildContext context) => List<PopupMenuEntry>.generate(values.length,
+            itemBuilder: (BuildContext context) => List<PopupMenuEntry>.generate(values.length,
                   (index) =>  PopupMenuItem(value: values.elementAt(index),
                     child: Text(values.elementAt(index)),
-                  ),),
+                  ),
+            ),
           )
         ],
       ),

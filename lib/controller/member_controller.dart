@@ -7,6 +7,7 @@ class MemberController extends GetxController {
   // STATES
   RxBool contactDetail = false.obs;
   RxBool pullBack = false.obs;
+  RxString emiratesId = "Emirates ID".obs;
 
   void changeTab(bool val) => contactDetail.value = val;
 
@@ -26,5 +27,9 @@ class MemberController extends GetxController {
             })
     );
     // Get.off(const DoneScreen(message: "100.00 AED has been withdrawn from the card ending with **** and credited to your account"));
+  }
+
+  void handleEmiratesID(String? val) {
+    emiratesId.value = val!;
   }
 }

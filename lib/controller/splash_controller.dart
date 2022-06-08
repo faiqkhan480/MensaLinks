@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../routes/app_routes.dart';
 
 class SplashController extends GetxController {
   Rx<bool> isInitialized = true.obs;
@@ -7,13 +10,14 @@ class SplashController extends GetxController {
 
   @override
   void onInit() async {
-    await Future.delayed(
-      const Duration(milliseconds: 500),
+    super.onInit();
+    Future.delayed(
+      const Duration(milliseconds: 800),
       () {
         isInitialized.value = false;
         Future.delayed(
           const Duration(
-            milliseconds: 1600,
+            milliseconds: 1800,
           ),
           () {
             loading.value = false;
@@ -21,10 +25,15 @@ class SplashController extends GetxController {
         );
       },
     );
-    super.onInit();
   }
 
   void onSignUpPressed() {
     onSignUp.value = true;
+  }
+
+  void handleNavigation(String type) {
+    final _box = GetStorage();
+    _box.write("loginType", type);
+    Get.toNamed(AppRoutes.REGISTER);
   }
 }
