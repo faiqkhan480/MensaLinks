@@ -45,7 +45,7 @@ class ContactDetails extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: UIStyleProperties.insetsVrt25,
+            padding: UIStyleProperties.insetsVrt20,
             child: TitleText(
               text: 'enterContactDetail'.tr,
               size: Constants.heading18,

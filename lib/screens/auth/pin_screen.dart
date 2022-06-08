@@ -32,9 +32,9 @@ class PinScreen extends StatelessWidget {
           child: TitleText(
             text: _controller.reEnterPin() ?
             "Re-Enter Your New PIN To Confirm" :
-            args != null ?
-            "Enter your PIN" :
-            "enter_your_new_pin",
+            args == "signup" ?
+            "enter_your_new_pin" :
+            "Enter your PIN",
             size: Constants.heading20,
             weight: FontWeight.w700,
             color: AppColors.primaryColor,

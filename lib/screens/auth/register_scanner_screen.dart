@@ -64,22 +64,22 @@ class RegisterScanner extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(
                 top: 20,
-                left: 10,
-                right: 10,
+                // left: 10,
+                // right: 10,
               ),
               child: TitleText(
                 text: 'scanID'.tr,
                 size: Constants.subHeading,
-                align: TextAlign.center,
+                align: TextAlign.start,
                 color: AppColors.primaryColor,
                 weight: FontWeight.bold,
               ),
             ),
       Container(
         margin: const EdgeInsets.only(
-          top: 20,
-          left: 10,
-          right: 10,
+          top: 5,
+          left: 8,
+          right: 8,
         ),
         child: TitleText(
           text: args ?? " - Front Side",

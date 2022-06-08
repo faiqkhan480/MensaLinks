@@ -44,41 +44,45 @@ class CreateAccount extends StatelessWidget {
             hintText: controller.familyFormSubmitted() ? "Mobile Number" : (forStaff ? "Staff ID" : "Nick Name"),
             controller: TextEditingController(),
           ),
-          WidgetUtils.spaceVrt20,
+          WidgetUtils.spaceVrt5,
           CustomTextField(
             hintText: controller.familyFormSubmitted() ? "Email" : "First Name",
             controller: TextEditingController(),
           ),
-          WidgetUtils.spaceVrt20,
+          WidgetUtils.spaceVrt5,
           CustomTextField(
             hintText: controller.familyFormSubmitted() ? "Address Line 1" : "Last Name",
             controller: TextEditingController(),
           ),
-          WidgetUtils.spaceVrt20,
+          WidgetUtils.spaceVrt5,
           if(controller.familyFormSubmitted())...[
             CustomTextField(
               hintText: "Address Line 2",
               controller: TextEditingController(),
             ),
-            WidgetUtils.spaceVrt20,
+            WidgetUtils.spaceVrt5,
             CustomTextField(
               hintText: "PO Box",
               controller: TextEditingController(),
             ),
           ]
           else...[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                      hintText: "ID Number",
-                      controller: TextEditingController(),
-                )),
-                WidgetUtils.spaceHzt10,
-                Expanded(flex: 4, child: DropdownMenuField(values: ['Emirates ID', "National ID"], value: controller.emiratesId.value, onValueSelected: controller.handleEmiratesID)),
-              ],
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                      flex: 5,
+                      child: CustomTextField(
+                        marginTop: 0,
+                        hintText: "ID Number",
+                        controller: TextEditingController(),
+                  )),
+                  WidgetUtils.spaceHzt10,
+                  Expanded(flex: 5, child: DropdownMenuField(values: ['Emirates ID', "National ID"], value: controller.emiratesId.value, onValueSelected: controller.handleEmiratesID)),
+                ],
+              ),
             ),
 
             // EXPIRY DATE DROPDOWNS
@@ -89,12 +93,7 @@ class CreateAccount extends StatelessWidget {
                 Expanded(
                   child: CustomDropdown(
                     hint: "day",
-                    values: List.generate(
-                      31,
-                          (index) {
-                        return (index + 1).toString();
-                      },
-                    ),
+                    values: List.generate(31, (index) => (index + 1).toString(),),
                     onValueSelected: (String? item) {},
                   ),
                 ),
@@ -153,10 +152,10 @@ class CreateAccount extends StatelessWidget {
             ),
           ],
 
-          if(controller.familyFormSubmitted())
-            WidgetUtils.spaceVrt40
-          else
-            WidgetUtils.spaceVrt20,
+          // if(controller.familyFormSubmitted())
+          //   WidgetUtils.spaceVrt40
+          // else
+          //   WidgetUtils.spaceVrt20,
           if(controller.familyFormSubmitted())
             CustomButton(
             label: "Save & Add Next",

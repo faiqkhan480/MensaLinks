@@ -38,8 +38,8 @@ class RegisterDetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          WidgetUtils.spaceVrt25,
-          const SeparatorText("personalDetails"),
+          // WidgetUtils.spaceVrt25,
+          ScreenTitle(text: "personalDetails", size: Constants.heading18),
           CustomTextField(
             readOnly: _controller.isReadOnly(),
             label: 'fullName'.tr,
