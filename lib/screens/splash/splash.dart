@@ -1,11 +1,13 @@
+// On Boarding Screen(First Screen)
+
+// Import packages
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mensa_links/utils/screen_properties.dart';
-import 'package:mensa_links/utils/widget_util.dart';
 
-import '../../controller/splash_controller.dart';
+// Import local files/classes
+import '../../utils/widget_util.dart';
 import '../../routes/app_routes.dart';
 import '../../utils/assets.dart';
 import '../../utils/colors.dart';
@@ -14,7 +16,7 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/text_widgets.dart';
 
 class Splash extends StatefulWidget {
-   Splash({Key? key}) : super(key: key);
+   const Splash({Key? key}) : super(key: key);
 
   @override
   State<Splash> createState() => _SplashState();
@@ -25,10 +27,12 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
   late AnimationController  _animationController;
   late Animation<Alignment>  _leftAlignAnimation, _rightAlignAnimation;
 
+  // used the function to handle the event on sign-up pressed
   void onSignUpPressed() {
     setState(() => onSignUp = true);
   }
 
+  // used this function for handle the next page route
   void handleNavigation(String type) {
     final _box = GetStorage();
     _box.write("loginType", type);
@@ -107,7 +111,6 @@ class _SplashState extends State<Splash>  with SingleTickerProviderStateMixin{
 
   Widget gearRightImg(Duration duration) {
     //animation should be for x = 1 to .25 y = 1-0
-    // if
     return  AlignTransition(
       alignment: _rightAlignAnimation,
       child: Image.asset(Assets.rightGear,height: Get.width * .35,

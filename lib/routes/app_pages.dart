@@ -1,10 +1,11 @@
+// List of all App Pages define here
+
 import 'package:get/get.dart';
 
 // IMPORT BINDINGS
 import '../bindings/home_binding.dart';
 import '../bindings/member_binding.dart';
 import '../bindings/auth_binding.dart';
-
 
 // APP VIEWS
 import '../screens/auth/register_scanner_screen.dart';
@@ -28,7 +29,7 @@ import '../screens/account/register_payment.dart';
 import '../screens/account/transfer_money.dart';
 import '../screens/auth/account_created.dart';
 
-// IMPORT ROUTES NAME
+// IMPORT ROUTES NAME CLASS
 import 'app_routes.dart';
 
 class AppPages {
@@ -36,12 +37,12 @@ class AppPages {
     GetPage(
         name: AppRoutes.SPLASH,
         binding: SplashBinding(),
-        page: () =>  Splash()
+        page: () => const Splash()
     ),
     GetPage(
         name: AppRoutes.REGISTER,
         binding: AuthBinding(),
-        page: () => Register()),
+        page: () => const Register()),
     GetPage(
         name: AppRoutes.REGISTERSCANNER,
         binding: AuthBinding(),

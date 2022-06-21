@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  blinkid_flutter:
+    dependency: "direct main"
+    description:
+      name: blinkid_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.15.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -64,22 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
-  dropdown_button2:
-    dependency: "direct main"
-    description:
-      name: dropdown_button2
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0"
-  easy_card_scanner:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "3de58ce4fd4630ef81d4d4e8f8d7c8fb3c3d8a57"
-      url: "https://github.com/tauqeerkhattak/easy_card_scanner.git"
-    source: git
-    version: "1.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -116,9 +107,9 @@ packages:
   flutter_mrz_scanner:
     dependency: "direct main"
     description:
-      name: flutter_mrz_scanner
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: flutter_mrz_scanner
+      relative: true
+    source: path
     version: "2.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
@@ -221,6 +212,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.5.0"
   lints:
     dependency: transitive
     description:

@@ -5,13 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mrz_scanner/flutter_mrz_scanner.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:get/get.dart';
-import 'package:mensa_links/controller/auth_controller.dart';
 
+import '../../controller/auth_controller.dart';
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
-import '../../utils/size_config.dart';
 import '../../widgets/custom_animated_checkmark.dart';
-import '../../widgets/custom_button.dart';
 import '../../widgets/simple_default_layout.dart';
 import '../../widgets/text_widgets.dart';
 
@@ -38,13 +36,7 @@ class _RegisterScannerState extends State<RegisterScanner> {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     // TODO: implement initState
     super.initState();
-    requestPermission();
-  }
-
-  requestPermission() async {
-    if(await Permission.camera.request().isGranted) {
-
-    }
+    initialize();
   }
 
   initialize() async {
@@ -59,11 +51,11 @@ class _RegisterScannerState extends State<RegisterScanner> {
     },);
   }
 
-  @override
-  void dispose() {
-    controller?.stopPreview();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller?.stopPreview();
+  //   super.dispose();
+  // }
 
   void onControllerCreated(MRZController controller) {
     this.controller = controller;

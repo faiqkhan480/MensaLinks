@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
+// All pages routes(Names) define here.
+
 class AppRoutes {
   static const String SPLASH = "/splash";
   static const String REGISTER = "/register";

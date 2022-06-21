@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:easy_card_scanner/credit_card_scanner.dart';
+import 'package:blinkid_flutter/microblink_scanner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -49,24 +49,6 @@ class AuthController extends GetxController {
   // }
 
   void setFormValues(MRZResult cardData) async {
-    // var payload  = {
-    //   "document_type": "IL",
-    //   "country": "ARE",
-    //   "sur_names": "PAULOSE",
-    //   "given_names": "SAJNA ROSE SAJAN OKKA",
-    //   "document_number": 104688349,
-    //   "nationality_code": "IHD",
-    //   "birthdate": 1995-05-24 00:00:00.000,
-    //   "sex": "Sex.female",
-    //   "expiry_date": 2023-03-20 00:00:00.000,
-    //   "personal_number": 784199513983694,
-    //   "personal_number_2": ""
-    // };
-    // IdCard? get args => IdCard.fromMap(Get.arguments);
-
-    // DateTime? _dob = cardData.birthDate != null ? cardData.birthdate! : null;
-    // DateTime? _expiry = cardData.birthdate != null ? cardData.birthdate! : null;
-
     fullName.text = cardData.givenNames;
     idNumber.text = cardData.personalNumber;
     birthDate.value = DateFormat("dd").format(cardData.birthDate);
@@ -78,27 +60,28 @@ class AuthController extends GetxController {
     Get.offAndToNamed(AppRoutes.REGISTERDETAIL);
   }
 
-  void handleEditForm(bool val) {
-    isReadOnly.value = val;
+  setScanValues(BlinkIdCombinedRecognizerResult cardData) {
+    fullName.text = (cardData.fullName ?? "").replaceAll("\n", " ");
+    idNumber.text = cardData.personalIdNumber ?? "";
+    if(cardData.dateOfBirth != null)
+      {
+       DateTime _dob = DateTime(cardData.dateOfBirth!.year!, cardData.dateOfBirth!.month!, cardData.dateOfBirth!.day!);
+        birthDate.value = DateFormat("dd").format(_dob);
+        birthMonth.value = DateFormat("MMM").format(_dob);
+        birthYear.value = DateFormat("yyyy").format(_dob);
+      }
+    if(cardData.dateOfExpiry != null)
+      {
+        DateTime _expiry = DateTime(cardData.dateOfExpiry!.year!, cardData.dateOfExpiry!.month!, cardData.dateOfExpiry!.day!);
+        expiryDate.value = DateFormat("dd").format(_expiry);
+        expiryMonth.value = DateFormat("MMM").format(_expiry);
+        expiryYear.value = DateFormat("yyyy").format(_expiry);
+      }
+    // Get.offAndToNamed(AppRoutes.REGISTERDETAIL);
+    Get.toNamed(AppRoutes.REGISTERDETAIL);
   }
 
-  Future<void> onScanNow() async {
-    final front = await CardScanner.scanCard(
-      scanOptions: const CardScanOptions(
-        side: 'Front',
-        scanCardHolderName: true,
-        scanExpiryDate: true,
-        cardScannerTimeOut: 20,
-      ),
-    );
-    final back = await CardScanner.scanCard(
-      scanOptions: const CardScanOptions(
-        side: 'Back',
-        scanCardHolderName: true,
-        scanExpiryDate: true,
-        cardScannerTimeOut: 20,
-      ),
-    );
-    log('Printing Camera Details: ');
+  void handleEditForm(bool val) {
+    isReadOnly.value = val;
   }
 }

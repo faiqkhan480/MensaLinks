@@ -14,22 +14,22 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
-  get: ^4.6.1
-  get_storage: ^2.0.3
-  easy_card_scanner:
-    git:
-      url: https://github.com/tauqeerkhattak/easy_card_scanner.git
-  dropdown_button2: ^1.4.0
-  animated_check: ^1.0.5
+  get: ^4.6.1 #Used for state management
+  get_storage: ^2.0.3 #Used to store data locally
+#  USED FOR ANIMATION
+  animated_check: ^1.0.5 #Used to show animated check mark
   liquid_progress_indicator: ^0.4.0
   simple_animations: ^4.0.2
-  flutter_svg: ^1.0.3
-  pin_code_fields: ^7.4.0
+
+  flutter_svg: ^1.0.3 #Used to show svg images
+  pin_code_fields: ^7.4.0 #Used to crete pin fields
   qr_code_scanner: ^0.7.0 #Used to scan QR Code (Temporarliy used for Design)
   mask_text_input_formatter: ^2.3.0 #Use for formatting Inputs
   image_picker: ^0.8.5+3
   intl: ^0.17.0
-  flutter_mrz_scanner: ^2.0.0
+  blinkid_flutter: ^5.15.1
+  flutter_mrz_scanner:
+    path: ./flutter_mrz_scanner
   mrz_parser: ^2.0.0
   permission_handler: ^9.2.0
 

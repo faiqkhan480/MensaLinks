@@ -1,14 +1,9 @@
-import 'package:dropdown_button2/custom_dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:mensa_links/utils/assets.dart';
-import 'package:mensa_links/utils/colors.dart';
-import 'package:mensa_links/utils/constants.dart';
-import 'package:mensa_links/widgets/text_widgets.dart';
-
-import '../utils/screen_properties.dart';
+import '../utils/assets.dart';
+import '../utils/colors.dart';
+import '../utils/constants.dart';
+import '../widgets/text_widgets.dart';
 
 class CustomDropdown extends StatelessWidget {
   final List<String> values;
